@@ -1,0 +1,9 @@
+node_modules/
+dist/
+# source models, captures and intermediates never leave this machine (CLAUDE.md 8)
+data/
+shots/
+# handoff notes mention client file names; kept local only
+CLAUDE.md
+START_PROMPT.md
+reference/

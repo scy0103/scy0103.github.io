@@ -1,413 +1,213 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chanyoung Song | EPC Project Engineer</title>
-<meta name="description" content="Chanyoung (Jacob) Song - EPC project engineer: plant design, overseas site PL, data center liquid cooling.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231E3A8A'/%3E%3Cpath d='M14 46V30a12 12 0 0 1 12-12h24' fill='none' stroke='%230EA5E9' stroke-width='8' stroke-linecap='round'/%3E%3Ccircle cx='46' cy='42' r='6' fill='%23F59E0B'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<style>
-  :root{
-    --navy:#1E3A8A; --sky:#0EA5E9; --amber:#F59E0B;
-    --bg:#070D1A; --panel:rgba(10,18,36,.72); --line:rgba(148,163,184,.18);
-    --text:#E5ECF6; --muted:#94A3B8;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--text);font-family:Pretendard,-apple-system,"Segoe UI",sans-serif;line-height:1.6;overflow-x:hidden}
-  #scene{position:fixed;inset:0;z-index:0;display:block;
-    background:radial-gradient(ellipse at 50% 30%,#12234a 0%,#070D1A 70%)}
-  header{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;
-    padding:18px 32px;background:linear-gradient(to bottom,rgba(7,13,26,.85),transparent)}
-  .logo{font-weight:800;letter-spacing:.08em;font-size:15px}
-  .logo span{color:var(--sky)}
-  nav{display:flex;gap:22px;align-items:center}
-  nav a{color:var(--muted);text-decoration:none;font-size:14px;transition:color .2s}
-  nav a:hover{color:var(--text)}
-  #lang{border:1px solid var(--line);background:transparent;color:var(--text);padding:6px 12px;border-radius:999px;
-    font-size:12px;font-weight:700;cursor:pointer;font-family:inherit}
-  #lang:hover{border-color:var(--sky)}
-  main{position:relative;z-index:1}
-  section{min-height:100vh;display:flex;align-items:center;padding:120px 6vw}
-  section.right{justify-content:flex-end}
-  .card{max-width:560px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:36px;
-    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-  .eyebrow{color:var(--sky);font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}
-  h1{font-size:clamp(36px,6vw,68px);line-height:1.08;font-weight:800;letter-spacing:-.02em}
-  h1 em{font-style:normal;color:var(--sky)}
-  h2{font-size:clamp(26px,3.4vw,38px);line-height:1.2;font-weight:800;margin-bottom:18px;letter-spacing:-.01em}
-  p{color:#C7D2E3;font-size:16px}
-  .hero{max-width:760px;background:none;border:none;backdrop-filter:none;-webkit-backdrop-filter:none;padding:0}
-  .hero p{margin-top:22px;font-size:18px;max-width:560px}
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:40px;background:var(--line);
-    border:1px solid var(--line);border-radius:12px;overflow:hidden;max-width:560px}
-  .stat{background:rgba(7,13,26,.8);padding:18px}
-  .stat b{display:block;font-size:26px;color:var(--text)}
-  .stat small{color:var(--muted);font-size:12px}
-  .scroll-hint{margin-top:48px;color:var(--muted);font-size:12px;letter-spacing:.2em}
-  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-  .tag{border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13px;color:var(--text);background:rgba(14,165,233,.06)}
-  .timeline{list-style:none;margin-top:8px}
-  .timeline li{position:relative;padding:0 0 22px 22px;border-left:2px solid var(--line)}
-  .timeline li:last-child{padding-bottom:0}
-  .timeline li::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--sky)}
-  .period{font-size:12px;color:var(--sky);font-weight:700;letter-spacing:.06em}
-  .role{font-weight:700;font-size:17px;margin:2px 0}
-  .timeline p{font-size:14px;color:var(--muted)}
-  .projects{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
-  .proj{border:1px solid var(--line);border-radius:12px;padding:16px;background:rgba(7,13,26,.55)}
-  .proj .loc{font-size:11px;color:var(--amber);font-weight:700;letter-spacing:.12em;text-transform:uppercase}
-  .proj b{display:block;margin:4px 0 6px;font-size:15px}
-  .proj p{font-size:13px;color:var(--muted)}
-  .contact a{color:var(--sky);text-decoration:none;font-weight:700}
-  .contact a:hover{text-decoration:underline}
-  .contact-list{margin-top:18px;display:grid;gap:10px}
-  .contact-list div{display:flex;gap:14px;font-size:15px}
-  .contact-list span{color:var(--muted);min-width:80px}
-  footer{position:relative;z-index:1;text-align:center;padding:30px;color:var(--muted);font-size:12px}
-  #progress{position:fixed;left:0;top:0;height:2px;background:var(--sky);z-index:20;width:0}
-  @media (max-width:760px){
-    header{padding:14px 16px}
-    nav a{display:none}
-    section{padding:100px 16px;justify-content:flex-start !important}
-    .card{padding:24px}
-    .projects{grid-template-columns:1fr}
-    .stat b{font-size:20px}
-  }
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CY Song Hook-up Portfolio</title>
+<meta name="description" content="Plant BIM design engineer and overseas construction PL. Industrial and hook-up piping, modeled first and built right.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/src/styles.css">
 </head>
 <body>
-<div id="progress"></div>
-<canvas id="scene"></canvas>
+<canvas id="scene" aria-hidden="true"></canvas>
+<div id="labels" aria-hidden="true"></div>
+<div class="loader" id="loader"><span id="load-txt">Loading model</span><span class="bar"><i id="load-bar"></i></span></div>
 
 <header>
-  <div class="logo">CY<span>.</span>SONG</div>
-  <nav>
-    <a href="#about" data-ko="소개">About</a>
-    <a href="#experience" data-ko="경력">Experience</a>
-    <a href="#projects" data-ko="프로젝트">Projects</a>
-    <a href="#contact" data-ko="연락처">Contact</a>
-    <button id="lang" type="button">KO</button>
+  <div class="id">CY (Jacob) Song <span>/ Piping</span></div>
+  <nav class="stages" aria-label="Stages">
+    <a href="#s1" data-i="1" data-en="Supply" data-ko="공급">Supply</a>
+    <a href="#s2" data-i="2" data-en="Header" data-ko="헤더">Header</a>
+    <a href="#s3" data-i="3" data-en="POU" data-ko="말단">POU</a>
+    <a href="#s4" data-i="4" data-en="Clash" data-ko="간섭">Clash</a>
+    <a href="#s5" data-i="5" data-en="Build" data-ko="시공">Build</a>
+    <a href="#s6" data-i="6" data-en="Fab hook-up" data-ko="팹 Hook-up">Fab hook-up</a>
+    <a href="#s8" data-i="8" data-en="Numbers" data-ko="물량">Numbers</a>
+    <a href="#s9" data-i="9" data-en="Field" data-ko="실적">Field</a>
+    <a href="#s10" data-i="10" data-en="Contact" data-ko="연락">Contact</a>
   </nav>
+  <div class="lang" role="group" aria-label="Language">
+    <button type="button" id="lang-en" aria-pressed="true">EN</button>
+    <button type="button" id="lang-ko" aria-pressed="false">KO</button>
+  </div>
 </header>
 
 <main>
-  <!-- 1. HERO -->
-  <section id="home">
-    <div class="card hero">
-      <div class="eyebrow" data-ko="EPC 프로젝트 엔지니어 / PM">EPC Project Engineer / PM</div>
-      <h1 data-ko="설계에서 시작해,<br><em>현장에서 완성합니다.</em>">Designed on screen.<br><em>Delivered on site.</em></h1>
-      <p data-ko="송찬영(Jacob Song). 플랜트 설계와 해외 현장 PL 경험을 바탕으로 이차전지 공장의 CESS, Hook-up 배관 프로젝트를 수행해 왔습니다.">
-        Chanyoung (Jacob) Song. Plant design engineer turned overseas site PL, delivering CESS and process hook-up piping for secondary-battery plants.</p>
-      <!-- EDIT: 수치 확인 후 수정 -->
-      <div class="stats">
-        <div class="stat"><b>5</b><small data-ko="해외 현장">Overseas sites</small></div>
-        <div class="stat"><b>2</b><small data-ko="국가 (미국, 헝가리)">Countries (US, HU)</small></div>
-        <div class="stat"><b>3D</b><small data-ko="설계 → 시공 → 영업">Design → Site → Sales</small></div>
-      </div>
-      <div class="scroll-hint" data-ko="스크롤하여 현장으로 들어가기 ↓">SCROLL TO DIVE INTO THE PLANT ↓</div>
-    </div>
-  </section>
-
-  <!-- 2. ABOUT -->
-  <section id="about" class="right">
-    <div class="card">
-      <div class="eyebrow">01 / About</div>
-      <h2 data-ko="도면과 현장, 두 언어를 모두 씁니다.">I speak both drawing and site.</h2>
-      <p data-ko="설비 벤더의 설계팀장으로 커리어를 시작해, 에이아이코리아(AIK)에서 설계 차장/팀장 및 미국 CESS 현장 PL을 맡았습니다. 복잡하게 얽힌 배관을 3D로 설계하고, 그 설계가 실제 현장에서 시공되기까지의 전 과정을 책임져 왔습니다. 현재는 데이터센터 액체냉각(DLC) 사업의 기술영업을 이끌고 있습니다.">
-        I started as a design team leader at an equipment vendor, then joined AIK as design manager and US CESS site PL. My work covers the full path from 3D piping design to field installation, closing the gap between what is drawn and what gets built. Today I lead technical sales for data center liquid cooling (DLC).</p>
-      <div class="tags">
-        <span class="tag">Plant 3D Design / BIM</span>
-        <span class="tag">Piping Hook-up</span>
-        <span class="tag">CESS</span>
-        <span class="tag">Site PL</span>
-        <span class="tag">RFP / RFQ</span>
-        <span class="tag">DLC / CDU</span>
+  <section class="sheet" id="s0">
+    <div class="panel">
+      <div class="tb"><span>DWG CYS-000</span><span>Sheet 1/11</span><span>Rev C</span></div>
+      <div class="body">
+        <div class="eyebrow" data-en="Plant BIM Design Engineer / Construction PL" data-ko="플랜트 BIM 설계 엔지니어 / 공사 PL">Plant BIM Design Engineer / Construction PL</div>
+        <h1 data-en="Complex hook-up piping, modeled first and built right." data-ko="얽힌 Hook-up 배관, 먼저 모델링하고 정확히 시공합니다.">Complex hook-up piping, modeled first and built right.</h1>
+        <p data-en="Two projects, one scroll. First, my own Revit model of a CESS supply system for a battery plant: 2,039 m of pipe from the tank farm to every point of use. Then a fab hook-up hall, where utility lines drop into rows of process tools." data-ko="두 개의 프로젝트를 한 번의 스크롤로. 먼저 제가 Revit으로 모델링한 이차전지 공장 CESS 공급 시스템(탱크 팜에서 각 말단까지 배관 2,039 m), 이어서 공정 설비 열로 유틸리티 라인이 내려오는 생산동 Hook-up입니다.">Two projects, one scroll. First, my own Revit model of a CESS supply system for a battery plant: 2,039 m of pipe from the tank farm to every point of use. Then a fab hook-up hall, where utility lines drop into rows of process tools.</p>
+        <div class="hint"><i></i><span data-en="Scroll to walk the line" data-ko="스크롤하여 라인 따라가기">Scroll to walk the line</span></div>
       </div>
     </div>
   </section>
 
-  <!-- 3. EXPERIENCE -->
-  <section id="experience">
-    <div class="card">
-      <div class="eyebrow">02 / Experience</div>
-      <h2 data-ko="경력">Career Path</h2>
-      <ul class="timeline">
-        <li>
-          <div class="period">2026.02 – PRESENT</div>
-          <div class="role" data-ko="AIK 신사업본부, 데이터센터팀장">AIK, New Business Div. – Data Center Team Leader</div>
-          <p data-ko="Cold Plate 기반 DLC, CDU, CRAC 기술영업. 중국, 대만 멀티벤더 소싱 및 CDU 국산화 추진. 제안서, RFP 대응.">Technical sales for cold-plate DLC, CDU and CRAC. Multi-vendor sourcing (China, Taiwan) and in-house CDU localization. Proposals and RFP response.</p>
-        </li>
-        <li>
-          <div class="period">2021.09 – 2026.01</div>
-          <div class="role" data-ko="AIK 인프라사업부, 설계 차장/팀장, 미국 CESS 현장 PL">AIK, Infrastructure Div. – Design Manager / Team Leader, US CESS Site PL</div>
-          <p data-ko="이차전지 공장 CESS 및 산업배관 Hook-up 설계 총괄. 미국 현장 PL로 시공, 공정, 설계변경 관리.">Led CESS and industrial hook-up piping design for battery plants. Site PL in the US: construction, schedule and design-change management.</p>
-        </li>
-        <li>
-          <!-- EDIT: 재직 기간, 회사명 입력 -->
-          <div class="period">YYYY – 2021</div>
-          <div class="role" data-ko="설비 벤더, 설계팀장">Equipment Vendor – Design Team Leader</div>
-          <p data-ko="설비 및 배관 3D 설계, 해외 프로젝트(헝가리 등) 설계 대응.">3D equipment and piping design; design support for overseas projects including Hungary.</p>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- 4. PROJECTS -->
-  <section id="projects" class="right">
-    <div class="card">
-      <div class="eyebrow">03 / Projects</div>
-      <h2 data-ko="해외 현장">Overseas Sites</h2>
-      <!-- EDIT: 프로젝트별 역할, 기간, 규모 보완 -->
-      <div class="projects">
-        <div class="proj"><div class="loc">Hungary</div>
-          <b data-ko="이차전지 공장">Battery Plant</b>
-          <p data-ko="CESS, Hook-up 배관 설계">CESS and hook-up piping design</p></div>
-        <div class="proj"><div class="loc">Kokomo, Indiana</div>
-          <b data-ko="이차전지 공장">Battery Plant</b>
-          <p data-ko="CESS, Hook-up 배관 설계/시공">CESS and hook-up piping, design to install</p></div>
-        <div class="proj"><div class="loc">Holland, Michigan</div>
-          <b data-ko="이차전지 공장">Battery Plant</b>
-          <p data-ko="CESS, Hook-up 배관 설계/시공">CESS and hook-up piping, design to install</p></div>
-        <div class="proj"><div class="loc">Ohio</div>
-          <b data-ko="이차전지 공장">Battery Plant</b>
-          <p data-ko="CESS, Hook-up 배관 설계/시공">CESS and hook-up piping, design to install</p></div>
-        <div class="proj"><div class="loc">Arizona</div>
-          <b data-ko="이차전지 공장">Battery Plant</b>
-          <p data-ko="CESS 설계변경 관리, 조기 현장 투입">CESS design-change management, early site mobilization</p></div>
-        <div class="proj"><div class="loc">Korea</div>
-          <b data-ko="AI 데이터센터">AI Data Centers</b>
-          <p data-ko="DLC, CDU, 2차측 배관 제안">DLC, CDU and secondary-loop piping proposals</p></div>
+  <section class="sheet right" id="s1">
+    <div class="panel">
+      <div class="tb"><span>DWG CYS-101</span><span>Sheet 2/11</span><span>Project A</span></div>
+      <div class="body">
+        <div class="eyebrow" data-en="Project A / Supply" data-ko="Project A / 공급">Project A / Supply</div>
+        <h2 data-en="It starts at the tank farm." data-ko="시작은 탱크 팜입니다.">It starts at the tank farm.</h2>
+        <p data-en="Four 40 m³ and two 20 m³ storage tanks, a return tank, separators, transfer pumps and the unloading cabinets. Every nozzle, valve and support is placed in 3D, so the layout is settled before fabrication drawings are issued." data-ko="40 m³ 저장 탱크 4기, 20 m³ 2기, 리턴 탱크, 세퍼레이터, 이송 펌프, 언로딩 캐비닛. 모든 노즐, 밸브, 서포트를 3D로 배치해 제작 도면 발행 전에 배치를 확정합니다.">Four 40 m³ and two 20 m³ storage tanks, a return tank, separators, transfer pumps and the unloading cabinets. Every nozzle, valve and support is placed in 3D, so the layout is settled before fabrication drawings are issued.</p>
+        <div class="tags"><span>Revit MEP</span><span>Tank farm layout</span><span>Equipment nozzles</span></div>
       </div>
     </div>
   </section>
 
-  <!-- 5. CONTACT -->
-  <section id="contact">
-    <div class="card contact">
-      <div class="eyebrow">04 / Contact</div>
-      <h2 data-ko="함께 만들 현장이 있다면.">Have a plant to build?</h2>
-      <p data-ko="EPC 프로젝트 엔지니어, PM 포지션 관련 연락을 환영합니다.">Open to EPC project engineer and PM opportunities.</p>
-      <!-- EDIT: 개인 이메일, LinkedIn 주소로 교체 -->
-      <div class="contact-list">
-        <div><span>Email</span><a href="mailto:your.email@example.com">your.email@example.com</a></div>
-        <div><span>LinkedIn</span><a href="https://www.linkedin.com/in/your-id" target="_blank" rel="noopener">linkedin.com/in/your-id</a></div>
-        <div><span data-ko="위치">Location</span><span style="color:var(--text)" data-ko="대한민국 경기도">Gyeonggi-do, South Korea</span></div>
+  <section class="sheet" id="s2">
+    <div class="panel">
+      <div class="tb"><span>DWG CYS-201</span><span>Sheet 3/11</span><span>Project A</span></div>
+      <div class="body">
+        <div class="eyebrow" data-en="Project A / Distribution header" data-ko="Project A / 이송 헤더">Project A / Distribution header</div>
+        <h2 data-en="One header, about 150 m, through a crowded rack." data-ko="약 150 m 헤더를 혼잡한 랙 사이로.">One header, about 150 m, through a crowded rack.</h2>
+        <p data-en="Stainless butt-weld lines leave the farm and run the length of the building. Elevations, slopes and spacing are set against the rack and the other trades already in the model." data-ko="스테인리스 맞대기 용접 라인이 탱크 팜을 나와 건물 길이 방향으로 이어집니다. 레벨, 구배, 간격은 랙과 타 공종 모델 기준으로 결정합니다.">Stainless butt-weld lines leave the farm and run the length of the building. Elevations, slopes and spacing are set against the rack and the other trades already in the model.</p>
+        <div class="tags"><span>STS SCH10</span><span>Pipe rack routing</span><span>Elevation control</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet right" id="s3">
+    <div class="panel">
+      <div class="tb"><span>DWG CYS-301</span><span>Sheet 4/11</span><span>Project A</span></div>
+      <div class="body">
+        <div class="eyebrow" data-en="Project A / Point of use" data-ko="Project A / 말단 Hook-up">Project A / Point of use</div>
+        <h2 data-en="Every drop, tied in valve by valve." data-ko="모든 드롭을 밸브 단위로 연결합니다.">Every drop, tied in valve by valve.</h2>
+        <p data-en="Branches drop from the header to each cabinet with isolation valves, pressure and temperature instruments and tube fittings at the tool side. This is where hook-up gets dense." data-ko="헤더에서 각 캐비닛으로 분기하며 차단 밸브, 압력 및 온도 계측기, 설비 측 튜브 피팅까지 연결합니다. Hook-up이 가장 조밀해지는 구간입니다.">Branches drop from the header to each cabinet with isolation valves, pressure and temperature instruments and tube fittings at the tool side. This is where hook-up gets dense.</p>
+        <div class="tags"><span>Ball valves</span><span>PT / TT</span><span>Tube fittings</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet" id="s4">
+    <div class="panel">
+      <div class="tb"><span>DWG CYS-401</span><span>Sheet 5/11</span><span>Project A</span></div>
+      <div class="body">
+        <div class="eyebrow" data-en="Project A / Clash review" data-ko="Project A / 간섭검토">Project A / Clash review</div>
+        <h2 data-en="Clashes get solved on screen, not on site." data-ko="간섭은 현장이 아니라 화면에서 해결합니다.">Clashes get solved on screen, not on site.</h2>
+        <p data-en="The markers sit on real line crossings in this model. Each crossing is checked for clearance, insulation thickness and valve access before any spool is cut." data-ko="표시된 지점은 이 모델의 실제 라인 교차부입니다. 스풀 제작 전에 이격, 보온 두께, 밸브 조작 공간을 교차부마다 검토합니다.">The markers sit on real line crossings in this model. Each crossing is checked for clearance, insulation thickness and valve access before any spool is cut.</p>
+        <div class="tags"><span>Clash detection</span><span>Navisworks</span><span>Constructability</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet right" id="s5">
+    <div class="panel">
+      <div class="tb"><span>DWG CYS-501</span><span>Sheet 6/11</span><span>Project A</span></div>
+      <div class="body">
+        <div class="eyebrow" data-en="Project A / Construction" data-ko="Project A / 시공">Project A / Construction</div>
+        <h2 data-en="Then I go to site and lead the install." data-ko="그리고 현장에서 설치를 직접 리드합니다.">Then I go to site and lead the install.</h2>
+        <p data-en="Project Lead for execution: crews and subcontractors, supports and insulation, welding and QA/QC, pressure and leak tests, then turnover to the client's production team." data-ko="시공 Project Lead: 작업자 및 협력사 관리, 서포트와 보온, 용접 및 QA/QC, 압력 및 리크 테스트, 고객 생산팀 인계까지.">Project Lead for execution: crews and subcontractors, supports and insulation, welding and QA/QC, pressure and leak tests, then turnover to the client's production team.</p>
+        <div class="tags"><span>Site PL</span><span>QA/QC</span><span>Pressure test</span><span>Turnover</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet" id="s6">
+    <div class="panel">
+      <div class="tb"><span>DWG CYS-601</span><span>Sheet 7/11</span><span>Project B</span></div>
+      <div class="body">
+        <div class="eyebrow b" data-en="Project B / Fab hook-up" data-ko="Project B / 생산동 Hook-up">Project B / Fab hook-up</div>
+        <h2 data-en="Then the whole production floor." data-ko="그 다음은 생산동 전체입니다.">Then the whole production floor.</h2>
+        <p data-en="Main racks carry the large utility headers down the hall. From them, paired supply and return lines, gas and chemical lines drop into each process tool, between platforms, handrails and every other trade." data-ko="메인 랙이 대구경 유틸리티 헤더를 홀 길이 방향으로 운반하고, 여기서 공급, 회수 페어 라인과 가스, 케미컬 라인이 플랫폼, 핸드레일, 타 공종 사이로 각 공정 설비에 내려갑니다.">Main racks carry the large utility headers down the hall. From them, paired supply and return lines, gas and chemical lines drop into each process tool, between platforms, handrails and every other trade.</p>
+        <div class="tags"><span>Navisworks</span><span>Federated model</span><span>Utility hook-up</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet right" id="s7">
+    <div class="panel">
+      <div class="tb"><span>DWG CYS-602</span><span>Sheet 8/11</span><span>Project B</span></div>
+      <div class="body">
+        <div class="eyebrow b" data-en="Project B / Under the rack" data-ko="Project B / 랙 하부">Project B / Under the rack</div>
+        <h2 data-en="At tool level, every centimetre is spoken for." data-ko="설비 레벨에서는 빈 공간이 거의 없습니다.">At tool level, every centimetre is spoken for.</h2>
+        <p data-en="Getting each drop right in the model is what lets crews install without rework. This hall is a 3D rebuild of the layout pattern from my coordination work; client geometry is not published." data-ko="드롭 하나하나를 모델에서 맞춰 두어야 현장 재작업 없이 설치됩니다. 이 홀은 제 조율 업무의 배치 패턴을 3D로 재구성한 것이며, 고객사 실제 형상은 게시하지 않았습니다.">Getting each drop right in the model is what lets crews install without rework. This hall is a 3D rebuild of the layout pattern from my coordination work; client geometry is not published.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet" id="s8">
+    <div class="panel">
+      <div class="tb"><span>DWG CYS-701</span><span>Sheet 9/11</span><span>Take-off</span></div>
+      <div class="body">
+        <div class="eyebrow" data-en="Project A in numbers" data-ko="Project A 물량">Project A in numbers</div>
+        <h2 data-en="One system, counted from the model." data-ko="시스템 하나, 모델에서 직접 산출한 물량.">One system, counted from the model.</h2>
+        <div class="stats">
+          <div><b>2,039<small>m</small></b><small data-en="Pipe length" data-ko="배관 길이">Pipe length</small></div>
+          <div><b>1,082</b><small data-en="Pipe segments" data-ko="배관 세그먼트">Pipe segments</small></div>
+          <div><b>1,120</b><small data-en="Fittings" data-ko="피팅">Fittings</small></div>
+          <div><b>441</b><small data-en="Valves, instruments" data-ko="밸브, 계측기">Valves, instruments</small></div>
+          <div><b>1,235</b><small data-en="Supports" data-ko="서포트">Supports</small></div>
+          <div><b>156<small>x 52 m</small></b><small data-en="Footprint" data-ko="면적">Footprint</small></div>
+        </div>
+        <p class="note" data-en="Counts read directly from the IFC export. Names, tags and coordinates were removed before publishing." data-ko="IFC Export에서 직접 집계. 게시 전 명칭, Tag, 좌표 정보는 삭제했습니다.">Counts read directly from the IFC export. Names, tags and coordinates were removed before publishing.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet right" id="s9">
+    <div class="panel">
+      <div class="tb"><span>DWG CYS-801</span><span>Sheet 10/11</span><span>Field record</span></div>
+      <div class="body">
+        <div class="eyebrow" data-en="Field record" data-ko="현장 실적">Field record</div>
+        <h2 data-en="Delivered across three continents." data-ko="3개 대륙에서 수행했습니다.">Delivered across three continents.</h2>
+        <p data-en="Hungary, Poland, Michigan, Ohio and Indiana, plus earlier plant work in Saudi Arabia, Chile and China." data-ko="헝가리, 폴란드, 미국 미시간, 오하이오, 인디애나. 이전 사우디, 칠레, 중국 플랜트 업무 포함.">Hungary, Poland, Michigan, Ohio and Indiana, plus earlier plant work in Saudi Arabia, Chile and China.</p>
+        <div class="stats">
+          <div><b>8</b><small data-en="Countries" data-ko="국가">Countries</small></div>
+          <div><b>11</b><small data-en="Sites" data-ko="현장">Sites</small></div>
+          <div><b>TBD</b><small data-en="Years" data-ko="경력(년)">Years</small></div>
+        </div>
+        <p class="note" data-en="Country and site counts are provisional, pending confirmation." data-ko="국가, 현장 수는 확인 전 가정치입니다.">Country and site counts are provisional, pending confirmation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet" id="s10">
+    <div class="panel">
+      <div class="tb"><span>DWG CYS-901</span><span>Sheet 11/11</span><span>Issued for review</span></div>
+      <div class="body">
+        <div class="eyebrow" data-en="Contact" data-ko="연락처">Contact</div>
+        <h2 data-en="Planning the next hook-up? Let's talk." data-ko="다음 Hook-up 프로젝트, 함께 이야기하시죠.">Planning the next hook-up? Let's talk.</h2>
+        <p data-en="Resume download and contact details go here in the final version." data-ko="최종본에는 이력서 다운로드와 연락처가 들어갑니다.">Resume download and contact details go here in the final version.</p>
+        <div class="actions">
+          <span class="btn primary" data-en="Resume PDF (pending)" data-ko="이력서 PDF (준비 중)">Resume PDF (pending)</span>
+          <span class="btn" data-en="LinkedIn (pending)" data-ko="LinkedIn (준비 중)">LinkedIn (pending)</span>
+        </div>
       </div>
     </div>
   </section>
 </main>
 
-<footer>© 2026 Chanyoung Song</footer>
+<div class="dock hud" id="hud">
+  <span><span data-en="Modeled" data-ko="모델링">Modeled</span> <b id="h-model">0%</b></span>
+  <span id="h-clash-wrap"><span data-en="Crossings open" data-ko="미검토 교차부">Crossings open</span> <b id="h-clash">-</b></span>
+  <span><span data-en="Insulated" data-ko="보온">Insulated</span> <b id="h-build">0%</b></span>
+</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script>
-/* ---------- Language toggle ---------- */
-(function(){
-  var btn=document.getElementById('lang');
-  var els=document.querySelectorAll('[data-ko]');
-  els.forEach(function(el){el.setAttribute('data-en',el.innerHTML);});
-  function apply(lang){
-    els.forEach(function(el){el.innerHTML=el.getAttribute(lang==='ko'?'data-ko':'data-en');});
-    document.documentElement.lang=lang;
-    btn.textContent=lang==='ko'?'EN':'KO';
-    try{localStorage.setItem('cy-lang',lang);}catch(e){}
-  }
-  var cur='en';
-  try{cur=localStorage.getItem('cy-lang')||'en';}catch(e){}
-  apply(cur);
-  btn.addEventListener('click',function(){cur=cur==='en'?'ko':'en';apply(cur);});
-})();
+<aside class="dock legend" id="legend-a" aria-label="Project A legend">
+  <h3 data-en="Project A legend" data-ko="Project A 범례">Project A legend</h3>
+  <ul>
+    <li><span class="sw" id="sw-a"></span><span data-en="6 longest line systems" data-ko="최장 라인 시스템 6개">6 longest line systems</span></li>
+    <li><i style="--c:#C9CFD6"></i><span data-en="Other lines (184)" data-ko="기타 라인 (184)">Other lines (184)</span></li>
+    <li><i style="--c:#8B95A3"></i><span data-en="Valves, instruments" data-ko="밸브, 계측기">Valves, instruments</span></li>
+    <li><i style="--c:#DC2626"></i><span data-en="Supports" data-ko="서포트">Supports</span></li>
+    <li><i style="--c:#F1F5F9"></i><span data-en="Insulation" data-ko="보온">Insulation</span></li>
+  </ul>
+</aside>
+<aside class="dock legend" id="legend-b" aria-label="Project B legend" style="opacity:0">
+  <h3 data-en="Project B legend" data-ko="Project B 범례">Project B legend</h3>
+  <ul>
+    <li><span class="sw"><i style="background:#E11D2E"></i><i style="background:#1D4ED8"></i></span><span data-en="Supply / return pair" data-ko="공급 / 회수 페어">Supply / return pair</span></li>
+    <li><i style="--c:#D946EF"></i><span data-en="Chemical drops" data-ko="케미컬 드롭">Chemical drops</span></li>
+    <li><i style="--c:#F59E0B"></i><span data-en="Gas drops" data-ko="가스 드롭">Gas drops</span></li>
+    <li><i style="--c:#B9BEC4"></i><span data-en="Main utility headers" data-ko="메인 유틸리티 헤더">Main utility headers</span></li>
+  </ul>
+</aside>
 
-/* ---------- 3D isometric piping diorama ---------- */
-(function(){
-  if(typeof THREE==='undefined')return;
-  var canvas=document.getElementById('scene');
-  var renderer;
-  try{renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});}catch(e){return;}
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
-  renderer.setSize(innerWidth,innerHeight);
-
-  var scene=new THREE.Scene();
-  scene.fog=new THREE.Fog(0x070D1A,45,110);
-  var camera=new THREE.PerspectiveCamera(35,innerWidth/innerHeight,0.1,300);
-
-  // Seeded random so the layout is identical on every visit
-  var seed=20260216;
-  function rnd(){seed|=0;seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);
-    t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}
-
-  // Lights
-  scene.add(new THREE.HemisphereLight(0x9ec9ff,0x0a1020,0.55));
-  var sun=new THREE.DirectionalLight(0xffffff,0.9);sun.position.set(20,40,15);scene.add(sun);
-  var rim=new THREE.PointLight(0x0EA5E9,1.2,60);rim.position.set(-10,12,-10);scene.add(rim);
-
-  // Materials
-  var M={
-    base:new THREE.MeshStandardMaterial({color:0x111c33,roughness:.9}),
-    steel:new THREE.MeshStandardMaterial({color:0x334155,roughness:.6,metalness:.4}),
-    tank:new THREE.MeshStandardMaterial({color:0xcbd5e1,roughness:.35,metalness:.6}),
-    cab:new THREE.MeshStandardMaterial({color:0x1E3A8A,roughness:.5,metalness:.3}),
-    skid:new THREE.MeshStandardMaterial({color:0x475569,roughness:.6,metalness:.3})
-  };
-  var pipeColors=[0x0EA5E9,0x38BDF8,0xF59E0B,0xE2E8F0,0x60A5FA,0x22D3EE];
-
-  // Diorama base slab
-  var slab=new THREE.Mesh(new THREE.BoxGeometry(44,1,32),M.base);slab.position.y=-.5;scene.add(slab);
-  var edge=new THREE.LineSegments(new THREE.EdgesGeometry(slab.geometry),
-    new THREE.LineBasicMaterial({color:0x0EA5E9,transparent:true,opacity:.35}));
-  edge.position.copy(slab.position);scene.add(edge);
-  var grid=new THREE.GridHelper(44,44,0x1e3a8a,0x16233f);grid.scale.z=32/44;grid.position.y=.01;scene.add(grid);
-
-  // Equipment
-  var nozzles=[];
-  function tank(x,z,r,h){
-    var g=new THREE.Group();
-    var body=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,32),M.tank);body.position.y=h/2+.6;g.add(body);
-    var cap=new THREE.Mesh(new THREE.SphereGeometry(r,32,12,0,Math.PI*2,0,Math.PI/2),M.tank);cap.position.y=h+.6;g.add(cap);
-    for(var i=0;i<4;i++){var a=i*Math.PI/2+.4;
-      var leg=new THREE.Mesh(new THREE.BoxGeometry(.2,.8,.2),M.steel);leg.position.set(Math.cos(a)*r*.8,.3,Math.sin(a)*r*.8);g.add(leg);}
-    g.position.set(x,0,z);scene.add(g);
-    nozzles.push(new THREE.Vector3(x,h+.6+r*.6,z));
-    nozzles.push(new THREE.Vector3(x+r,1.4,z));
-  }
-  function cabinet(x,z,n){
-    for(var i=0;i<n;i++){
-      var c=new THREE.Mesh(new THREE.BoxGeometry(1.4,3,1.2),M.cab);c.position.set(x+i*1.6,1.5,z);scene.add(c);
-      var led=new THREE.Mesh(new THREE.BoxGeometry(.6,.08,.02),new THREE.MeshBasicMaterial({color:0x22D3EE}));
-      led.position.set(x+i*1.6,2.4,z+.61);scene.add(led);
-      nozzles.push(new THREE.Vector3(x+i*1.6,3,z));
-    }
-  }
-  function skid(x,z,w,d){
-    var s=new THREE.Mesh(new THREE.BoxGeometry(w,1.2,d),M.skid);s.position.set(x,.6,z);scene.add(s);
-    var p=new THREE.Mesh(new THREE.CylinderGeometry(.5,.5,1.4,20),M.tank);p.rotation.z=Math.PI/2;p.position.set(x,1.6,z);scene.add(p);
-    nozzles.push(new THREE.Vector3(x+w/2-.3,1.6,z));
-  }
-  tank(-16,-9,1.8,6);tank(-11.5,-9,1.8,6);tank(-7,-9,1.5,5);
-  tank(13,9,2.2,7);tank(17.5,9,1.6,5);
-  cabinet(-17,8,5);cabinet(4,-11,6);
-  skid(-2,9,3.4,2);skid(6,9,3,2);skid(16,-9,4,2.4);
-
-  // Pipe rack along x (z=0)
-  var rackZ=0,rackW=4,levels=[6.5,8.5];
-  for(var x=-20;x<=20;x+=4){
-    [-rackW/2,rackW/2].forEach(function(dz){
-      var col=new THREE.Mesh(new THREE.BoxGeometry(.3,9,.3),M.steel);col.position.set(x,4.5,rackZ+dz);scene.add(col);});
-    levels.forEach(function(y){
-      var beam=new THREE.Mesh(new THREE.BoxGeometry(.25,.25,rackW+.4),M.steel);beam.position.set(x,y-.25,rackZ);scene.add(beam);});
-  }
-  levels.forEach(function(y){[-rackW/2,rackW/2].forEach(function(dz){
-    var lb=new THREE.Mesh(new THREE.BoxGeometry(40.3,.25,.25),M.steel);lb.position.set(0,y-.25,rackZ+dz);scene.add(lb);});});
-
-  // Pipe builder: straight runs + elbow balls
-  var UP=new THREE.Vector3(0,1,0);
-  var flows=[];
-  function pipe(pts,color,r){
-    var mat=new THREE.MeshStandardMaterial({color:color,roughness:.35,metalness:.5});
-    var len=[0];
-    for(var i=0;i<pts.length-1;i++){
-      var a=pts[i],b=pts[i+1],d=new THREE.Vector3().subVectors(b,a),L=d.length();
-      len.push(len[i]+L);
-      if(L<.01)continue;
-      var m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,L,12),mat);
-      m.position.copy(a).add(b).multiplyScalar(.5);
-      m.quaternion.setFromUnitVectors(UP,d.normalize());scene.add(m);
-      if(i>0){var j=new THREE.Mesh(new THREE.SphereGeometry(r*1.25,12,8),mat);j.position.copy(a);scene.add(j);}
-      if(i%2===1&&L>3){ // flange ring
-        var f=new THREE.Mesh(new THREE.CylinderGeometry(r*1.6,r*1.6,.12,16),M.steel);
-        f.position.copy(m.position);f.quaternion.copy(m.quaternion);scene.add(f);}
-    }
-    flows.push({pts:pts,len:len,total:len[len.length-1],color:color});
-  }
-
-  // Route every nozzle up to the rack, along it, and down to another nozzle
-  var nPipes=0;
-  for(var k=0;k<nozzles.length;k++){
-    var s=nozzles[k],e=nozzles[Math.floor(rnd()*nozzles.length)];
-    if(e===s||Math.abs(e.x-s.x)<3)continue;
-    var lvl=levels[nPipes%2]+.25+rnd()*.15;
-    var off=-rackW/2+.5+(nPipes%7)*.5;
-    var r=.12+rnd()*.14;
-    var up=lvl-.6-rnd()*1.2;
-    pipe([
-      s.clone(),
-      new THREE.Vector3(s.x,up,s.z),
-      new THREE.Vector3(s.x,up,rackZ+off),
-      new THREE.Vector3(s.x,lvl,rackZ+off),
-      new THREE.Vector3(e.x,lvl,rackZ+off),
-      new THREE.Vector3(e.x,up+.4,rackZ+off),
-      new THREE.Vector3(e.x,up+.4,e.z),
-      e.clone()
-    ],pipeColors[nPipes%pipeColors.length],r);
-    nPipes++;
-  }
-
-  // Flow particles running inside the pipes
-  var per=6,count=flows.length*per;
-  var pos=new Float32Array(count*3),col=new Float32Array(count*3),phase=[];
-  var c=new THREE.Color();
-  for(var i=0;i<count;i++){c.set(flows[Math.floor(i/per)].color).lerp(new THREE.Color(0xffffff),.5);
-    col[i*3]=c.r;col[i*3+1]=c.g;col[i*3+2]=c.b;phase.push((i%per)/per+rnd()*.05);}
-  var pg=new THREE.BufferGeometry();
-  pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
-  pg.setAttribute('color',new THREE.BufferAttribute(col,3));
-  var points=new THREE.Points(pg,new THREE.PointsMaterial({size:.32,vertexColors:true,transparent:true,opacity:.95,
-    blending:THREE.AdditiveBlending,depthWrite:false}));
-  scene.add(points);
-  function pointOn(f,t){
-    var d=t*f.total,i=1;while(i<f.len.length-1&&f.len[i]<d)i++;
-    var a=f.pts[i-1],b=f.pts[i],seg=f.len[i]-f.len[i-1]||1;
-    return a.clone().lerp(b,(d-f.len[i-1])/seg);
-  }
-
-  // Camera "dive" path keyed to scroll
-  var camPath=new THREE.CatmullRomCurve3([
-    new THREE.Vector3(46,40,46),   // isometric overview
-    new THREE.Vector3(26,18,30),   // approach
-    new THREE.Vector3(8,7.5,9),    // dive into the rack
-    new THREE.Vector3(-6,7.4,2.5), // fly along the pipe rack
-    new THREE.Vector3(-22,12,14),  // pull out over tanks
-    new THREE.Vector3(0,55,30)     // top-down plan view
-  ]);
-  var lookPath=new THREE.CatmullRomCurve3([
-    new THREE.Vector3(0,2,0),
-    new THREE.Vector3(0,3,0),
-    new THREE.Vector3(-2,6.5,0),
-    new THREE.Vector3(-16,7,0),
-    new THREE.Vector3(-10,3,-6),
-    new THREE.Vector3(0,0,0)
-  ]);
-
-  var target=0,cur=0,mx=0,my=0;
-  var bar=document.getElementById('progress');
-  function onScroll(){
-    var max=document.documentElement.scrollHeight-innerHeight;
-    target=max>0?Math.min(Math.max(scrollY/max,0),1):0;
-    bar.style.width=(target*100)+'%';
-  }
-  addEventListener('scroll',onScroll,{passive:true});onScroll();
-  addEventListener('mousemove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;});
-  addEventListener('resize',function(){
-    camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
-
-  var clock=new THREE.Clock();
-  (function loop(){
-    requestAnimationFrame(loop);
-    var t=clock.getElapsedTime();
-    cur+=(target-cur)*0.07;
-    var p=camPath.getPoint(cur),l=lookPath.getPoint(cur);
-    camera.position.set(p.x+mx*2,p.y-my*1.5,p.z);
-    camera.lookAt(l);
-    for(var i=0;i<count;i++){
-      var f=flows[Math.floor(i/per)],v=pointOn(f,(phase[i]+t*0.06)%1);
-      pos[i*3]=v.x;pos[i*3+1]=v.y;pos[i*3+2]=v.z;}
-    pg.attributes.position.needsUpdate=true;
-    rim.intensity=1+Math.sin(t*1.5)*.3;
-    renderer.render(scene,camera);
-  })();
-})();
-</script>
+<script type="module" src="/src/main.js"></script>
 </body>
 </html>
