@@ -1,6 +1,7 @@
 import * as THREE from 'three';
-import { OZ, COLORS, KEYS, MOBILE_DIST, REVEAL_S, REVEAL_V, TAGS } from './config.js';
+import { COLORS, KEYS, MOBILE_DIST, REVEAL_S, REVEAL_V, TAGS, DOC_FROM } from './config.js';
 import { initLang, onLang } from './i18n.js';
+import { initUI } from './ui.js';
 import { createProjectA } from './projectA.js';
 import { createProjectB } from './projectB.js';
 
@@ -17,8 +18,9 @@ const labelsEl = $('labels');
 TAGS.forEach((t) => { const el = document.createElement('div'); el.className = 'tag3d'; el.style.setProperty('--c', t.c); labelsEl.appendChild(el); t.el = el; });
 onLang((l) => TAGS.forEach((t) => { t.el.textContent = l === 'ko' ? t.ko : t.en; }));
 initLang();
+initUI();
 
-const hud = $('hud'), legA = $('legend-a'), legB = $('legend-b');
+const hud = $('hud'), legA = $('legend-a'), legB = $('legend-b'), veil = $('veil');
 const loader = $('loader'), loadTxt = $('load-txt'), loadBar = $('load-bar');
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const mobile = window.matchMedia('(max-width:860px)').matches;
@@ -59,18 +61,39 @@ if (renderer) {
   const hModel = $('h-model'), hClash = $('h-clash'), hBuild = $('h-build'), hWrap = $('h-clash-wrap');
   let target = 0, sNow = 0, lastNav = -1;
   const camP = new THREE.Vector3(), camT = new THREE.Vector3(), tmp = new THREE.Vector3();
+  // Each sheet (data-k) owns one keyframe. Its anchor is the scroll position that centres the sheet,
+  // so sheets of any height land exactly on their camera; stage interpolates linearly between anchors.
+  const sheets = [...document.querySelectorAll('main .sheet[data-k]')];
+  let anchors = [];
+  const measure = () => {
+    const vh = window.innerHeight, max = document.documentElement.scrollHeight - vh;
+    anchors = sheets.map((el, i) => {
+      const r = el.getBoundingClientRect(), top = r.top + window.scrollY;
+      const a = i === 0 ? 0 : i === sheets.length - 1 ? max : top + (r.height - vh) / 2;
+      return Math.max(0, Math.min(max, a));
+    });
+  };
   const readScroll = () => {
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    target = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) * (N - 1) : 0;
+    const y = window.scrollY;
+    if (y <= anchors[0]) { target = 0; return; }
+    for (let i = 0; i < anchors.length - 1; i++) {
+      if (y <= anchors[i + 1]) { target = i + (y - anchors[i]) / Math.max(1, anchors[i + 1] - anchors[i]); return; }
+    }
+    target = N - 1;
   };
   const resize = () => {
     const w = window.innerWidth, h = window.innerHeight;
-    renderer.setSize(w, h, false); camera.aspect = w / h; camera.fov = w < 700 ? 54 : 40; camera.updateProjectionMatrix(); readScroll();
+    renderer.setSize(w, h, false); camera.aspect = w / h; camera.fov = w < 700 ? 54 : 40; camera.updateProjectionMatrix(); measure(); readScroll();
   };
   window.addEventListener('resize', resize); window.addEventListener('scroll', readScroll, { passive: true });
+  window.addEventListener('load', resize); document.fonts && document.fonts.ready.then(resize);
+  new ResizeObserver(() => { measure(); readScroll(); }).observe(document.querySelector('main'));
   resize(); sNow = target;
   const clock = new THREE.Clock();
-  window.__cys = { ready: false, stage: () => sNow, frames: 0 };
+  window.__cys = {
+    ready: false, stage: () => sNow, frames: 0,
+    goto: (k) => { measure(); document.documentElement.style.scrollBehavior = 'auto'; window.scrollTo(0, anchors[k]); readScroll(); },
+  };
 
   function frame() {
     const t = clock.getElapsedTime();
@@ -87,7 +110,10 @@ if (renderer) {
     hemi.groundColor.setHex(bw > 0.5 ? 0x9aa3ad : 0x2a3242);
     B.group.visible = s > 4.9 && s < 8.4; A.group.visible = s < 5.95 || s > 7.2; gridA.visible = bw < 0.5;
     B.roof.visible = camera.position.y < 14; // section-box style cutaway while looking down into the hall
-    hud.style.opacity = 1 - bw; legA.style.opacity = 1 - bw; legB.style.opacity = bw;
+    const doc = sm(DOC_FROM, DOC_FROM + 0.4, s); // career sheets: dim the model, hide the model HUD
+    veil.style.opacity = doc;
+    hud.style.opacity = (1 - bw) * (1 - doc); legA.style.opacity = (1 - bw) * (1 - doc); legB.style.opacity = bw;
+    hud.style.visibility = doc > 0.99 ? 'hidden' : ''; legA.style.visibility = doc > 0.99 ? 'hidden' : '';
 
     // Project A stages: line reveal, clash markers, insulation
     const r = revealAt(s), ins = sm(4.6, 5.3, s), cIn = sm(3.5, 3.9, s), cOut = sm(4.3, 4.95, s);
@@ -122,8 +148,12 @@ if (renderer) {
         tg.el.style.transform = `translate(${px}px,${(-tmp.y * 0.5 + 0.5) * h}px) translate(-50%,-120%)`;
       }
     });
-    let nav = Math.round(s); if (nav === 7) nav = 6;
-    if (nav !== lastNav) { lastNav = nav; navLinks.forEach((a) => a.classList.toggle('on', +a.getAttribute('data-i') === nav)); }
+    const nav = Math.round(s);
+    if (nav !== lastNav) {
+      lastNav = nav;
+      let on = null; navLinks.forEach((a) => { if (+a.getAttribute('data-i') <= nav) on = a; });
+      navLinks.forEach((a) => a.classList.toggle('on', a === on));
+    }
     renderer.render(scene, camera);
     window.__cys.frames++;
     requestAnimationFrame(frame);

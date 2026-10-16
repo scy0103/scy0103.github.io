@@ -20,9 +20,16 @@ export const KEYS = [
   { p: [-62, 40, OZ + 52], t: [-6, 4, OZ] },      // 6 B / Fab hook-up
   { p: [-50, 5.2, OZ - 4.5], t: [10, 6.5, OZ - 3] }, // 7 B / Under the rack
   { p: [72, 92, -66], t: [0, 0, 0] },             // 8 A in numbers
-  { p: [1, 175, 12], t: [0, 0, 0] },              // 9 Field record
-  { p: [-118, 42, 74], t: [0, 2, 0] },            // 10 Contact
+  // career sheets: slow orbit around Project A behind the veil
+  { p: [110, 64, 70], t: [0, 2, 0] },             // 9 Experience
+  { p: [40, 20, 10], t: [55, 3, -13] },           // 10 Data center (close on the POU cabinets)
+  { p: [1, 175, 12], t: [0, 0, 0] },              // 11 Field record (plan view)
+  { p: [-100, 58, -80], t: [0, 2, 0] },           // 12 Skills
+  { p: [-58, 22, -40], t: [-66, 4, 12] },         // 13 Education (tank farm from behind)
+  { p: [-30, 120, 95], t: [0, 0, 0] },            // 14 Gallery
+  { p: [-118, 42, 74], t: [0, 2, 0] },            // 15 Contact
 ];
+export const DOC_FROM = 8.6; // stage where the veil starts to dim the model for text-heavy sheets
 export const MOBILE_DIST = 1.3;
 
 // Pipe reveal: scroll stage -> fraction of the x-ordered model shown
@@ -38,5 +45,5 @@ export const TAGS = [
   { p: [41.4, 6.2, -13], en: 'POU 03', ko: '말단 03', c: '#22D3EE', win: [2.8, 4.6] },
   { p: [65.3, 6.2, -13], en: 'POU 04', ko: '말단 04', c: '#22D3EE', win: [3.0, 4.6] },
   { p: [-30, 10.5, OZ - 9], en: 'Main rack', ko: '메인 랙', c: '#7FB2FF', win: [5.8, 7.0], b: true },
-  { p: [-20, 4.8, OZ], en: 'Tool row / platforms', ko: '설비 열 / 플랫폼', c: '#7FB2FF', win: [6.0, 7.4], b: true },
+  { p: [-25, 4.4, OZ - 8], en: 'Tool row / platforms', ko: '설비 열 / 플랫폼', c: '#7FB2FF', win: [6.0, 7.4], b: true },
 ];

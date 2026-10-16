@@ -3,8 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>CY Song Hook-up Portfolio</title>
-<meta name="description" content="Plant BIM design engineer and overseas construction PL. Industrial and hook-up piping, modeled first and built right.">
+<title>Jacob Song | Plant Piping Design and Site PL</title>
+<meta name="description" content="Jacob Song: 13 years of plant piping design and overseas site leadership on battery, semiconductor and industrial projects in the US, Europe and Asia.">
+<meta property="og:title" content="Jacob Song | Plant Piping Design and Site PL">
+<meta property="og:description" content="Hook-up and CESS piping, modeled first and built right. 13 years, 8 countries.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%231F2631'/%3E%3Cpath d='M12 48V28a12 12 0 0 1 12-12h28' fill='none' stroke='%234ADE80' stroke-width='8'/%3E%3Ccircle cx='46' cy='42' r='6' fill='%23FACC15'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap">
@@ -12,21 +16,20 @@
 </head>
 <body>
 <canvas id="scene" aria-hidden="true"></canvas>
+<div id="veil" aria-hidden="true"></div>
 <div id="labels" aria-hidden="true"></div>
 <div class="loader" id="loader"><span id="load-txt">Loading model</span><span class="bar"><i id="load-bar"></i></span></div>
 
 <header>
-  <div class="id">CY (Jacob) Song <span>/ Piping</span></div>
-  <nav class="stages" aria-label="Stages">
-    <a href="#s1" data-i="1" data-en="Supply" data-ko="공급">Supply</a>
-    <a href="#s2" data-i="2" data-en="Header" data-ko="헤더">Header</a>
-    <a href="#s3" data-i="3" data-en="POU" data-ko="말단">POU</a>
-    <a href="#s4" data-i="4" data-en="Clash" data-ko="간섭">Clash</a>
-    <a href="#s5" data-i="5" data-en="Build" data-ko="시공">Build</a>
-    <a href="#s6" data-i="6" data-en="Fab hook-up" data-ko="팹 Hook-up">Fab hook-up</a>
-    <a href="#s8" data-i="8" data-en="Numbers" data-ko="물량">Numbers</a>
-    <a href="#s9" data-i="9" data-en="Field" data-ko="실적">Field</a>
-    <a href="#s10" data-i="10" data-en="Contact" data-ko="연락">Contact</a>
+  <a class="id" href="#s0">Jacob Song <span data-en="/ Piping &amp; Site PL" data-ko="/ 배관 설계 · 현장 PL">/ Piping &amp; Site PL</span></a>
+  <nav class="stages" aria-label="Sections">
+    <a href="#s1" data-i="1" data-en="3D projects" data-ko="3D 프로젝트">3D projects</a>
+    <a href="#s9" data-i="9" data-en="Experience" data-ko="경력">Experience</a>
+    <a href="#s10" data-i="10" data-en="Data center" data-ko="데이터센터">Data center</a>
+    <a href="#s11" data-i="11" data-en="Field" data-ko="해외 실적">Field</a>
+    <a href="#s12" data-i="12" data-en="Skills" data-ko="스킬">Skills</a>
+    <a href="#s14" data-i="14" data-en="Gallery" data-ko="갤러리">Gallery</a>
+    <a href="#s15" data-i="15" data-en="Contact" data-ko="연락처">Contact</a>
   </nav>
   <div class="lang" role="group" aria-label="Language">
     <button type="button" id="lang-en" aria-pressed="true">EN</button>
@@ -35,21 +38,26 @@
 </header>
 
 <main>
-  <section class="sheet" id="s0">
+  <section class="sheet" id="s0" data-k="0">
     <div class="panel">
-      <div class="tb"><span>DWG CYS-000</span><span>Sheet 1/11</span><span>Rev C</span></div>
+      <div class="tb"><span>DWG JS-000</span><span>Sheet 1/16</span><span>Rev D</span></div>
       <div class="body">
-        <div class="eyebrow" data-en="Plant BIM Design Engineer / Construction PL" data-ko="플랜트 BIM 설계 엔지니어 / 공사 PL">Plant BIM Design Engineer / Construction PL</div>
+        <div class="eyebrow" data-en="Plant Piping Design Engineer / Overseas Site PL" data-ko="플랜트 배관 설계 엔지니어 / 해외 현장 PL">Plant Piping Design Engineer / Overseas Site PL</div>
         <h1 data-en="Complex hook-up piping, modeled first and built right." data-ko="얽힌 Hook-up 배관, 먼저 모델링하고 정확히 시공합니다.">Complex hook-up piping, modeled first and built right.</h1>
-        <p data-en="Two projects, one scroll. First, my own Revit model of a CESS supply system for a battery plant: 2,039 m of pipe from the tank farm to every point of use. Then a fab hook-up hall, where utility lines drop into rows of process tools." data-ko="두 개의 프로젝트를 한 번의 스크롤로. 먼저 제가 Revit으로 모델링한 이차전지 공장 CESS 공급 시스템(탱크 팜에서 각 말단까지 배관 2,039 m), 이어서 공정 설비 열로 유틸리티 라인이 내려오는 생산동 Hook-up입니다.">Two projects, one scroll. First, my own Revit model of a CESS supply system for a battery plant: 2,039 m of pipe from the tank farm to every point of use. Then a fab hook-up hall, where utility lines drop into rows of process tools.</p>
+        <p data-en="I'm Jacob Song. For 13 years I have designed and built process piping for battery, semiconductor and industrial plants in the US, Europe and Asia, from P&amp;ID to handover. Scroll through a CESS supply system I modeled in Revit, then a fab hook-up hall." data-ko="송찬영(Jacob Song)입니다. 13년간 미국, 유럽, 아시아의 이차전지, 반도체, 산업 플랜트에서 P&amp;ID부터 인계까지 공정 배관을 설계하고 시공해 왔습니다. 제가 Revit으로 모델링한 CESS 공급 시스템과 생산동 Hook-up을 스크롤로 따라가 보세요.">I'm Jacob Song. For 13 years I have designed and built process piping for battery, semiconductor and industrial plants in the US, Europe and Asia, from P&amp;ID to handover. Scroll through a CESS supply system I modeled in Revit, then a fab hook-up hall.</p>
+        <div class="stats">
+          <div><b>13<small data-en="yrs" data-ko="년">yrs</small></b><small data-en="Experience" data-ko="경력">Experience</small></div>
+          <div><b>8</b><small data-en="Countries" data-ko="국가">Countries</small></div>
+          <div><b>₩130<small>bn</small></b><small data-en="Largest site PL" data-ko="최대 현장 PL">Largest site PL</small></div>
+        </div>
         <div class="hint"><i></i><span data-en="Scroll to walk the line" data-ko="스크롤하여 라인 따라가기">Scroll to walk the line</span></div>
       </div>
     </div>
   </section>
 
-  <section class="sheet right" id="s1">
+  <section class="sheet right" id="s1" data-k="1">
     <div class="panel">
-      <div class="tb"><span>DWG CYS-101</span><span>Sheet 2/11</span><span>Project A</span></div>
+      <div class="tb"><span>DWG JS-101</span><span>Sheet 2/16</span><span>Project A</span></div>
       <div class="body">
         <div class="eyebrow" data-en="Project A / Supply" data-ko="Project A / 공급">Project A / Supply</div>
         <h2 data-en="It starts at the tank farm." data-ko="시작은 탱크 팜입니다.">It starts at the tank farm.</h2>
@@ -59,9 +67,9 @@
     </div>
   </section>
 
-  <section class="sheet" id="s2">
+  <section class="sheet" id="s2" data-k="2">
     <div class="panel">
-      <div class="tb"><span>DWG CYS-201</span><span>Sheet 3/11</span><span>Project A</span></div>
+      <div class="tb"><span>DWG JS-201</span><span>Sheet 3/16</span><span>Project A</span></div>
       <div class="body">
         <div class="eyebrow" data-en="Project A / Distribution header" data-ko="Project A / 이송 헤더">Project A / Distribution header</div>
         <h2 data-en="One header, about 150 m, through a crowded rack." data-ko="약 150 m 헤더를 혼잡한 랙 사이로.">One header, about 150 m, through a crowded rack.</h2>
@@ -71,9 +79,9 @@
     </div>
   </section>
 
-  <section class="sheet right" id="s3">
+  <section class="sheet right" id="s3" data-k="3">
     <div class="panel">
-      <div class="tb"><span>DWG CYS-301</span><span>Sheet 4/11</span><span>Project A</span></div>
+      <div class="tb"><span>DWG JS-301</span><span>Sheet 4/16</span><span>Project A</span></div>
       <div class="body">
         <div class="eyebrow" data-en="Project A / Point of use" data-ko="Project A / 말단 Hook-up">Project A / Point of use</div>
         <h2 data-en="Every drop, tied in valve by valve." data-ko="모든 드롭을 밸브 단위로 연결합니다.">Every drop, tied in valve by valve.</h2>
@@ -83,33 +91,33 @@
     </div>
   </section>
 
-  <section class="sheet" id="s4">
+  <section class="sheet" id="s4" data-k="4">
     <div class="panel">
-      <div class="tb"><span>DWG CYS-401</span><span>Sheet 5/11</span><span>Project A</span></div>
+      <div class="tb"><span>DWG JS-401</span><span>Sheet 5/16</span><span>Project A</span></div>
       <div class="body">
         <div class="eyebrow" data-en="Project A / Clash review" data-ko="Project A / 간섭검토">Project A / Clash review</div>
         <h2 data-en="Clashes get solved on screen, not on site." data-ko="간섭은 현장이 아니라 화면에서 해결합니다.">Clashes get solved on screen, not on site.</h2>
-        <p data-en="The markers sit on real line crossings in this model. Each crossing is checked for clearance, insulation thickness and valve access before any spool is cut." data-ko="표시된 지점은 이 모델의 실제 라인 교차부입니다. 스풀 제작 전에 이격, 보온 두께, 밸브 조작 공간을 교차부마다 검토합니다.">The markers sit on real line crossings in this model. Each crossing is checked for clearance, insulation thickness and valve access before any spool is cut.</p>
-        <div class="tags"><span>Clash detection</span><span>Navisworks</span><span>Constructability</span></div>
+        <p data-en="The markers sit on real line crossings in this model. On site I chair the hook-up clash meetings between contractors, so each crossing is settled for clearance, insulation and valve access before any spool is cut." data-ko="표시된 지점은 이 모델의 실제 라인 교차부입니다. 현장에서는 시공사 간 Hook-up 간섭 미팅을 주관해, 스풀 제작 전에 이격, 보온, 밸브 조작 공간을 교차부마다 확정합니다.">The markers sit on real line crossings in this model. On site I chair the hook-up clash meetings between contractors, so each crossing is settled for clearance, insulation and valve access before any spool is cut.</p>
+        <div class="tags"><span>Navisworks</span><span>S5D</span><span>3-party clash meetings</span></div>
       </div>
     </div>
   </section>
 
-  <section class="sheet right" id="s5">
+  <section class="sheet right" id="s5" data-k="5">
     <div class="panel">
-      <div class="tb"><span>DWG CYS-501</span><span>Sheet 6/11</span><span>Project A</span></div>
+      <div class="tb"><span>DWG JS-501</span><span>Sheet 6/16</span><span>Project A</span></div>
       <div class="body">
         <div class="eyebrow" data-en="Project A / Construction" data-ko="Project A / 시공">Project A / Construction</div>
         <h2 data-en="Then I go to site and lead the install." data-ko="그리고 현장에서 설치를 직접 리드합니다.">Then I go to site and lead the install.</h2>
-        <p data-en="Project Lead for execution: crews and subcontractors, supports and insulation, welding and QA/QC, pressure and leak tests, then turnover to the client's production team." data-ko="시공 Project Lead: 작업자 및 협력사 관리, 서포트와 보온, 용접 및 QA/QC, 압력 및 리크 테스트, 고객 생산팀 인계까지.">Project Lead for execution: crews and subcontractors, supports and insulation, welding and QA/QC, pressure and leak tests, then turnover to the client's production team.</p>
-        <div class="tags"><span>Site PL</span><span>QA/QC</span><span>Pressure test</span><span>Turnover</span></div>
+        <p data-en="As site PL I run the master schedule, crews and subcontractors, supports and insulation, QA/QC and pressure tests through to turnover. On the KRW 130 bn Kokomo hook-up that meant finishing two months early and 10% under budget." data-ko="현장 PL로서 마스터 스케줄, 작업자와 협력사, 서포트와 보온, QA/QC, 압력 테스트부터 인계까지 관리합니다. 1,300억 원 규모 Kokomo Hook-up에서는 공기 2개월 단축, 예산 대비 10% 절감으로 마무리했습니다.">As site PL I run the master schedule, crews and subcontractors, supports and insulation, QA/QC and pressure tests through to turnover. On the KRW 130 bn Kokomo hook-up that meant finishing two months early and 10% under budget.</p>
+        <div class="tags"><span>Site PL</span><span>Master schedule</span><span>QA/QC</span><span>Turnover</span></div>
       </div>
     </div>
   </section>
 
-  <section class="sheet" id="s6">
+  <section class="sheet" id="s6" data-k="6">
     <div class="panel">
-      <div class="tb"><span>DWG CYS-601</span><span>Sheet 7/11</span><span>Project B</span></div>
+      <div class="tb"><span>DWG JS-601</span><span>Sheet 7/16</span><span>Project B</span></div>
       <div class="body">
         <div class="eyebrow b" data-en="Project B / Fab hook-up" data-ko="Project B / 생산동 Hook-up">Project B / Fab hook-up</div>
         <h2 data-en="Then the whole production floor." data-ko="그 다음은 생산동 전체입니다.">Then the whole production floor.</h2>
@@ -119,9 +127,9 @@
     </div>
   </section>
 
-  <section class="sheet right" id="s7">
+  <section class="sheet right" id="s7" data-k="7">
     <div class="panel">
-      <div class="tb"><span>DWG CYS-602</span><span>Sheet 8/11</span><span>Project B</span></div>
+      <div class="tb"><span>DWG JS-602</span><span>Sheet 8/16</span><span>Project B</span></div>
       <div class="body">
         <div class="eyebrow b" data-en="Project B / Under the rack" data-ko="Project B / 랙 하부">Project B / Under the rack</div>
         <h2 data-en="At tool level, every centimetre is spoken for." data-ko="설비 레벨에서는 빈 공간이 거의 없습니다.">At tool level, every centimetre is spoken for.</h2>
@@ -130,9 +138,9 @@
     </div>
   </section>
 
-  <section class="sheet" id="s8">
+  <section class="sheet" id="s8" data-k="8">
     <div class="panel">
-      <div class="tb"><span>DWG CYS-701</span><span>Sheet 9/11</span><span>Take-off</span></div>
+      <div class="tb"><span>DWG JS-701</span><span>Sheet 9/16</span><span>Take-off</span></div>
       <div class="body">
         <div class="eyebrow" data-en="Project A in numbers" data-ko="Project A 물량">Project A in numbers</div>
         <h2 data-en="One system, counted from the model." data-ko="시스템 하나, 모델에서 직접 산출한 물량.">One system, counted from the model.</h2>
@@ -149,33 +157,91 @@
     </div>
   </section>
 
-  <section class="sheet right" id="s9">
-    <div class="panel">
-      <div class="tb"><span>DWG CYS-801</span><span>Sheet 10/11</span><span>Field record</span></div>
+  <section class="sheet doc" id="s9" data-k="9">
+    <div class="panel wide">
+      <div class="tb"><span>DWG JS-801</span><span>Sheet 10/16</span><span>Experience</span></div>
       <div class="body">
-        <div class="eyebrow" data-en="Field record" data-ko="현장 실적">Field record</div>
-        <h2 data-en="Delivered across three continents." data-ko="3개 대륙에서 수행했습니다.">Delivered across three continents.</h2>
-        <p data-en="Hungary, Poland, Michigan, Ohio and Indiana, plus earlier plant work in Saudi Arabia, Chile and China." data-ko="헝가리, 폴란드, 미국 미시간, 오하이오, 인디애나. 이전 사우디, 칠레, 중국 플랜트 업무 포함.">Hungary, Poland, Michigan, Ohio and Indiana, plus earlier plant work in Saudi Arabia, Chile and China.</p>
-        <div class="stats">
-          <div><b>8</b><small data-en="Countries" data-ko="국가">Countries</small></div>
-          <div><b>11</b><small data-en="Sites" data-ko="현장">Sites</small></div>
-          <div><b>TBD</b><small data-en="Years" data-ko="경력(년)">Years</small></div>
-        </div>
-        <p class="note" data-en="Country and site counts are provisional, pending confirmation." data-ko="국가, 현장 수는 확인 전 가정치입니다.">Country and site counts are provisional, pending confirmation.</p>
+        <div class="eyebrow" data-en="Experience / 13 years 3 months" data-ko="경력 / 총 13년 3개월">Experience / 13 years 3 months</div>
+        <h2 data-en="Five companies, one thread: piping that has to fit." data-ko="다섯 회사, 하나의 일: 맞아떨어지는 배관.">Five companies, one thread: piping that has to fit.</h2>
+        <!--@experience-->
       </div>
     </div>
   </section>
 
-  <section class="sheet" id="s10">
+  <section class="sheet doc right" id="s10" data-k="10">
     <div class="panel">
-      <div class="tb"><span>DWG CYS-901</span><span>Sheet 11/11</span><span>Issued for review</span></div>
+      <div class="tb"><span>DWG JS-802</span><span>Sheet 11/16</span><span>Current role</span></div>
+      <div class="body">
+        <div class="eyebrow" data-en="AIKOREA / New Business Div., Data Center Team / 2026.02 – Present" data-ko="에이아이코리아 / 신사업본부 데이터센터팀 / 2026.02 ~ 현재">AIKOREA / New Business Div., Data Center Team / 2026.02 – Present</div>
+        <h2 data-en="Now: cooling for AI data centers." data-ko="지금은 AI 데이터센터 냉각입니다.">Now: cooling for AI data centers.</h2>
+        <p data-en="Alongside site work, I lead technical sales for data center cooling as team lead. Liquid cooling is piping again: CDUs, manifolds and quick disconnects that have to be specified, sourced and tied in." data-ko="현장 업무와 별도로 데이터센터 냉각 기술영업 팀장을 맡고 있습니다. 액체 냉각도 결국 배관입니다. CDU, Manifold, QD를 사양화하고, 소싱하고, 연결해야 합니다.">Alongside site work, I lead technical sales for data center cooling as team lead. Liquid cooling is piping again: CDUs, manifolds and quick disconnects that have to be specified, sourced and tied in.</p>
+        <!--@datacenter-->
+        <div class="tags"><span>CDU</span><span>Cold-plate DLC</span><span>CRAH / In-row</span><span>RFP / Tender</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet doc" id="s11" data-k="11">
+    <div class="panel">
+      <div class="tb"><span>DWG JS-803</span><span>Sheet 12/16</span><span>Field record</span></div>
+      <div class="body">
+        <div class="eyebrow" data-en="Field record" data-ko="해외 실적">Field record</div>
+        <h2 data-en="Delivered across three continents." data-ko="3개 대륙에서 수행했습니다.">Delivered across three continents.</h2>
+        <div class="stats">
+          <div><b>8</b><small data-en="Countries" data-ko="국가">Countries</small></div>
+          <div><b>13</b><small data-en="Projects" data-ko="프로젝트">Projects</small></div>
+          <div><b>4<small data-en="yrs" data-ko="년">yrs</small></b><small data-en="On site in the US" data-ko="미국 현장 근무">On site in the US</small></div>
+        </div>
+        <!--@countries-->
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet doc right" id="s12" data-k="12">
+    <div class="panel wide">
+      <div class="tb"><span>DWG JS-804</span><span>Sheet 13/16</span><span>Skills</span></div>
+      <div class="body">
+        <div class="eyebrow" data-en="Skills and tools" data-ko="스킬, 툴">Skills and tools</div>
+        <h2 data-en="From P&amp;ID to the forklift." data-ko="P&amp;ID부터 지게차까지.">From P&amp;ID to the forklift.</h2>
+        <div class="skills"><!--@skills--></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet doc" id="s13" data-k="13">
+    <div class="panel wide">
+      <div class="tb"><span>DWG JS-805</span><span>Sheet 14/16</span><span>Education</span></div>
+      <div class="body">
+        <div class="eyebrow" data-en="Education and certifications" data-ko="학력, 자격">Education and certifications</div>
+        <h2 data-en="Mechanical design first, business second." data-ko="기계설계로 시작해, 비즈니스를 더했습니다.">Mechanical design first, business second.</h2>
+        <div class="two">
+          <div><h3 class="sub" data-en="Education" data-ko="학력">Education</h3><!--@education--></div>
+          <div><h3 class="sub" data-en="Certifications and languages" data-ko="자격, 어학">Certifications and languages</h3><!--@certs--></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet doc" id="s14" data-k="14">
+    <div class="panel full">
+      <div class="tb"><span>DWG JS-806</span><span>Sheet 15/16</span><span>Gallery</span></div>
+      <div class="body">
+        <div class="eyebrow" data-en="Gallery" data-ko="갤러리">Gallery</div>
+        <h2 data-en="Models on screen, steel on site." data-ko="화면 속 모델, 현장의 강관.">Models on screen, steel on site.</h2>
+        <div class="gallery"><!--@gallery--></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet" id="s15" data-k="15">
+    <div class="panel">
+      <div class="tb"><span>DWG JS-901</span><span>Sheet 16/16</span><span>Issued for review</span></div>
       <div class="body">
         <div class="eyebrow" data-en="Contact" data-ko="연락처">Contact</div>
         <h2 data-en="Planning the next hook-up? Let's talk." data-ko="다음 Hook-up 프로젝트, 함께 이야기하시죠.">Planning the next hook-up? Let's talk.</h2>
-        <p data-en="Resume download and contact details go here in the final version." data-ko="최종본에는 이력서 다운로드와 연락처가 들어갑니다.">Resume download and contact details go here in the final version.</p>
+        <p data-en="Open to plant piping design, site PL and data center cooling roles in Korea and overseas. A full resume is available on request." data-ko="국내외 플랜트 배관 설계, 현장 PL, 데이터센터 냉각 포지션에 열려 있습니다. 상세 이력서는 요청 시 보내드립니다.">Open to plant piping design, site PL and data center cooling roles in Korea and overseas. A full resume is available on request.</p>
         <div class="actions">
-          <span class="btn primary" data-en="Resume PDF (pending)" data-ko="이력서 PDF (준비 중)">Resume PDF (pending)</span>
-          <span class="btn" data-en="LinkedIn (pending)" data-ko="LinkedIn (준비 중)">LinkedIn (pending)</span>
+          <a class="btn primary" id="mail" href="#s15" data-u="scy0103" data-d="naver.com">scy0103 [at] naver.com</a>
         </div>
       </div>
     </div>
@@ -207,6 +273,12 @@
     <li><i style="--c:#B9BEC4"></i><span data-en="Main utility headers" data-ko="메인 유틸리티 헤더">Main utility headers</span></li>
   </ul>
 </aside>
+
+<dialog id="lb" aria-label="Photo">
+  <form method="dialog"><button class="lb-x" aria-label="Close">×</button></form>
+  <img id="lb-img" alt="">
+  <p id="lb-cap"></p>
+</dialog>
 
 <script type="module" src="/src/main.js"></script>
 </body>
