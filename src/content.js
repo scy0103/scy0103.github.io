@@ -377,7 +377,7 @@ export const renderSites = () => SITES.map((s, i) => `<li data-i="${i}">${t(s.p[
 /* ---------- capability hexagon (dashboard) ---------- */
 // Self-assessed scores (0-100): engineering is the anchor at 92, the other axes were scaled by 0.9. Edit here.
 export const RADAR = [
-  { k: ['Project management', '프로젝트 관리'], v: 83, ev: ['Site PL on four US projects up to KRW 130 bn; owns the master schedule and the three-contractor interface.', '최대 1,300억 원 규모 미국 프로젝트 4건 현장 PL, 마스터 스케줄과 3사 인터페이스 총괄'] },
+  { k: ['Project management', '프로젝트 관리'], v: 88, ev: ['Site PL on four US projects up to KRW 130 bn; owns the master schedule and the three-contractor interface.', '최대 1,300억 원 규모 미국 프로젝트 4건 현장 PL, 마스터 스케줄과 3사 인터페이스 총괄'] },
   { k: ['Engineering', '엔지니어링'], v: 92, ev: ['CESS process design (PFD, P&ID, PMS), 3D piping in Revit and Plant 3D, valve and bogie design in CATIA.', 'CESS 공정설계(PFD·P&ID·PMS), Revit·Plant 3D 배관 설계, CATIA 밸브·대차 설계'] },
   { k: ['Cost control', '손익 관리'], v: 79, ev: ['10% under budget at Kokomo and 15% under at Michigan; earlier, product weight and cost estimates for valves.', '코코모 예산 대비 10%, 미시간 15% 절감, 밸브 제품 중량·원가 산출'] },
   { k: ['Global communication', '글로벌 커뮤니케이션'], v: 77, ev: ['Daily meetings, TBM and GC interpretation on US sites; work in Canada, Poland, Hungary, China, Chile and Saudi Arabia.', '미국 현장 Daily 미팅·TBM·GC 통역, 캐나다·폴란드·헝가리·중국·칠레·사우디 근무'] },
