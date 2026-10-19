@@ -377,12 +377,12 @@ export const renderSites = () => SITES.map((s, i) => `<li data-i="${i}">${t(s.p[
 /* ---------- capability hexagon (dashboard) ---------- */
 // Self-assessed scores (0-100) with the resume evidence for each; edit the numbers here.
 export const RADAR = [
-  { k: ['Piping design', '배관 설계'], v: 92, ev: ['13 years of P&ID, PFD and PMS process design; Plant 3D shop, ISO and BOM output.', '13년간 P&ID·PFD·PMS 공정설계, Plant 3D Shop·ISO 도면과 BOM 출도'] },
-  { k: ['3D BIM modeling', '3D BIM 모델링'], v: 88, ev: ['Revit (advanced), Navisworks and S5D; reverse-modeled Samsung P3 hook-up from site scans.', 'Revit 고급, Navisworks·S5D, 현장 스캔 기반 삼성 P3 Hook-up 역설계'] },
-  { k: ['Clash coordination', '간섭 조율'], v: 95, ev: ['Chairs the three-contractor hook-up clash meetings on the Arizona and Kokomo sites.', '애리조나·코코모 현장에서 Hook-up 3사 간섭 미팅 주관'] },
-  { k: ['Site construction', '현장 시공'], v: 90, ev: ['Site PL and acting site manager: Kokomo lines 1–4 completed, Ohio built in 5.5 months.', '현장 PL·현장소장 대행: 코코모 1~4라인 완공, 오하이오 시공 5.5개월 준공'] },
-  { k: ['Project control', '공사 관리'], v: 88, ev: ['Master schedule owner; 2 months ahead and 10–15% under budget on US projects.', '마스터 스케줄 운영, 미국 프로젝트 공기 2개월 단축·예산 10~15% 절감'] },
-  { k: ['English communication', '영어 커뮤니케이션'], v: 78, ev: ['TOEIC 810, IELTS 6.0; four years in the US and a year in Canada; GC interpretation and TBM.', 'TOEIC 810, IELTS 6.0, 미국 4년·캐나다 1년 근무, GC 통역과 TBM 진행'] },
+  { k: ['Project management', '프로젝트 관리'], v: 92, ev: ['Site PL on four US projects up to KRW 130 bn; owns the master schedule and the three-contractor interface.', '최대 1,300억 원 규모 미국 프로젝트 4건 현장 PL, 마스터 스케줄과 3사 인터페이스 총괄'] },
+  { k: ['Engineering', '엔지니어링'], v: 90, ev: ['CESS process design (PFD, P&ID, PMS), 3D piping in Revit and Plant 3D, valve and bogie design in CATIA.', 'CESS 공정설계(PFD·P&ID·PMS), Revit·Plant 3D 배관 설계, CATIA 밸브·대차 설계'] },
+  { k: ['Cost control', '손익 관리'], v: 88, ev: ['10% under budget at Kokomo and 15% under at Michigan; earlier, product weight and cost estimates for valves.', '코코모 예산 대비 10%, 미시간 15% 절감, 밸브 제품 중량·원가 산출'] },
+  { k: ['Global communication', '글로벌 커뮤니케이션'], v: 86, ev: ['Daily meetings, TBM and GC interpretation on US sites; work in Canada, Poland, Hungary, China, Chile and Saudi Arabia.', '미국 현장 Daily 미팅·TBM·GC 통역, 캐나다·폴란드·헝가리·중국·칠레·사우디 근무'] },
+  { k: ['Problem solving', '문제 해결'], v: 93, ev: ['Clashes settled in the model before spools are cut; Ohio designed in 5 months and built in 5.5 as acting site manager.', '스풀 제작 전 모델에서 간섭 해결, 오하이오 현장소장 대행으로 설계 5개월·시공 5.5개월 준공'] },
+  { k: ['Construction management', '시공 관리'], v: 91, ev: ['Kokomo electrode, formation and environmental lines 1–4 completed; supports, insulation, QA/QC and pressure tests.', '코코모 전극·화성·환경설비 1~4라인 완공, 서포트·보온·QA/QC·압력 테스트 관리'] },
 ];
 
 export function renderRadar() {
@@ -405,3 +405,78 @@ export function renderRadar() {
           ${rings}${spokes}<polygon class="rd-poly" points="${poly}"/>${dots}${axes}
         </svg>`;
 }
+
+/* ---------- career metrics (skills section dashboard) ---------- */
+// All figures from resume R0. Values in KRW 100 million (억 원).
+export const KPIS = [
+  { v: '13', u: ['yrs 3 mo', '년 3개월'], k: ['Plant career', '플랜트 경력'] },
+  { v: '8', u: ['countries', '개국'], k: ['Countries worked in', '수행 국가'] },
+  { v: '13', u: ['projects', '건'], k: ['Projects delivered', '수행 프로젝트'] },
+  { v: '2,220', u: ['억 KRW', '억 원'], k: ['Contract value of my projects', '참여 프로젝트 규모 합계'] },
+];
+export const SCALE = [
+  { n: ['Kokomo SDI hook-up', 'Kokomo SDI Hook-up'], v: 1300, r: ['Site PL', '현장 PL'] },
+  { n: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], v: 240, r: ['Design lead', '설계팀장'] },
+  { n: ['Arizona LGAZ CESS', 'Arizona LGAZ CESS'], v: 220, r: ['Site PL', '현장 PL'] },
+  { n: ['Wrocław P3 CESS (bid)', '브로츠와프 P3 CESS (입찰)'], v: 189, r: ['Process design', '공정설계'], bid: true },
+  { n: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], v: 180, r: ['Acting site manager', '현장소장 대행'] },
+  { n: ['SK Innovation separator', 'SK이노베이션 분리막'], v: 170, r: ['Process design PL', '공정설계 PL'] },
+  { n: ['Göd SDIHU #6', '괴드 SDIHU #6'], v: 110, r: ['Design and build', '설계·시공'] },
+];
+export const RESULTS = [
+  { n: ['Kokomo SDI', 'Kokomo SDI'], m: 2, b: 10 },
+  { n: ['Michigan LGESMI2', 'Michigan LGESMI2'], m: 1, b: 15 },
+  { n: ['Ohio Ultium Cells', 'Ohio Ultium Cells'], m: 1, b: null },
+];
+export const ABROAD = [
+  { n: ['United States', '미국'], v: 48, l: ['4 yrs', '4년'] },
+  { n: ['Canada', '캐나다'], v: 12, l: ['1 yr', '1년'] },
+  { n: ['Hungary, Poland', '헝가리·폴란드'], v: 12, l: ['1 yr', '1년'] },
+  { n: ['China', '중국'], v: 9, l: ['9 mo', '9개월'] },
+  { n: ['Chile', '칠레'], v: 5, l: ['5 mo', '5개월'] },
+  { n: ['Saudi Arabia', '사우디'], v: 1, l: ['1 mo', '1개월'] },
+];
+
+const bar = (pct, cls = '') => `<span class="mt-bar${cls}"><i style="--w:${pct.toFixed(1)}%"></i></span>`;
+export function renderMetrics() {
+  const kpis = KPIS.map((k) => `<div class="mt-kpi" data-reveal><b>${k.v}<small>${t(k.u[0], k.u[1])}</small></b>${t(k.k[0], k.k[1], 'span')}</div>`).join('');
+  const maxS = Math.max(...SCALE.map((s) => s.v));
+  const scale = SCALE.map((s) => `<li${s.bid ? ' class="bid"' : ''}><span class="mt-n">${t(s.n[0], s.n[1])}<em>${t(s.r[0], s.r[1])}</em></span>${bar(s.v / maxS * 100)}<span class="mt-v">${s.v.toLocaleString('en-US')}</span></li>`).join('');
+  const res = RESULTS.map((r) => `<li><span class="mt-n">${t(r.n[0], r.n[1])}</span>
+      <span class="mt-pair"><span class="mt-chip"><b>-${r.m}</b>${t('mo schedule', '개월 공기')}</span>${r.b ? `<span class="mt-chip alt"><b>-${r.b}%</b>${t('budget', '예산')}</span>` : ''}</span></li>`).join('');
+  const maxA = Math.max(...ABROAD.map((a) => a.v));
+  const abroad = ABROAD.map((a) => `<li><span class="mt-n">${t(a.n[0], a.n[1])}</span>${bar(a.v / maxA * 100, ' alt')}<span class="mt-v">${t(a.l[0], a.l[1])}</span></li>`).join('');
+  return `
+    <div class="mt-kpis">${kpis}</div>
+    <div class="mt-grid">
+      <article class="mt-card mt-wide" data-reveal>
+        <h3>${t('Project scale I worked on', '참여 프로젝트 규모')}</h3>
+        <p class="mt-sub">${t('Contract value, KRW 100 million', '계약 규모, 단위 억 원')}</p>
+        <ul class="mt-bars">${scale}</ul>
+        <p class="mt-foot">${t('The Wrocław bid was not awarded and is left out of the total above.', '브로츠와프는 미수주 입찰로, 위 합계에서 제외했습니다.')}</p>
+      </article>
+      <article class="mt-card" data-reveal>
+        <h3>${t('Delivered ahead and under budget', '공기 단축과 원가 절감')}</h3>
+        <p class="mt-sub">${t('Against plan, US CESS and hook-up projects', '계획 대비, 미국 CESS·Hook-up 프로젝트')}</p>
+        <ul class="mt-res">${res}</ul>
+      </article>
+      <article class="mt-card" data-reveal>
+        <h3>${t('Time on overseas sites', '해외 현장 근무 기간')}</h3>
+        <p class="mt-sub">${t('About 7 years 3 months in total', '합계 약 7년 3개월')}</p>
+        <ul class="mt-bars">${abroad}</ul>
+      </article>
+    </div>`;
+}
+
+/* ---------- clients (logo wall) ---------- */
+export const CLIENT_LIST = [
+  ['lg-energy-solution', 'LG Energy Solution'], ['samsung-sdi', 'Samsung SDI'], ['ultium-cells', 'Ultium Cells'],
+  ['samsung-semiconductor', 'Samsung Semiconductor'], ['samsung-sds', 'Samsung SDS'], ['sk-innovation', 'SK Innovation'],
+  ['hanwha-ec', 'Hanwha E&C'], ['posco-ec', 'POSCO E&C'], ['hyundai-rotem', 'Hyundai Rotem'],
+  ['hyundai-heavy-industries', 'Hyundai Heavy Industries'], ['tetra-tech', 'Tetra Tech'],
+];
+// logos: set of slugs that have a file in public/logos (passed in at build time)
+export const renderClients = (logos = new Set()) => CLIENT_LIST.map(([slug, name]) => {
+  const ext = logos.has(slug + '.svg') ? 'svg' : logos.has(slug + '.png') ? 'png' : null;
+  return `<li class="lg${ext ? '' : ' txt'}">${ext ? `<img src="logos/${slug}.${ext}" alt="${name}" loading="lazy">` : `<span>${name}</span>`}</li>`;
+}).join('');

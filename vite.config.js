@@ -1,11 +1,13 @@
 import { defineConfig } from 'vite';
+import { existsSync, readdirSync } from 'node:fs';
 import * as C from './src/content.js';
 
 // Fills <!--@experience--> style markers in index.html with the career content, so it ships as static HTML.
 const BLOCKS = {
   matrix: C.renderMatrix, domains: C.renderDomains, services: C.renderServices, skillrows: C.renderSkillRows,
   timeline: C.renderTimeline, carousel: C.renderCarousel, education: C.renderEducation, certs: C.renderCerts,
-  sites: C.renderSites, clients: () => C.CLIENTS, radar: C.renderRadar,
+  sites: C.renderSites, radar: C.renderRadar, metrics: C.renderMetrics,
+  clients: () => C.renderClients(new Set(existsSync('public/logos') ? readdirSync('public/logos') : [])),
 };
 const careerContent = () => ({
   name: 'career-content',

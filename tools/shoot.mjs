@@ -9,9 +9,9 @@ const opt = (k, d) => (args.find((a) => a.startsWith(`--${k}=`)) || `--${k}=${d}
 const lang = opt('lang', 'en'), only = opt('only', ''), views = opt('views', 'desktop,mobile').split(',');
 // name → how to get there: '#id' scrolls the element's top under the bar, 'story:k' goes to a 3D chapter
 const STOPS = [
-  ['top', '#top'], ['manifest', '#manifest'], ['about', '#about'],
+  ['top', '#top'], ['summary', '#summary'],
   ['story0', 'story:0'], ['story4', 'story:4'], ['story7', 'story:7'],
-  ['skills', '#skills'], ['skills2', '#skills .srows'], ['work', 'work:0.35'], ['career', '#career'],
+  ['metrics', '#skills .metrics'], ['skills2', '#skills .srows'], ['work', 'work:0.35'], ['career', '#career'],
   ['creds', '#creds'], ['contact', '#contact'], ['foot', 'bottom'],
 ].map((s, i) => [...s, i]).filter(([n]) => !only || only.split(',').includes(n));
 const VIEWS = {

@@ -113,7 +113,8 @@ export function initStory() {
     hemi.groundColor.setHex(bw > 0.5 ? 0x9aa3ad : 0x24365a);
     B.group.visible = s > 4.9 && s < 8.4; A.group.visible = s < 5.95 || s > 7.2; gridA.visible = bw < 0.5;
     B.roof.visible = camera.position.y < 14;
-    hud.style.opacity = (1 - bw) * v; legA.style.opacity = (1 - bw) * v; legB.style.opacity = bw * v;
+    const dv = sm(0.7, 1, v); // docks only once the story fills the screen
+    hud.style.opacity = (1 - bw) * dv; legA.style.opacity = (1 - bw) * dv; legB.style.opacity = bw * dv;
 
     const r = revealAt(s), ins = sm(4.6, 5.3, s), cIn = sm(3.5, 3.9, s), cOut = sm(4.3, 4.95, s);
     A.setReveal(r);

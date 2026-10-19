@@ -5,7 +5,11 @@ export function initUI() {
   // address is split in the markup to keep it out of simple scrapers
   const mail = document.getElementById('mail');
   const addr = mail ? `${mail.dataset.u}@${mail.dataset.d}` : '';
-  if (mail) { mail.href = `mailto:${addr}`; mail.textContent = addr; }
+  if (mail) {
+    // the subject line tells the inbox this is a recruiting message
+    mail.href = `mailto:${addr}?subject=${encodeURIComponent('[포지션 제안] 송찬영님께 / Role for Jacob Song')}`;
+    mail.textContent = addr;
+  }
   const copy = document.getElementById('copy'), copied = document.getElementById('copied');
   if (copy) copy.addEventListener('click', async () => {
     try { await navigator.clipboard.writeText(addr); copied.textContent = lang === 'ko' ? '복사했습니다' : 'Copied'; }

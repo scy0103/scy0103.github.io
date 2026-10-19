@@ -1,4 +1,4 @@
-// Entrances, the scroll-linked manifesto wipe and skill-row fill, active nav, and the coordinate readout.
+// Entrances, the skill-row fill, active nav, and the coordinate readout.
 export function initMotion() {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.documentElement.classList.add('js');
@@ -14,8 +14,6 @@ export function initMotion() {
     io.observe(el);
   });
 
-  // manifesto: the red field rises over the dashboard with a curved edge
-  const mf = document.getElementById('manifest');
   const rows = [...document.querySelectorAll('.srow')];
   const secs = [...document.querySelectorAll('[data-sec]')].filter((s) => s.matches('section, .story'));
   const links = [...document.querySelectorAll('.nav a[data-sec]')];
@@ -23,11 +21,6 @@ export function initMotion() {
   let mx = 0, my = 0, secName = 'DASHBOARD', lastSec = '';
   const onScroll = () => {
     const vh = window.innerHeight;
-    if (mf && !reduced) {
-      const r = mf.getBoundingClientRect();
-      const p = Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.9)));
-      mf.style.setProperty('--wipe', p.toFixed(3));
-    }
     rows.forEach((row) => {
       const r = row.getBoundingClientRect();
       const p = Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (vh * 0.45)));
