@@ -280,7 +280,7 @@ html[lang="ko"] .tl summary h3{font-weight:700;letter-spacing:-.03em;line-height
 .tl-pts li::marker{color:var(--signal)}
 .tl-result{margin-top:10px;font-weight:700;color:var(--signal)}
 .tl-dc .tl-y{color:var(--signal)}
-.tl-ph-pj{grid-column:auto;margin-top:14px;grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+.tl-ph-pj{grid-column:auto;margin-top:14px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
 .tl-ph{grid-column:2;list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
 /* collapsed rows preview their project photos; open rows show them per project instead */
 .tl details[open] ~ .tl-ph-sum{display:none}

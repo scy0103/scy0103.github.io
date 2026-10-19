@@ -8,12 +8,12 @@ export const t = (en, ko, tag = 'span', cls = '') =>
 
 export const EXPERIENCE = [
   {
-    co: ['AIKOREA', '에이아이코리아'], period: '2021.09 – Present', photos: [11, 12, 13, 1],
+    co: ['AIKOREA', '에이아이코리아'], period: '2021.09 – Present',
     role: ['Project Leader, Infrastructure Division / Team Lead', 'PL(프로젝트리더) · 인프라사업부 / 팀장'],
     where: ['United States', '미국'],
     projects: [
       {
-        name: ['Arizona LGAZ CESS', 'Arizona LGAZ CESS'], period: '2025.02 – Present', size: ['KRW 22 bn', '220억 원'],
+        name: ['Arizona LGAZ CESS', 'Arizona LGAZ CESS'], photos: [37], period: '2025.02 – Present', size: ['KRW 22 bn', '220억 원'],
         role: ['Site PL', '현장 PL'],
         points: [
           ['Coordinated the master schedule and led 3D piping clash review on site.', '마스터 스케줄 조율 및 3D 배관 간섭 검토 주도'],
@@ -21,7 +21,7 @@ export const EXPERIENCE = [
         ],
       },
       {
-        name: ['Indiana Kokomo SDI (SPEPP) utility hook-up', 'Indiana Kokomo SDI(SPEPP) 유틸리티 Hook-up'], period: '2024.02 – 2025.02', size: ['KRW 130 bn', '1,300억 원'],
+        name: ['Indiana Kokomo SDI (SPEPP) utility hook-up', 'Indiana Kokomo SDI(SPEPP) 유틸리티 Hook-up'], photos: [38], period: '2024.02 – 2025.02', size: ['KRW 130 bn', '1,300억 원'],
         role: ['Site PL', '현장 PL'],
         points: [
           ['Drove completion of the electrode, formation and environmental-system lines 1 to 4.', '전극동, 화성동, 환경설비 1~4라인 완공 주도'],
@@ -30,7 +30,7 @@ export const EXPERIENCE = [
         result: ['2 months ahead of schedule, 10% under budget', '공기 2개월 단축, 예산 대비 10% 절감'],
       },
       {
-        name: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], period: '2022.10 – 2024.03', size: ['KRW 24 bn', '240억 원'],
+        name: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], photos: [39], period: '2022.10 – 2024.03', size: ['KRW 24 bn', '240억 원'],
         role: ['Design Team Lead', '설계팀장'],
         points: [
           ['Designed the central electrolyte supply system (PFD, P&ID, BIM) and ran site clash review.', 'CESS 시스템 설계(PFD, P&ID, BIM) 및 현장 간섭 검토'],
@@ -39,7 +39,7 @@ export const EXPERIENCE = [
         result: ['1 month ahead of schedule, 15% under budget', '공기 1개월 단축, 예산 대비 15% 절감'],
       },
       {
-        name: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], period: '2021.09 – 2022.09', size: ['KRW 18 bn', '180억 원'],
+        name: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], photos: [40], period: '2021.09 – 2022.09', size: ['KRW 18 bn', '180억 원'],
         role: ['Acting Site Manager', '현장소장 대행'],
         points: [
           ['CESS design (PFD, P&ID, BIM), site clash review, client and GC interface.', 'CESS 시스템 설계(PFD, P&ID, BIM), 현장 간섭 검토, 고객사 및 GC 대응'],
@@ -252,15 +252,19 @@ export const GALLERY = [
   ['On site in Yanbu', '얀부 현장에서', 'site', false],
   ['Ball valve, CATIA V5', '볼 밸브 (CATIA V5)', 'design', false],
   ['Globe valve cutaway, CATIA V5', '글로브 밸브 단면 (CATIA V5)', 'design', false],
+  ['Arizona LGAZ CESS tank farm from the air', '애리조나 LGAZ CESS 탱크 팜 항공 사진', 'site', false],
+  ['Kokomo utility hook-up, Navisworks coordination model', '코코모 유틸리티 Hook-up, Navisworks 간섭 조율 모델', 'design', false],
+  ['Michigan LGESMI2 CESS tank farm under construction', '미시간 LGESMI2 CESS 탱크 팜 시공 중', 'site', false],
+  ['Ohio Ultium Cells CESS, 3D walking view', '오하이오 Ultium Cells CESS 3D 워킹 뷰', 'design', false],
 ];
 
 /* ---------- dashboard / redesign data ---------- */
 // Project sites for the globe. Coordinates are city-level (public locations), not facility surveys.
 export const SITES = [
-  { n: ['Arizona LGAZ CESS', 'Arizona LGAZ CESS'], p: ['Arizona, USA', '미국 애리조나'], y: '2025 – ', lat: 33.25, lon: -111.63, now: true },
-  { n: ['Kokomo SDI utility hook-up', 'Kokomo SDI 유틸리티 Hook-up'], p: ['Kokomo, Indiana', '미국 인디애나 코코모'], y: '2024 – 25', lat: 40.49, lon: -86.13 },
-  { n: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], p: ['Holland, Michigan', '미국 미시간 홀랜드'], y: '2022 – 24', lat: 42.76, lon: -86.07 },
-  { n: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], p: ['Lordstown, Ohio', '미국 오하이오 로즈타운'], y: '2021 – 22', lat: 41.24, lon: -81.06 },
+  { n: ['Arizona LGAZ CESS', 'Arizona LGAZ CESS'], p: ['Arizona, USA', '미국 애리조나'], y: '2025 – ', lat: 33.25, lon: -111.63, now: true, img: 37 },
+  { n: ['Kokomo SDI utility hook-up', 'Kokomo SDI 유틸리티 Hook-up'], p: ['Kokomo, Indiana', '미국 인디애나 코코모'], y: '2024 – 25', lat: 40.49, lon: -86.13, img: 38 },
+  { n: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], p: ['Holland, Michigan', '미국 미시간 홀랜드'], y: '2022 – 24', lat: 42.76, lon: -86.07, img: 39 },
+  { n: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], p: ['Lordstown, Ohio', '미국 오하이오 로즈타운'], y: '2021 – 22', lat: 41.24, lon: -81.06, img: 40 },
   { n: ['Vancouver airport, Alaska highway', '밴쿠버 공항, 알래스카 국도'], p: ['Vancouver, Canada', '캐나다 밴쿠버'], y: '2018 – 19', lat: 49.28, lon: -123.12, img: 26 },
   { n: ['LGESWA P3 CESS', 'LGESWA P3 CESS'], p: ['Wrocław, Poland', '폴란드 브로츠와프'], y: '2020 – 21', lat: 51.07, lon: 17.02, img: 19 },
   { n: ['SK Innovation separator plant', 'SK이노베이션 분리막'], p: ['Dąbrowa Górnicza, Poland', '폴란드 돔브로바'], y: '2021', lat: 50.33, lon: 19.19 },
