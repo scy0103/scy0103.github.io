@@ -132,13 +132,25 @@ button{font:inherit;color:inherit}
 .c-model-txt p{font-size:15px;max-width:26ch;line-height:1.35}
 .c-model-txt .btn{pointer-events:auto;flex:none}
 
-.c-now{grid-column:5/8}
-.now{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:10px;flex:1;align-content:space-evenly}
-.now li{display:grid;gap:2px;background:var(--card-2);border-radius:14px;padding:14px 16px}
-.clock{font-family:var(--display);font-weight:600;font-size:clamp(36px,2.8vw,48px);line-height:1;color:var(--ink)}
-.now li:first-child .clock{color:var(--signal)}
-.now b{font-size:16px;font-weight:600}
-.now span:last-child{font-size:14px;color:var(--soft)}
+.c-ind{grid-column:5/8;gap:10px}
+.in-wrap{display:grid;grid-template-columns:minmax(110px,150px) minmax(0,1fr);gap:16px;align-items:center;margin-top:4px}
+.in-donut{width:100%;height:auto;overflow:visible}
+.in-arc{fill:none;stroke-width:26;cursor:pointer;transition:stroke-width .2s,opacity .2s;opacity:.55;outline:none}
+.in-arc.on{stroke-width:32;opacity:1}
+.in-big{font-family:var(--display);font-weight:600;font-size:36px;fill:var(--ink);text-anchor:middle}
+.in-small{font-size:13px;fill:var(--soft);text-anchor:middle}
+.in-legend{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.in-legend li{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:10px;cursor:pointer;font-size:14px;transition:background .2s;outline:none}
+.in-legend li.on,.in-legend li:focus-visible{background:var(--card-2)}
+.in-legend i{flex:none;width:12px;height:12px;border-radius:3px}
+.in-k{flex:1;min-width:0;line-height:1.25}
+.in-n{display:flex;align-items:baseline;gap:6px;flex:none}
+.in-legend b{font-family:var(--display);font-weight:600;font-size:20px}
+.in-legend em{font-style:normal;font-size:13px;color:var(--soft);min-width:32px;text-align:right}
+.in-detail{background:var(--card-2);border-radius:12px;padding:12px 14px;flex:1}
+.in-list{margin:0;font-size:13.5px;line-height:1.55;font-weight:600}
+.in-list i{font-style:normal;color:var(--signal)}
+.in-list[hidden]{display:none}
 
 .c-globe{grid-column:8/13;padding:0}
 .c-globe .ct{position:absolute;left:20px;top:18px;z-index:2}
@@ -424,7 +436,7 @@ dialog#lb::backdrop{background:rgba(6,12,22,.88)}
   .c-years{grid-column:4/7}
   .c-matrix{grid-column:1/7}
   .c-model{grid-column:1/4;min-height:380px}
-  .c-now{grid-column:4/7}
+  .c-ind{grid-column:4/7}
   .c-globe{grid-column:1/7;min-height:520px}
   .srow-tools{grid-template-columns:repeat(2,minmax(0,1fr))}
 }

@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { ERAS } from './content.js';
 import { COLORS } from './config.js';
 import { lang, onLang } from './i18n.js';
+import { initIndustry } from './industry.js';
 
 const $ = (id) => document.getElementById(id);
 const START = new Date('2013-03-01T00:00:00+09:00');
@@ -44,14 +45,6 @@ function initYears() {
   const [dx, dy] = pt(ang(yearFrac(now)));
   $('gauge-dot').setAttribute('cx', dx); $('gauge-dot').setAttribute('cy', dy);
   onLang(() => { eraEl.textContent = label(ERAS[ERAS.length - 1]); });
-}
-
-// Local clocks for the two current roles
-function initClocks() {
-  const els = [...document.querySelectorAll('.clock[data-tz]')];
-  const fmt = els.map((el) => new Intl.DateTimeFormat('en-GB', { timeZone: el.dataset.tz, hour: '2-digit', minute: '2-digit', hour12: false }));
-  const tick = () => els.forEach((el, i) => { el.textContent = fmt[i].format(new Date()); });
-  tick(); setInterval(tick, 15000);
 }
 
 // Live model card: the real Project A GLB on a slow turntable around the tank farm; drag to turn.
@@ -127,6 +120,6 @@ function initRadar() {
 export function initDashboard(A) {
   initRadar();
   initYears();
-  initClocks();
+  initIndustry();
   initTurntable(A);
 }
