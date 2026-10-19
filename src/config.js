@@ -2,7 +2,7 @@
 export const OZ = -170; // Project B world offset along z
 
 export const COLORS = {
-  bgA: 0x1f2631, bgB: 0xe7eaee,
+  bgA: 0x13223a, bgB: 0xe7eaee,
   lines: ['#4ADE80', '#E879F9', '#22D3EE', '#3B82F6', '#FACC15', '#F97316'],
   otherLine: '#C9CFD6', valve: '#8B95A3', support: '#DC2626', equip: '#DADFE5', struct: '#E5E7EB', insul: '#F1F5F9',
   b: { red: '#E11D2E', blue: '#1D4ED8', mag: '#D946EF', yel: '#F59E0B', grey: '#B9BEC4', steel: '#59616C' },

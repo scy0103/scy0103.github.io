@@ -1,6 +1,6 @@
 // EN / KO toggle. Every translatable node carries data-en and data-ko.
 const listeners = [];
-export let lang = 'en';
+export let lang = 'ko';
 
 export function setLang(l) {
   lang = l;
@@ -9,7 +9,7 @@ export function setLang(l) {
   document.getElementById('lang-en').setAttribute('aria-pressed', l === 'en');
   document.getElementById('lang-ko').setAttribute('aria-pressed', l === 'ko');
   listeners.forEach((fn) => fn(l));
-  try { localStorage.setItem('cys-lang', l); } catch (e) { /* storage blocked */ }
+  try { localStorage.setItem('cys-lang-v3', l); } catch (e) { /* storage blocked */ }
 }
 
 export function onLang(fn) { listeners.push(fn); fn(lang); }
@@ -18,7 +18,7 @@ export function initLang() {
   document.getElementById('lang-en').addEventListener('click', () => setLang('en'));
   document.getElementById('lang-ko').addEventListener('click', () => setLang('ko'));
   let saved = null;
-  try { saved = localStorage.getItem('cys-lang'); } catch (e) { /* storage blocked */ }
+  try { saved = localStorage.getItem('cys-lang-v3'); } catch (e) { /* storage blocked */ }
   const q = new URLSearchParams(location.search).get('lang');
-  setLang((q || saved) === 'ko' ? 'ko' : 'en');
+  setLang((q || saved) === 'en' ? 'en' : 'ko'); // Korean by default, English on request
 }

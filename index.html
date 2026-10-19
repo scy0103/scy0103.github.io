@@ -1,16 +1,16 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Jacob Song | Plant Piping Design and Site PL</title>
-<meta name="description" content="Jacob Song: 13 years of plant piping design and overseas site leadership on battery, semiconductor and industrial projects in 8 countries.">
-<meta property="og:title" content="Jacob Song | Plant Piping Design and Site PL">
-<meta property="og:description" content="Hook-up and CESS piping, modeled first and built right. 13 years, 8 countries.">
+<title>송찬영 Jacob Song | 플랜트 배관 설계 · 해외 현장 PL</title>
+<meta name="description" content="송찬영(Jacob Song): 8개국 이차전지, 반도체, 산업 플랜트에서 13년간 배관 설계와 해외 현장 PL을 수행한 엔지니어 포트폴리오.">
+<meta property="og:title" content="송찬영 Jacob Song | 플랜트 배관 설계 · 해외 현장 PL">
+<meta property="og:description" content="Hook-up과 CESS 배관, 먼저 모델링하고 정확히 시공합니다. 현장 13년, 8개국.">
 <meta property="og:image" content="https://scy0103.github.io/profile.jpg">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#0E0F11">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230E0F11'/%3E%3Ccircle cx='32' cy='32' r='14' fill='%23FF3D2E'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#0F1B2D">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230F1B2D'/%3E%3Ccircle cx='32' cy='32' r='14' fill='%23FF7A1A'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&display=swap">
@@ -34,8 +34,8 @@
     <a href="#contact" data-sec="contact" data-en="Contact" data-ko="연락처">Contact</a>
   </nav>
   <div class="lang" role="group" aria-label="Language">
-    <button type="button" id="lang-en" aria-pressed="true">EN</button>
-    <button type="button" id="lang-ko" aria-pressed="false">KO</button>
+    <button type="button" id="lang-ko" aria-pressed="true">KO</button>
+    <button type="button" id="lang-en" aria-pressed="false">EN</button>
   </div>
 </header>
 
@@ -79,7 +79,7 @@
       <canvas id="turntable" aria-label="Rotating 3D model of a CESS tank farm modeled in Revit"></canvas>
       <div class="c-model-txt">
         <p data-en="A CESS supply system I modeled in Revit: 2,039 m of pipe, 441 valves." data-ko="제가 Revit으로 모델링한 CESS 공급 시스템: 배관 2,039 m, 밸브 441개.">A CESS supply system I modeled in Revit: 2,039 m of pipe, 441 valves.</p>
-        <a class="btn" href="#story" data-en="Walk the line" data-ko="라인 따라가기">Walk the line</a>
+        <a class="btn accent" href="#story" data-en="Walk the line" data-ko="라인 따라가기">Walk the line</a>
       </div>
     </article>
 
@@ -105,15 +105,17 @@
       <canvas id="globe" aria-label="Globe with pins on 14 project sites in 8 countries"></canvas>
       <div class="g-tip" id="g-tip" role="tooltip" hidden></div>
       <div class="g-cap" aria-live="polite">
-        <p class="g-place" id="g-place">Arizona, USA</p>
+        <p class="g-place" id="g-place">미국 애리조나</p>
         <p class="g-name" id="g-name">Arizona LGAZ CESS</p>
         <p class="g-yr" id="g-yr">2025 –</p>
       </div>
       <div class="g-nav">
+        <button type="button" id="g-out" aria-label="Zoom out">&minus;</button>
+        <button type="button" id="g-in" aria-label="Zoom in">+</button>
         <button type="button" id="g-prev" aria-label="Previous site">&larr;</button>
         <button type="button" id="g-next" aria-label="Next site">&rarr;</button>
       </div>
-      <p class="g-hint" data-en="Point at a pin to see the project. Drag to spin." data-ko="핀에 커서를 올리면 프로젝트가 보입니다. 드래그로 돌려 보세요.">Point at a pin to see the project. Drag to spin.</p>
+      <p class="g-hint" data-en="Point at a pin to see the project. Drag to spin, scroll to zoom." data-ko="핀에 커서를 올리면 프로젝트가 보입니다. 드래그로 돌리고 휠로 확대합니다.">Point at a pin to see the project. Drag to spin, scroll to zoom.</p>
       <p class="g-count"><b>8</b> <span data-en="countries" data-ko="개국">countries</span> <b>14</b> <span data-en="sites" data-ko="현장">sites</span></p>
       <ol class="g-list" id="g-list"><!--@sites--></ol>
     </article>
@@ -260,7 +262,7 @@
 
   <!-- ============ SKILLS ============ -->
   <section id="skills" class="skills" data-sec="skills" aria-labelledby="sk-h">
-    <h2 id="sk-h" class="mega"><span data-reveal data-en="Make it fit," data-ko="먼저 맞추고,">Make it fit,</span><span data-reveal class="red" data-en="then build it." data-ko="그다음 짓는다.">then build it.</span></h2>
+    <h2 id="sk-h" class="mega"><span data-reveal data-en="Make it fit," data-ko="먼저 맞추고,">Make it fit,</span><span data-reveal class="hl" data-en="then build it." data-ko="그다음 짓는다.">then build it.</span></h2>
     <div class="sk-stats">
       <p><b>13</b><span data-en="years in plant work" data-ko="년 플랜트 경력">years in plant work</span></p>
       <p><b>13</b><span data-en="projects in 8 countries" data-ko="개 프로젝트, 8개국">projects in 8 countries</span></p>
@@ -272,7 +274,7 @@
   <!-- ============ WORK CAROUSEL ============ -->
   <section id="work" class="work" data-sec="work" aria-labelledby="wk-h">
     <div class="wk-pin">
-      <h2 id="wk-h" class="mega"><span data-en="Modeled some." data-ko="모델링하고,">Modeled some.</span> <span class="red" data-en="Built some." data-ko="시공했습니다.">Built some.</span></h2>
+      <h2 id="wk-h" class="mega"><span data-en="Modeled some." data-ko="모델링하고,">Modeled some.</span> <span class="hl" data-en="Built some." data-ko="시공했습니다.">Built some.</span></h2>
       <div class="cr" id="cr">
         <ul class="cr-ring" id="cr-ring"><!--@carousel--></ul>
       </div>
@@ -282,7 +284,7 @@
 
   <!-- ============ CAREER TIMELINE ============ -->
   <section id="career" class="career" data-sec="career" aria-labelledby="cr-h">
-    <h2 id="cr-h" class="mega"><span data-en="Experience" data-ko="경력">Experience</span> <span class="red">2013 → <span data-en="now" data-ko="현재">now</span></span></h2>
+    <h2 id="cr-h" class="mega"><span data-en="Experience" data-ko="경력">Experience</span> <span class="hl">2013 → <span data-en="now" data-ko="현재">now</span></span></h2>
     <ol class="tls"><!--@timeline--></ol>
   </section>
 
@@ -305,7 +307,7 @@
   <!-- ============ CONTACT ============ -->
   <section id="contact" class="contact" data-sec="contact" aria-labelledby="ct-h">
     <p class="ct-q" data-en="Planning the next hook-up, CESS or cooling project?" data-ko="다음 Hook-up, CESS, 냉각 프로젝트를 준비 중이신가요?">Planning the next hook-up, CESS or cooling project?</p>
-    <h2 id="ct-h" class="giant"><span data-en="Let's" data-ko="함께">Let's</span> <span class="red" data-en="talk." data-ko="얘기해요.">talk.</span></h2>
+    <h2 id="ct-h" class="giant"><span data-en="Let's" data-ko="함께">Let's</span> <span class="hl" data-en="talk." data-ko="얘기해요.">talk.</span></h2>
     <div class="ct-act">
       <a class="btn big" id="mail" href="#contact" data-u="scy0103" data-d="naver.com">scy0103 [at] naver.com</a>
       <button type="button" class="btn ghost" id="copy" data-en="Copy address" data-ko="주소 복사">Copy address</button>

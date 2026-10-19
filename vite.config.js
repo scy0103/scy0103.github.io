@@ -9,7 +9,10 @@ const BLOCKS = {
 };
 const careerContent = () => ({
   name: 'career-content',
-  transformIndexHtml: (html) => html.replace(/<!--@(\w+)-->/g, (m, k) => (BLOCKS[k] ? BLOCKS[k]() : m)),
+  transformIndexHtml: (html) => html
+    .replace(/<!--@(\w+)-->/g, (m, k) => (BLOCKS[k] ? BLOCKS[k]() : m))
+    // Korean is the default language: text-only elements carrying data-ko ship with the Korean text
+    .replace(/(<(\w+)\b[^>]*\sdata-ko="([^"]*)"[^>]*>)([^<]*)(<\/\2>)/g, (m, open, tag, ko, inner, close) => open + ko + close),
 });
 
 // base './' keeps the build portable to GitHub Pages project paths or Vercel

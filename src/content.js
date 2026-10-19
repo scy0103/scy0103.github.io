@@ -4,7 +4,7 @@
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 export const t = (en, ko, tag = 'span', cls = '') =>
-  `<${tag}${cls ? ` class="${cls}"` : ''} data-en="${esc(en)}" data-ko="${esc(ko ?? en)}">${esc(en)}</${tag}>`;
+  `<${tag}${cls ? ` class="${cls}"` : ''} data-en="${esc(en)}" data-ko="${esc(ko ?? en)}">${esc(ko ?? en)}</${tag}>`; // Korean is the default
 
 export const EXPERIENCE = [
   {
@@ -50,12 +50,12 @@ export const EXPERIENCE = [
     ],
   },
   {
-    co: ['EKG', 'EKG'], period: '2020.09 – 2021.08', photos: [17, 18],
+    co: ['EKG', 'EKG'], period: '2020.09 – 2021.08',
     role: ['Piping Design, Expatriate in Hungary and Poland / Deputy General Manager, Team Lead', '배관설계 · 주재원(헝가리, 폴란드) / 차장, 팀장'],
     where: ['Hungary, Poland', '헝가리, 폴란드'],
     projects: [
       {
-        name: ['Göd, Hungary: SDIHU #6 BCU line', '헝가리 괴드(Göd) SDIHU #6 BCU 라인'], period: '2020.09 – 2020.12', size: ['KRW 11 bn', '110억 원'],
+        name: ['Göd, Hungary: SDIHU #6 BCU line', '헝가리 괴드(Göd) SDIHU #6 BCU 라인'], photos: [23, 22, 18], period: '2020.09 – 2020.12', size: ['KRW 11 bn', '110억 원'],
         role: ['Design and construction management', '설계 및 시공 관리'],
         points: [
           ['Managed the multi-electrode piping line expansion and the approval drawings.', '멀티 극판 배관라인 증설공사 관리 및 승인도면 설계'],
@@ -64,7 +64,7 @@ export const EXPERIENCE = [
         result: ['Design and construction completed within the planned period', '계획 기간 내 설계 및 시공 완료'],
       },
       {
-        name: ['Wrocław, Poland: LGESWA P3 CESS', '폴란드 브로츠와프 LGESWA P3 CESS'], period: '2020.12 – 2021.08', size: ['Bid KRW 18.9 bn', '입찰 규모 189억 원'],
+        name: ['Wrocław, Poland: LGESWA P3 CESS', '폴란드 브로츠와프 LGESWA P3 CESS'], photos: [19, 20, 21, 17], period: '2020.12 – 2021.08', size: ['Bid KRW 18.9 bn', '입찰 규모 189억 원'],
         role: ['Process design', '공정설계'],
         points: [
           ['Electrolyte piping process design (P&ID, PFD, PMS) and proposal support.', '전해액 배관라인 공정설계(P&ID, PFD, PMS) 및 제안서 작성 지원'],
@@ -84,7 +84,7 @@ export const EXPERIENCE = [
     where: ['China, Korea', '중국, 한국'],
     projects: [
       {
-        name: ["Xi'an, China: Samsung Semiconductor operations", '중국 시안 삼성반도체 운영'], period: '2019.03 – 2019.12', size: null,
+        name: ["Xi'an, China: Samsung Semiconductor operations", '중국 시안 삼성반도체 운영'], photos: [27], period: '2019.03 – 2019.12', size: null,
         role: ['Operations team, Samsung SDS', '운영팀 과장, Samsung SDS'],
         points: [
           ['Reviewed S5D hook-up drawings and checked site layout against the model data.', 'S5D Hook-up 도면 검수, 현장 레이아웃 및 데이터 정합성 검수'],
@@ -107,7 +107,7 @@ export const EXPERIENCE = [
     where: ['Vancouver, Canada', '캐나다 밴쿠버'],
     projects: [
       {
-        name: ['Vancouver airport reconstruction', '밴쿠버 공항 재건축'], period: '2018 – 2019', size: null, role: null,
+        name: ['Vancouver airport reconstruction', '밴쿠버 공항 재건축'], photos: [24, 25, 26], period: '2018 – 2019', size: null, role: null,
         points: [['Buried piping drawings and revisions, BOM, liaison with Korean partners, invoicing.', '매설 배관 도면 출도 및 수정, BOM 관리, 한국 협력사 대응, 인보이스 발행']],
       },
       {
@@ -117,27 +117,27 @@ export const EXPERIENCE = [
     ],
   },
   {
-    co: ['S&W IND. CO., LTD.', 'S&W IND. CO., LTD.'], period: '2013.03 – 2017.05', photos: [9, 16, 10, 14, 15],
+    co: ['S&W IND. CO., LTD.', 'S&W IND. CO., LTD.'], period: '2013.03 – 2017.05',
     role: ['Mechanical Design, Engineering Dept. / Assistant Manager', '기계설계 · 기술부 / 대리'],
     where: ['Korea, Saudi Arabia, Chile', '한국, 사우디아라비아, 칠레'],
     projects: [
       {
-        name: ['Seoul Metro Line 2 rolling stock (with Hyundai Rotem)', '서울메트로 2호선 전동차 (현대로템)'], period: '2015.12 – 2017.05', size: null,
+        name: ['Seoul Metro Line 2 rolling stock (with Hyundai Rotem)', '서울메트로 2호선 전동차 (현대로템)'], photos: [9, 16, 28, 29], period: '2015.12 – 2017.05', size: null,
         role: ['Bogie design TFT', '대차설계 TFT'],
         points: [['Designed bogie parts (center pivot, axle, hub) through casting and machining; 200 cars delivered.', 'Center Pivot, Axle, Hub 등 대차 부품 설계부터 주조, 가공까지 수행, 200량 납품 완료']],
       },
       {
-        name: ['Fast Pack, Chile', '칠레 FAST PACK'], period: '2015.02 – 2015.07', size: null,
+        name: ['Fast Pack, Chile', '칠레 FAST PACK'], photos: [15, 30, 31], period: '2015.02 – 2015.07', size: null,
         role: ['Tier-1 vendor to POSCO E&C', '포스코건설 1차 벤더'],
         points: [['Five months on site: valve installation, field fit-up and as-built drawings.', '5개월 현장 상주, 자사 밸브 설치, 현장 맞춤 시공, As-built 도면 수정']],
       },
       {
-        name: ['Yanbu 3, Saudi Arabia (Hanwha E&C)', '사우디아라비아 YANBU 3 (한화E&C)'], period: '2014.08 – 2014.09', size: null,
+        name: ['Yanbu 3, Saudi Arabia (Hanwha E&C)', '사우디아라비아 YANBU 3 (한화E&C)'], photos: [14, 32, 33, 34], period: '2014.08 – 2014.09', size: null,
         role: ['Valve supply and site meetings', '밸브 공급 및 고객사 미팅'],
         points: [['Supplied and installed additional 12" trunnion butterfly valves within 4 weeks, leading to a follow-on contract.', '12인치 Trunnion 버터플라이 밸브 추가 공급 및 설치를 4주 내 완료, 추가 계약 체결']],
       },
       {
-        name: ['Valve development', '밸브 개발'], period: '2013 – 2017', size: null, role: null,
+        name: ['Valve development', '밸브 개발'], photos: [10, 35, 36], period: '2013 – 2017', size: null, role: null,
         points: [
           ['Pressure-reducing and 5/2-way valves for Hyundai Heavy Industries marine engines; casting suppliers and production jigs.', '현대중공업 선박엔진용 감압밸브 및 5/2-way 밸브 개발, 주조 협력사 및 생산 지그 관리'],
           ['3/2-way valve under the 2017 SME growth program, with an industry-academia agreement with Kumoh National Institute of Technology.', '2017 중소기업 신성장동력 사업 3/2-way 밸브 개발, 금오공대 산학협력 체결'],
@@ -233,6 +233,25 @@ export const GALLERY = [
   ['Line 2 bogie, as built', '2호선 대차 실물', 'site'],
   ['Wrocław, Poland', '폴란드 브로츠와프', 'travel'],
   ['Budapest, Hungary', '헝가리 부다페스트', 'travel'],
+  // project photos (shown on the project cards and globe tooltips, not in the carousel)
+  ['Construction site, Wrocław', '브로츠와프 공사 현장', 'site', false],
+  ['Late-night CAD on the Wrocław CESS design', '브로츠와프 CESS 야간 설계 작업', 'design', false],
+  ['Wrocław old town in winter', '겨울 브로츠와프 구시가지', 'travel', false],
+  ['Site office, Göd', '괴드 현장 사무실', 'site', false],
+  ['Walk-down in the new fab, Göd', '괴드 신규 팹 현장 점검', 'site', false],
+  ['Workstation at EBA Tetra Tech, Vancouver', 'EBA Tetra Tech 밴쿠버 사무실 워크스테이션', 'design', false],
+  ['At my desk in Vancouver', '밴쿠버 사무실에서', 'design', false],
+  ['Vancouver harbour', '밴쿠버 항구', 'travel', false],
+  ["Bell Tower, Xi'an", '시안 종루', 'travel', false],
+  ['Bogie fit-up on a Line 2 car', '2호선 전동차 대차 조립', 'site', false],
+  ['Bogie frame in the shop', '공장 내 대차 프레임', 'site', false],
+  ['Desalination plant intake, Antofagasta', '안토파가스타 담수화 플랜트 취수부', 'site', false],
+  ['Antofagasta waterfront', '안토파가스타 해안', 'travel', false],
+  ['Plant structure, Yanbu', '얀부 플랜트 구조물', 'site', false],
+  ['Yanbu piping model', '얀부 배관 3D 모델', 'design', false],
+  ['On site in Yanbu', '얀부 현장에서', 'site', false],
+  ['Ball valve, CATIA V5', '볼 밸브 (CATIA V5)', 'design', false],
+  ['Globe valve cutaway, CATIA V5', '글로브 밸브 단면 (CATIA V5)', 'design', false],
 ];
 
 /* ---------- dashboard / redesign data ---------- */
@@ -242,16 +261,16 @@ export const SITES = [
   { n: ['Kokomo SDI utility hook-up', 'Kokomo SDI 유틸리티 Hook-up'], p: ['Kokomo, Indiana', '미국 인디애나 코코모'], y: '2024 – 25', lat: 40.49, lon: -86.13 },
   { n: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], p: ['Holland, Michigan', '미국 미시간 홀랜드'], y: '2022 – 24', lat: 42.76, lon: -86.07 },
   { n: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], p: ['Lordstown, Ohio', '미국 오하이오 로즈타운'], y: '2021 – 22', lat: 41.24, lon: -81.06 },
-  { n: ['Vancouver airport, Alaska highway', '밴쿠버 공항, 알래스카 국도'], p: ['Vancouver, Canada', '캐나다 밴쿠버'], y: '2018 – 19', lat: 49.28, lon: -123.12 },
-  { n: ['LGESWA P3 CESS', 'LGESWA P3 CESS'], p: ['Wrocław, Poland', '폴란드 브로츠와프'], y: '2020 – 21', lat: 51.07, lon: 17.02, img: 17 },
+  { n: ['Vancouver airport, Alaska highway', '밴쿠버 공항, 알래스카 국도'], p: ['Vancouver, Canada', '캐나다 밴쿠버'], y: '2018 – 19', lat: 49.28, lon: -123.12, img: 26 },
+  { n: ['LGESWA P3 CESS', 'LGESWA P3 CESS'], p: ['Wrocław, Poland', '폴란드 브로츠와프'], y: '2020 – 21', lat: 51.07, lon: 17.02, img: 19 },
   { n: ['SK Innovation separator plant', 'SK이노베이션 분리막'], p: ['Dąbrowa Górnicza, Poland', '폴란드 돔브로바'], y: '2021', lat: 50.33, lon: 19.19 },
-  { n: ['SDIHU #6 BCU line', 'SDIHU #6 BCU 라인'], p: ['Göd, Hungary', '헝가리 괴드'], y: '2020', lat: 47.68, lon: 19.13 },
-  { n: ['Samsung Semiconductor operations', '삼성반도체 운영'], p: ["Xi'an, China", '중국 시안'], y: '2019', lat: 34.2, lon: 108.85 },
+  { n: ['SDIHU #6 BCU line', 'SDIHU #6 BCU 라인'], p: ['Göd, Hungary', '헝가리 괴드'], y: '2020', lat: 47.68, lon: 19.13, img: 23 },
+  { n: ['Samsung Semiconductor operations', '삼성반도체 운영'], p: ["Xi'an, China", '중국 시안'], y: '2019', lat: 34.2, lon: 108.85, img: 27 },
   { n: ['Samsung P3 reverse engineering', '삼성 P3 역설계'], p: ['Pyeongtaek, Korea', '평택'], y: '2019 – 20', lat: 37.02, lon: 127.05 },
-  { n: ['Seoul Metro Line 2 bogie', '서울메트로 2호선 대차'], p: ['Seoul, Korea', '서울'], y: '2015 – 17', lat: 37.55, lon: 126.99, img: 16 },
-  { n: ['Valve design and production', '밸브 설계 및 생산'], p: ['Gyeongbuk, Korea', '경북'], y: '2013 – 17', lat: 36.14, lon: 128.11, img: 10 },
-  { n: ['Fast Pack desalination plant', 'Fast Pack 담수화 플랜트'], p: ['Antofagasta, Chile', '칠레 안토파가스타'], y: '2015', lat: -23.65, lon: -70.4, img: 15 },
-  { n: ['Yanbu 3 (Hanwha E&C)', 'Yanbu 3 (한화E&C)'], p: ['Yanbu, Saudi Arabia', '사우디 얀부'], y: '2014', lat: 24.09, lon: 38.06, img: 14 },
+  { n: ['Seoul Metro Line 2 bogie', '서울메트로 2호선 대차'], p: ['Seoul, Korea', '서울'], y: '2015 – 17', lat: 37.55, lon: 126.99, img: 28 },
+  { n: ['Valve design and production', '밸브 설계 및 생산'], p: ['Gyeongbuk, Korea', '경북'], y: '2013 – 17', lat: 36.14, lon: 128.11, img: 35 },
+  { n: ['Fast Pack desalination plant', 'Fast Pack 담수화 플랜트'], p: ['Antofagasta, Chile', '칠레 안토파가스타'], y: '2015', lat: -23.65, lon: -70.4, img: 30 },
+  { n: ['Yanbu 3 (Hanwha E&C)', 'Yanbu 3 (한화E&C)'], p: ['Yanbu, Saudi Arabia', '사우디 얀부'], y: '2014', lat: 24.09, lon: 38.06, img: 32 },
 ];
 
 // Dashboard career gauge: one segment per employer, 2013.03 to today
@@ -300,7 +319,7 @@ export const renderSkillRows = () => SKILLS.map((g, i) => `
 export function renderTimeline() {
   const rows = [];
   EXPERIENCE.forEach((e, ei) => {
-    rows.push({ period: e.period, title: e.co, role: e.role, where: e.where, projects: e.projects, photos: e.photos || [], open: ei === 0 });
+    rows.push({ period: e.period, title: e.co, role: e.role, where: e.where, projects: e.projects, photos: e.photos || e.projects.flatMap((p) => p.photos || []).slice(0, 4), preview: !e.photos, open: ei === 0 });
     if (ei === 0) rows.push({ dc: true, period: DATACENTER.period });
   });
   return rows.map((r) => {
@@ -327,10 +346,11 @@ export function renderTimeline() {
               ${p.role || p.size ? `<p class="tl-meta">${[p.role, p.size].filter(Boolean).map((x) => t(x[0], x[1])).join('<span aria-hidden="true"> · </span>')}</p>` : ''}
               ${p.points.length ? `<ul class="tl-pts">${p.points.map((x) => t(x[0], x[1], 'li')).join('')}</ul>` : ''}
               ${p.result ? t(p.result[0], p.result[1], 'p', 'tl-result') : ''}
+              ${p.photos ? `<ul class="tl-ph tl-ph-pj">${p.photos.map(photo).join('')}</ul>` : ''}
             </li>`).join('')}
           </ul>
         </details>
-        ${r.photos.length ? `<ul class="tl-ph">${r.photos.map(photo).join('')}</ul>` : ''}
+        ${r.photos.length ? `<ul class="tl-ph${r.preview ? " tl-ph-sum" : ""}">${r.photos.map(photo).join('')}</ul>` : ''}
       </li>`;
   }).join('');
 }
@@ -340,7 +360,7 @@ function photo(n) {
   return `<li><figure><button type="button" class="ph-btn" data-full="gallery/g${id}.jpg" aria-label="${g[0]}"><img src="gallery/g${id}_s.jpg" alt="${g[0]}" loading="lazy" decoding="async"></button>${t(g[0], g[1], 'figcaption')}</figure></li>`;
 }
 
-export const renderCarousel = () => GALLERY.map((g, i) => {
+export const renderCarousel = () => GALLERY.filter((g) => g[3] !== false).map((g, i) => {
   const n = String(i + 1).padStart(2, '0');
   return `
         <li class="cr-item" style="--i:${i}"><figure><button type="button" class="ph-btn" data-full="gallery/g${n}.jpg" aria-label="${g[0]}"><img src="gallery/g${n}_s.jpg" alt="${g[0]}" loading="lazy" decoding="async" draggable="false"></button>${t(g[0], g[1], 'figcaption')}</figure></li>`;

@@ -32,7 +32,7 @@ export function initStory() {
   const hemi = new THREE.HemisphereLight(0xf2f6ff, 0x2a3242, 2.4); scene.add(hemi);
   const sun = new THREE.DirectionalLight(0xffffff, 2.2); sun.position.set(-60, 120, 80); scene.add(sun);
   const fill = new THREE.DirectionalLight(0xdfe8ff, 0.9); fill.position.set(80, 40, -90); scene.add(fill);
-  const gridA = new THREE.GridHelper(220, 44, 0x3a4659, 0x2a3343); gridA.position.y = -0.02; scene.add(gridA);
+  const gridA = new THREE.GridHelper(220, 44, 0x355178, 0x22385a); gridA.position.y = -0.02; scene.add(gridA);
 
   const A = createProjectA(scene, (f) => { loadBar.style.width = Math.round(f * 100) + '%'; });
   A.loaded.then(() => { loader.hidden = true; window.__cys.ready = true; })
@@ -110,7 +110,7 @@ export function initStory() {
     const bw = sm(5.35, 5.85, s) * (1 - sm(7.35, 7.85, s));
     BGC.copy(DARK).lerp(LIGHT, bw); renderer.setClearColor(BGC, 1); scene.fog.color.copy(BGC);
     scene.fog.near = 140 - 60 * bw; scene.fog.far = 330 - 130 * bw;
-    hemi.groundColor.setHex(bw > 0.5 ? 0x9aa3ad : 0x2a3242);
+    hemi.groundColor.setHex(bw > 0.5 ? 0x9aa3ad : 0x24365a);
     B.group.visible = s > 4.9 && s < 8.4; A.group.visible = s < 5.95 || s > 7.2; gridA.visible = bw < 0.5;
     B.roof.visible = camera.position.y < 14;
     hud.style.opacity = (1 - bw) * v; legA.style.opacity = (1 - bw) * v; legB.style.opacity = bw * v;

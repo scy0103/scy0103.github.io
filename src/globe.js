@@ -50,9 +50,9 @@ export function initGlobe() {
 
   // ocean sphere with a soft rim so the silhouette reads on the dark card
   world.add(new THREE.Mesh(new THREE.SphereGeometry(0.995, 64, 48), new THREE.ShaderMaterial({
-    uniforms: {},
+    uniforms: { uA: { value: new THREE.Color(0.06, 0.11, 0.19) }, uB: { value: new THREE.Color(0.3, 0.42, 0.58) } },
     vertexShader: 'varying vec3 vN; varying vec3 vV; void main(){ vec4 mv = modelViewMatrix*vec4(position,1.); vN = normalize(normalMatrix*normal); vV = normalize(-mv.xyz); gl_Position = projectionMatrix*mv; }',
-    fragmentShader: 'varying vec3 vN; varying vec3 vV; void main(){ float f = pow(1.-max(dot(vN,vV),0.),2.4); vec3 c = mix(vec3(0.075,0.08,0.09), vec3(0.32,0.34,0.38), f); gl_FragColor = vec4(c,1.); }',
+    fragmentShader: 'uniform vec3 uA; uniform vec3 uB; varying vec3 vN; varying vec3 vV; void main(){ float f = pow(1.-max(dot(vN,vV),0.),2.4); vec3 c = mix(uA, uB, f); gl_FragColor = vec4(c,1.); }',
   })));
 
   // land dots on a Fibonacci lattice
@@ -66,15 +66,15 @@ export function initGlobe() {
   const dpr = renderer.getPixelRatio();
   world.add(new THREE.Points(dotGeo, new THREE.ShaderMaterial({
     transparent: true, depthWrite: false,
-    uniforms: { uSize: { value: 2.2 * dpr } },
+    uniforms: { uSize: { value: 2.2 * dpr }, uC: { value: new THREE.Color(0.85, 0.91, 0.97) } },
     vertexShader: 'uniform float uSize; varying float vF; void main(){ vec4 mv = modelViewMatrix*vec4(position,1.); vec3 n = normalize(normalMatrix*position); vF = clamp(dot(n, normalize(-mv.xyz))*1.6, 0., 1.); gl_PointSize = uSize; gl_Position = projectionMatrix*mv; }',
-    fragmentShader: 'varying float vF; void main(){ vec2 p = gl_PointCoord-.5; if(dot(p,p)>.25) discard; gl_FragColor = vec4(vec3(0.78,0.8,0.84), 0.25+0.7*vF); }',
+    fragmentShader: 'uniform vec3 uC; varying float vF; void main(){ vec2 p = gl_PointCoord-.5; if(dot(p,p)>.25) discard; gl_FragColor = vec4(uC, 0.25+0.7*vF); }',
   })));
 
   // pins: a short spike, a head, and a pulse ring; arcs from Seoul to each site
-  const red = new THREE.Color('#FF3D2E');
+  const red = new THREE.Color('#FF7A1A'); // safety orange
   const pinMat = new THREE.MeshBasicMaterial({ color: red });
-  const dimMat = new THREE.MeshBasicMaterial({ color: 0xf1eee8 });
+  const dimMat = new THREE.MeshBasicMaterial({ color: 0xeaf0f6 });
   const ringGeo = new THREE.RingGeometry(0.028, 0.036, 32);
   // invisible, larger spheres make the pins easy to hover
   const hitGeo = new THREE.SphereGeometry(0.075, 10, 8);
@@ -178,12 +178,19 @@ export function initGlobe() {
   canvas.addEventListener('pointerup', end); canvas.addEventListener('pointercancel', () => { drag = null; });
   canvas.addEventListener('pointerleave', (e) => { if (!drag && e.pointerType === 'mouse') setHover(-1, e); });
 
+  // zoom: mouse wheel over the globe, or the +/- buttons (1 = whole globe fits the card)
+  let baseZ = 5, zoom = 1;
+  const camLook = new THREE.Vector3();
+  const setZoom = (z) => { zoom = Math.min(1.5, Math.max(0.55, z)); };
+  canvas.addEventListener('wheel', (e) => { e.preventDefault(); setZoom(zoom * Math.exp(e.deltaY * 0.0012)); }, { passive: false });
+  $('g-in').addEventListener('click', () => setZoom(zoom / 1.25));
+  $('g-out').addEventListener('click', () => setZoom(zoom * 1.25));
   const resize = () => {
     const r = canvas.getBoundingClientRect(); if (!r.width) return;
     renderer.setSize(r.width, r.height, false); camera.aspect = r.width / r.height;
     // fit the sphere to the card and push it right on wide cards so the caption sits beside it
     const fitH = 1.08 / Math.tan(15 * Math.PI / 180), fitW = fitH / Math.min(1, camera.aspect);
-    camera.position.z = Math.max(fitH, fitW) * 1.32;
+    baseZ = Math.max(fitH, fitW) * 1.32; camera.position.z = baseZ * zoom;
     world.position.x = camera.aspect > 1.15 ? 0.42 : 0; world.position.y = camera.aspect > 1.15 ? -0.02 : 0.12;
     camera.updateProjectionMatrix();
   };
@@ -200,6 +207,11 @@ export function initGlobe() {
     if (!visible) return;
     if (!reduced && !SNAP && t > next && t > pauseUntil) { focus(cur + 1); next = t + 3800; }
     if (!drag) world.quaternion.slerp(qTarget, reduced ? 1 : 0.045);
+    // zooming in moves the camera toward the site in focus (hovered pin, else the current one)
+    const f = pins[hover >= 0 ? hover : cur].hit.getWorldPosition(tmpV);
+    const k = Math.min(1, Math.max(0, (1 - zoom) / 0.45));
+    camLook.set(f.x * k, f.y * k, 0);
+    camera.position.set(camLook.x, camLook.y, baseZ * zoom); camera.lookAt(camLook);
     spin = (spin + 0.016) % 1;
     pins.forEach((p, i) => {
       const k = i === cur ? (spin * 1.0) : 0;
