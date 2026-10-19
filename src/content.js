@@ -13,7 +13,7 @@ export const EXPERIENCE = [
     where: ['United States', '미국'],
     projects: [
       {
-        name: ['Arizona LGAZ CESS', 'Arizona LGAZ CESS'], photos: [37], period: '2025.02 – Present', size: ['KRW 22 bn', '220억 원'],
+        cc: 'us', name: ['Arizona LGAZ CESS', 'Arizona LGAZ CESS'], photos: [37], period: '2025.02 – Present', size: ['KRW 22 bn', '220억 원'],
         role: ['Site PL', '현장 PL'],
         points: [
           ['Coordinated the master schedule and led 3D piping clash review on site.', '마스터 스케줄 조율 및 3D 배관 간섭 검토 주도'],
@@ -21,7 +21,7 @@ export const EXPERIENCE = [
         ],
       },
       {
-        name: ['Indiana Kokomo SDI (SPEPP) utility hook-up', 'Indiana Kokomo SDI(SPEPP) 유틸리티 Hook-up'], photos: [38], period: '2024.02 – 2025.02', size: ['KRW 130 bn', '1,300억 원'],
+        cc: 'us', name: ['Indiana Kokomo SDI (SPEPP) utility hook-up', 'Indiana Kokomo SDI(SPEPP) 유틸리티 Hook-up'], photos: [38], period: '2024.02 – 2025.02', size: ['KRW 130 bn', '1,300억 원'],
         role: ['Site PL', '현장 PL'],
         points: [
           ['Drove completion of the electrode, formation and environmental-system lines 1 to 4.', '전극동, 화성동, 환경설비 1~4라인 완공 주도'],
@@ -30,7 +30,7 @@ export const EXPERIENCE = [
         result: ['2 months ahead of schedule, 10% under budget', '공기 2개월 단축, 예산 대비 10% 절감'],
       },
       {
-        name: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], photos: [39], period: '2022.10 – 2024.03', size: ['KRW 24 bn', '240억 원'],
+        cc: 'us', name: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], photos: [39], period: '2022.10 – 2024.03', size: ['KRW 24 bn', '240억 원'],
         role: ['Design Team Lead', '설계팀장'],
         points: [
           ['Designed the central electrolyte supply system (PFD, P&ID, BIM) and ran site clash review.', 'CESS 시스템 설계(PFD, P&ID, BIM) 및 현장 간섭 검토'],
@@ -39,7 +39,7 @@ export const EXPERIENCE = [
         result: ['1 month ahead of schedule, 15% under budget', '공기 1개월 단축, 예산 대비 15% 절감'],
       },
       {
-        name: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], photos: [40], period: '2021.09 – 2022.09', size: ['KRW 18 bn', '180억 원'],
+        cc: 'us', name: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], photos: [40], period: '2021.09 – 2022.09', size: ['KRW 18 bn', '180억 원'],
         role: ['Acting Site Manager', '현장소장 대행'],
         points: [
           ['CESS design (PFD, P&ID, BIM), site clash review, client and GC interface.', 'CESS 시스템 설계(PFD, P&ID, BIM), 현장 간섭 검토, 고객사 및 GC 대응'],
@@ -55,7 +55,7 @@ export const EXPERIENCE = [
     where: ['Hungary, Poland', '헝가리, 폴란드'],
     projects: [
       {
-        name: ['Göd, Hungary: SDIHU #6 BCU line', '헝가리 괴드(Göd) SDIHU #6 BCU 라인'], photos: [23, 22, 18], period: '2020.09 – 2020.12', size: ['KRW 11 bn', '110억 원'],
+        cc: 'hu', name: ['Göd, Hungary: SDIHU #6 BCU line', '헝가리 괴드(Göd) SDIHU #6 BCU 라인'], photos: [23, 22, 18], period: '2020.09 – 2020.12', size: ['KRW 11 bn', '110억 원'],
         role: ['Design and construction management', '설계 및 시공 관리'],
         points: [
           ['Managed the multi-electrode piping line expansion and the approval drawings.', '멀티 극판 배관라인 증설공사 관리 및 승인도면 설계'],
@@ -64,7 +64,7 @@ export const EXPERIENCE = [
         result: ['Design and construction completed within the planned period', '계획 기간 내 설계 및 시공 완료'],
       },
       {
-        name: ['Wrocław, Poland: LGESWA P3 CESS', '폴란드 브로츠와프 LGESWA P3 CESS'], photos: [19, 20, 21, 17], period: '2020.12 – 2021.08', size: ['Bid KRW 18.9 bn', '입찰 규모 189억 원'],
+        cc: 'pl', name: ['Wrocław, Poland: LGESWA P3 CESS', '폴란드 브로츠와프 LGESWA P3 CESS'], photos: [19, 20, 21, 17], period: '2020.12 – 2021.08', size: ['Bid KRW 18.9 bn', '입찰 규모 189억 원'],
         role: ['Process design', '공정설계'],
         points: [
           ['Electrolyte piping process design (P&ID, PFD, PMS) and proposal support.', '전해액 배관라인 공정설계(P&ID, PFD, PMS) 및 제안서 작성 지원'],
@@ -72,7 +72,7 @@ export const EXPERIENCE = [
         ],
       },
       {
-        name: ['Dąbrowa Górnicza, Poland: SK Innovation battery separator plant', '폴란드 돔브로바 SK이노베이션 배터리 분리막'], period: '2021.03 – 2021.08', size: ['KRW 17 bn', '170억 원'],
+        cc: 'pl', name: ['Dąbrowa Górnicza, Poland: SK Innovation battery separator plant', '폴란드 돔브로바 SK이노베이션 배터리 분리막'], period: '2021.03 – 2021.08', size: ['KRW 17 bn', '170억 원'],
         role: ['Process design PL', '분리막 공정설계 PL'],
         points: [],
       },
@@ -84,7 +84,7 @@ export const EXPERIENCE = [
     where: ['China, Korea', '중국, 한국'],
     projects: [
       {
-        name: ["Xi'an, China: Samsung Semiconductor operations", '중국 시안 삼성반도체 운영'], photos: [27], period: '2019.03 – 2019.12', size: null,
+        cc: 'cn', name: ["Xi'an, China: Samsung Semiconductor operations", '중국 시안 삼성반도체 운영'], photos: [27], period: '2019.03 – 2019.12', size: null,
         role: ['Operations team, Samsung SDS', '운영팀 과장, Samsung SDS'],
         points: [
           ['Reviewed S5D hook-up drawings and checked site layout against the model data.', 'S5D Hook-up 도면 검수, 현장 레이아웃 및 데이터 정합성 검수'],
@@ -92,7 +92,7 @@ export const EXPERIENCE = [
         ],
       },
       {
-        name: ['Pyeongtaek P3, Korea: Samsung reverse engineering', '평택 P3 삼성 역설계'], period: '2019.12 – 2020.09', size: null,
+        cc: 'kr', name: ['Pyeongtaek P3, Korea: Samsung reverse engineering', '평택 P3 삼성 역설계'], period: '2019.12 – 2020.09', size: null,
         role: ['Reverse engineering team, Samsung SDS', '역설계팀 과장, Samsung SDS'],
         points: [
           ['Imported site scan data into Revit and remodeled the hook-up lines missing from S5D.', '현장 스캔 원본 데이터를 Revit에 Import하여 S5D 미반영 Hook-up 구간 역모델링'],
@@ -107,11 +107,11 @@ export const EXPERIENCE = [
     where: ['Vancouver, Canada', '캐나다 밴쿠버'],
     projects: [
       {
-        name: ['Vancouver airport reconstruction', '밴쿠버 공항 재건축'], photos: [24, 25, 26], period: '2018 – 2019', size: null, role: null,
+        cc: 'ca', name: ['Vancouver airport reconstruction', '밴쿠버 공항 재건축'], photos: [24, 25, 26], period: '2018 – 2019', size: null, role: null,
         points: [['Buried piping drawings and revisions, BOM, liaison with Korean partners, invoicing.', '매설 배관 도면 출도 및 수정, BOM 관리, 한국 협력사 대응, 인보이스 발행']],
       },
       {
-        name: ['Alaska Route 93 highway', '알래스카 93번 국도'], period: '2018 – 2019', size: null, role: null,
+        cc: 'ca', name: ['Alaska Route 93 highway', '알래스카 93번 국도'], period: '2018 – 2019', size: null, role: null,
         points: [['Buried piping drawings, as-built revisions, BOM and invoicing.', '매설 배관 도면 출도, As-built 수정, BOM 관리, 인보이스 발행']],
       },
     ],
@@ -122,22 +122,22 @@ export const EXPERIENCE = [
     where: ['Korea, Saudi Arabia, Chile', '한국, 사우디아라비아, 칠레'],
     projects: [
       {
-        name: ['Seoul Metro Line 2 rolling stock (with Hyundai Rotem)', '서울메트로 2호선 전동차 (현대로템)'], photos: [9, 16, 28, 29], period: '2015.12 – 2017.05', size: null,
+        cc: 'kr', name: ['Seoul Metro Line 2 rolling stock (with Hyundai Rotem)', '서울메트로 2호선 전동차 (현대로템)'], photos: [9, 16, 28, 29], period: '2015.12 – 2017.05', size: null,
         role: ['Bogie design TFT', '대차설계 TFT'],
         points: [['Designed bogie parts (center pivot, axle, hub) through casting and machining; 200 cars delivered.', 'Center Pivot, Axle, Hub 등 대차 부품 설계부터 주조, 가공까지 수행, 200량 납품 완료']],
       },
       {
-        name: ['Fast Pack, Chile', '칠레 FAST PACK'], photos: [15, 30, 31], period: '2015.02 – 2015.07', size: null,
+        cc: 'cl', name: ['Fast Pack, Chile', '칠레 FAST PACK'], photos: [15, 30, 31], period: '2015.02 – 2015.07', size: null,
         role: ['Tier-1 vendor to POSCO E&C', '포스코건설 1차 벤더'],
         points: [['Five months on site: valve installation, field fit-up and as-built drawings.', '5개월 현장 상주, 자사 밸브 설치, 현장 맞춤 시공, As-built 도면 수정']],
       },
       {
-        name: ['Yanbu 3, Saudi Arabia (Hanwha E&C)', '사우디아라비아 YANBU 3 (한화E&C)'], photos: [14, 32, 33, 34], period: '2014.08 – 2014.09', size: null,
+        cc: 'sa', name: ['Yanbu 3, Saudi Arabia (Hanwha E&C)', '사우디아라비아 YANBU 3 (한화E&C)'], photos: [14, 32, 33, 34], period: '2014.08 – 2014.09', size: null,
         role: ['Valve supply and site meetings', '밸브 공급 및 고객사 미팅'],
         points: [['Supplied and installed additional 12" trunnion butterfly valves within 4 weeks, leading to a follow-on contract.', '12인치 Trunnion 버터플라이 밸브 추가 공급 및 설치를 4주 내 완료, 추가 계약 체결']],
       },
       {
-        name: ['Valve development', '밸브 개발'], photos: [10, 35, 36], period: '2013 – 2017', size: null, role: null,
+        cc: 'kr', name: ['Valve development', '밸브 개발'], photos: [10, 35, 36], period: '2013 – 2017', size: null, role: null,
         points: [
           ['Pressure-reducing and 5/2-way valves for Hyundai Heavy Industries marine engines; casting suppliers and production jigs.', '현대중공업 선박엔진용 감압밸브 및 5/2-way 밸브 개발, 주조 협력사 및 생산 지그 관리'],
           ['3/2-way valve under the 2017 SME growth program, with an industry-academia agreement with Kumoh National Institute of Technology.', '2017 중소기업 신성장동력 사업 3/2-way 밸브 개발, 금오공대 산학협력 체결'],
@@ -148,6 +148,7 @@ export const EXPERIENCE = [
 ];
 
 export const DATACENTER = {
+  cc: 'kr',
   period: '2026.02 – Present',
   points: [
     ['Leads technical sales and proposals for data center cooling: CRAH, in-row, CDU, manifold, QD.', '데이터센터 냉각 솔루션(CRAH, In-row, CDU, Manifold, QD) 기술영업 및 제안 총괄'],

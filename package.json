@@ -19,6 +19,7 @@
     "@gltf-transform/core": "4.1.1",
     "@gltf-transform/extensions": "4.1.1",
     "@gltf-transform/functions": "4.1.1",
+    "flag-icons": "^7.2.3",
     "meshoptimizer": "0.22.0",
     "playwright": "1.49.1",
     "vite": "6.0.7"
