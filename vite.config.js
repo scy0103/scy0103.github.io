@@ -5,7 +5,7 @@ import * as C from './src/content.js';
 const BLOCKS = {
   matrix: C.renderMatrix, domains: C.renderDomains, services: C.renderServices, skillrows: C.renderSkillRows,
   timeline: C.renderTimeline, carousel: C.renderCarousel, education: C.renderEducation, certs: C.renderCerts,
-  sites: C.renderSites, clients: () => C.CLIENTS,
+  sites: C.renderSites, clients: () => C.CLIENTS, radar: C.renderRadar,
 };
 const careerContent = () => ({
   name: 'career-content',

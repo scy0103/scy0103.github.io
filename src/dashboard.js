@@ -104,7 +104,28 @@ function initTurntable(A) {
   requestAnimationFrame(loop);
 }
 
+// Capability hexagon: pointing at (or focusing) an axis shows the resume evidence under the chart
+function initRadar() {
+  const ev = $('rd-ev'); if (!ev) return;
+  const axes = [...document.querySelectorAll('.rd-ax')];
+  let cur = -1;
+  const show = (i) => {
+    cur = i;
+    axes.forEach((a, j) => a.classList.toggle('on', j === i));
+    ev.classList.toggle('on', i >= 0);
+    ev.textContent = i >= 0 ? axes[i].getAttribute('data-ev-' + lang) : ev.getAttribute('data-' + lang);
+  };
+  axes.forEach((a, i) => {
+    a.addEventListener('pointerenter', () => show(i));
+    a.addEventListener('focus', () => show(i));
+    a.addEventListener('click', () => show(i));
+  });
+  document.querySelector('.radar').addEventListener('pointerleave', () => show(-1));
+  onLang(() => show(cur));
+}
+
 export function initDashboard(A) {
+  initRadar();
   initYears();
   initClocks();
   initTurntable(A);

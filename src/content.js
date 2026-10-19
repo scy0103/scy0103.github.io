@@ -373,3 +373,35 @@ export const renderCarousel = () => GALLERY.filter((g) => g[3] !== false).map((g
 export const renderEducation = () => EDUCATION.map((e) => `<li>${t(e[0], e[1], 'b')}${t(e[2], e[3], 'span')}<span class="yr">${e[4]}</span></li>`).join('');
 export const renderCerts = () => CERTS.map((c) => `<li>${t(c[0], c[1], 'b')}${t(c[2], c[3], 'span')}<span class="yr">${c[4]}</span></li>`).join('');
 export const renderSites = () => SITES.map((s, i) => `<li data-i="${i}">${t(s.p[0], s.p[1], 'b')}${t(s.n[0], s.n[1], 'span')}<span class="yr">${s.y}</span></li>`).join('');
+
+/* ---------- capability hexagon (dashboard) ---------- */
+// Self-assessed scores (0-100) with the resume evidence for each; edit the numbers here.
+export const RADAR = [
+  { k: ['Piping design', '배관 설계'], v: 92, ev: ['13 years of P&ID, PFD and PMS process design; Plant 3D shop, ISO and BOM output.', '13년간 P&ID·PFD·PMS 공정설계, Plant 3D Shop·ISO 도면과 BOM 출도'] },
+  { k: ['3D BIM modeling', '3D BIM 모델링'], v: 88, ev: ['Revit (advanced), Navisworks and S5D; reverse-modeled Samsung P3 hook-up from site scans.', 'Revit 고급, Navisworks·S5D, 현장 스캔 기반 삼성 P3 Hook-up 역설계'] },
+  { k: ['Clash coordination', '간섭 조율'], v: 95, ev: ['Chairs the three-contractor hook-up clash meetings on the Arizona and Kokomo sites.', '애리조나·코코모 현장에서 Hook-up 3사 간섭 미팅 주관'] },
+  { k: ['Site construction', '현장 시공'], v: 90, ev: ['Site PL and acting site manager: Kokomo lines 1–4 completed, Ohio built in 5.5 months.', '현장 PL·현장소장 대행: 코코모 1~4라인 완공, 오하이오 시공 5.5개월 준공'] },
+  { k: ['Project control', '공사 관리'], v: 88, ev: ['Master schedule owner; 2 months ahead and 10–15% under budget on US projects.', '마스터 스케줄 운영, 미국 프로젝트 공기 2개월 단축·예산 10~15% 절감'] },
+  { k: ['English communication', '영어 커뮤니케이션'], v: 78, ev: ['TOEIC 810, IELTS 6.0; four years in the US and a year in Canada; GC interpretation and TBM.', 'TOEIC 810, IELTS 6.0, 미국 4년·캐나다 1년 근무, GC 통역과 TBM 진행'] },
+];
+
+export function renderRadar() {
+  const cx = 180, cy = 150, R = 100, n = RADAR.length;
+  const pt = (i, r) => { const a = -Math.PI / 2 + (i / n) * Math.PI * 2; return [cx + Math.cos(a) * r, cy + Math.sin(a) * r]; };
+  const ring = (f) => RADAR.map((_, i) => pt(i, R * f).map((v) => v.toFixed(1)).join(',')).join(' ');
+  const rings = [0.25, 0.5, 0.75, 1].map((f) => `<polygon class="rd-ring" points="${ring(f)}"/>`).join('');
+  const spokes = RADAR.map((_, i) => { const [x, y] = pt(i, R); return `<line class="rd-spoke" x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/>`; }).join('');
+  const poly = RADAR.map((d, i) => pt(i, R * d.v / 100).map((v) => v.toFixed(1)).join(',')).join(' ');
+  const dots = RADAR.map((d, i) => { const [x, y] = pt(i, R * d.v / 100); return `<circle class="rd-dot" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4"/>`; }).join('');
+  const axes = RADAR.map((d, i) => {
+    const [x, y] = pt(i, R + 18), anchor = x > cx + 5 ? 'start' : x < cx - 5 ? 'end' : 'middle';
+    const dy = y < cy - R ? -4 : y > cy + R ? 14 : 4;
+    return `<g class="rd-ax" tabindex="0" data-i="${i}" data-ev-en="${d.ev[0].replace(/"/g, '&quot;')}" data-ev-ko="${d.ev[1].replace(/"/g, '&quot;')}">`
+      + `<text x="${x.toFixed(1)}" y="${(y + dy).toFixed(1)}" text-anchor="${anchor}">${t(d.k[0], d.k[1], 'tspan', 'rd-k')}<tspan class="rd-v" dx="6">${d.v}</tspan></text></g>`;
+  }).join('');
+  return `<svg class="radar" viewBox="-50 -4 460 308" role="img" aria-labelledby="rd-title rd-desc">
+          <title id="rd-title">Capability hexagon</title>
+          <desc id="rd-desc">${RADAR.map((d) => `${d.k[0]} ${d.v}`).join(', ')}</desc>
+          ${rings}${spokes}<polygon class="rd-poly" points="${poly}"/>${dots}${axes}
+        </svg>`;
+}

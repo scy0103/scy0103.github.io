@@ -102,6 +102,23 @@ button{font:inherit;color:inherit}
 .mx-tools li{display:flex;justify-content:space-between;gap:12px;font-size:16px;padding:6px 10px;border-radius:8px;background:var(--card-2)}
 .mx-tools em{font-style:normal;font-size:13px;color:var(--soft)}
 .mx-tools li:nth-child(-n+3) em{color:var(--signal)}
+/* capability hexagon */
+.rd{display:flex;flex-direction:column;min-width:0}
+.radar{width:100%;max-width:560px;height:auto;align-self:center;overflow:visible;margin-top:-6px}
+.rd-ring{fill:none;stroke:var(--mute);stroke-width:1}
+.rd-ring:last-of-type{stroke:#3d5a82}
+.rd-spoke{stroke:var(--mute);stroke-width:1}
+.rd-poly{fill:rgba(255,122,26,.22);stroke:var(--signal);stroke-width:2.5;stroke-linejoin:round;transform-origin:180px 150px;transform:scale(0);transition:transform 1.1s var(--ease) .25s}
+.card.in .rd-poly,html:not(.js) .rd-poly{transform:scale(1)}
+.rd-dot{fill:var(--signal);stroke:var(--card);stroke-width:2}
+.rd-ax{cursor:default;outline:none}
+.rd-ax text{font-size:15px;fill:var(--soft);transition:fill .2s}
+.rd-ax .rd-v{font-family:var(--display);font-weight:600;font-size:19px;fill:var(--ink)}
+.rd-ax:hover text,.rd-ax:focus text,.rd-ax.on text{fill:var(--ink)}
+.rd-ax:hover .rd-v,.rd-ax:focus .rd-v,.rd-ax.on .rd-v{fill:var(--signal)}
+.rd-ax:focus-visible text{text-decoration:underline}
+.rd-ev{font-size:14px;line-height:1.45;color:var(--soft);min-height:2.9em;margin-top:2px}
+.rd-ev.on{color:var(--ink)}
 .mx-dom li{font-family:var(--display);font-weight:500;font-size:clamp(18px,1.45vw,23px);line-height:1.2;text-transform:uppercase;letter-spacing:.005em}
 .mx-dom li:nth-child(odd){color:var(--ink)}
 .mx-dom li:nth-child(even){color:var(--soft)}
