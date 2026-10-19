@@ -13,3 +13,8 @@ const A = initStory();     // loads the Project A model once; the dashboard turn
 initDashboard(A);
 initGlobe();
 initCarousel();
+
+// ?fx=1 turns on the 3D FX sample (hero, bloom stage, tilt, cursor); loaded only on demand
+if (new URLSearchParams(location.search).get('fx') === '1') {
+  Promise.all([import('./fx.js'), import('./fx.css')]).then(([m]) => m.initFx(A));
+}
