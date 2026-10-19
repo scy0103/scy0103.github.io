@@ -393,14 +393,15 @@ html[lang="ko"] .tl summary h3{font-weight:700;letter-spacing:-.03em;line-height
 @media (max-width:760px){.tl-ph{grid-column:1;grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 /* ---------- credentials ---------- */
-.creds{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:12vh var(--pad) 16vh}
+.creds{display:grid;grid-template-columns:1fr;gap:56px;padding:12vh var(--pad) 16vh}
 .cd-col h2{font-family:var(--display);font-weight:600;font-size:clamp(24px,2vw,34px);text-transform:uppercase;color:var(--signal);margin-bottom:18px}
 html[lang="ko"] .cd-col h2{font-weight:700}
-.cd-list{list-style:none;margin:0;padding:0;display:grid;gap:14px}
-.cd-list li{display:grid;grid-template-columns:1fr auto;gap:0 12px}
-.cd-list b{font-weight:600}
-.cd-list span{grid-column:1;font-size:15px;color:var(--soft)}
-.cd-list .yr{grid-column:2;grid-row:1;color:var(--soft);font-size:15px}
+/* education and certifications: year badge first, text right next to it */
+.cd-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.cd-list li{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:"y n" "y d";gap:2px 16px;align-items:center;background:var(--card);border-radius:14px;padding:14px 18px}
+.cd-list b{grid-area:n;font-weight:700;font-size:16px;line-height:1.35}
+.cd-list span{grid-area:d;font-size:14px;color:var(--soft)}
+.cd-list .yr{grid-area:y;align-self:center;font-family:var(--display);font-weight:600;font-size:20px;color:var(--signal);background:var(--card-2);border-radius:10px;padding:8px 10px;min-width:64px;text-align:center;line-height:1.1;white-space:nowrap}
 
 /* ---------- contact + footer ---------- */
 .contact{padding:18vh var(--pad) 12vh;display:grid;gap:28px}
