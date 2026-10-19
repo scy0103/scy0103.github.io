@@ -11,7 +11,9 @@
     "shots": "node tools/shoot.mjs"
   },
   "dependencies": {
-    "three": "0.170.0"
+    "three": "0.170.0",
+    "topojson-client": "^3.1.0",
+    "world-atlas": "^2.0.2"
   },
   "devDependencies": {
     "@gltf-transform/core": "4.1.1",

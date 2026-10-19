@@ -1,0 +1,169 @@
+import * as THREE from 'three';
+import { feature } from 'topojson-client';
+import land110 from 'world-atlas/land-110m.json';
+import { SITES } from './content.js';
+import { lang, onLang } from './i18n.js';
+
+// Dotted globe with a pin on every project site. It tours the sites on its own (the caption follows),
+// can be dragged, and the list underneath focuses a site for keyboard and screen-reader users.
+const $ = (id) => document.getElementById(id);
+const toVec = (lat, lon, r = 1) => {
+  const phi = (90 - lat) * Math.PI / 180, th = (lon + 180) * Math.PI / 180;
+  return new THREE.Vector3(-r * Math.sin(phi) * Math.cos(th), r * Math.cos(phi), r * Math.sin(phi) * Math.sin(th));
+};
+
+// rasterise the land polygons into an equirectangular mask, then keep the sphere points that fall on land
+function landMask(W = 720, H = 360) {
+  const c = document.createElement('canvas'); c.width = W; c.height = H;
+  const g = c.getContext('2d'); g.fillStyle = '#fff';
+  const geo = feature(land110, land110.objects.land);
+  const rings = geo.features ? geo.features.flatMap((f) => f.geometry.coordinates) : geo.geometry.coordinates;
+  const X = (lon) => (lon + 180) / 360 * W, Y = (lat) => (90 - lat) / 180 * H;
+  rings.forEach((poly) => {
+    [0, -W, W].forEach((off) => {
+      g.beginPath();
+      poly.forEach((ring) => {
+        let prev = null, shift = 0;
+        ring.forEach(([lon, lat], i) => {
+          if (prev !== null && Math.abs(lon - prev) > 180) shift += lon < prev ? 360 : -360; // unwrap across the antimeridian
+          prev = lon;
+          const x = X(lon + shift) + off, y = Y(lat);
+          if (i) g.lineTo(x, y); else g.moveTo(x, y);
+        });
+        g.closePath();
+      });
+      g.fill('evenodd');
+    });
+  });
+  const d = g.getImageData(0, 0, W, H).data;
+  return (lat, lon) => d[(Math.min(H - 1, Math.floor(Y(lat))) * W + Math.min(W - 1, Math.floor(X(lon)))) * 4] > 128;
+}
+
+export function initGlobe() {
+  const canvas = $('globe');
+  let renderer;
+  try { renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true }); } catch (e) { canvas.parentElement.classList.add('no-gl'); return; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, window.matchMedia('(max-width:760px)').matches ? 1.5 : 2));
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 50); camera.position.set(0, 0, 5.2);
+  const world = new THREE.Group(); scene.add(world);
+
+  // ocean sphere with a soft rim so the silhouette reads on the dark card
+  world.add(new THREE.Mesh(new THREE.SphereGeometry(0.995, 64, 48), new THREE.ShaderMaterial({
+    uniforms: {},
+    vertexShader: 'varying vec3 vN; varying vec3 vV; void main(){ vec4 mv = modelViewMatrix*vec4(position,1.); vN = normalize(normalMatrix*normal); vV = normalize(-mv.xyz); gl_Position = projectionMatrix*mv; }',
+    fragmentShader: 'varying vec3 vN; varying vec3 vV; void main(){ float f = pow(1.-max(dot(vN,vV),0.),2.4); vec3 c = mix(vec3(0.075,0.08,0.09), vec3(0.32,0.34,0.38), f); gl_FragColor = vec4(c,1.); }',
+  })));
+
+  // land dots on a Fibonacci lattice
+  const isLand = landMask();
+  const N = 22000, pos = [];
+  for (let i = 0; i < N; i++) {
+    const y = 1 - (i / (N - 1)) * 2, lat = Math.asin(y) * 180 / Math.PI, lon = ((i * 137.50776) % 360) - 180;
+    if (isLand(lat, lon)) { const v = toVec(lat, lon, 1.0); pos.push(v.x, v.y, v.z); }
+  }
+  const dotGeo = new THREE.BufferGeometry(); dotGeo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+  const dpr = renderer.getPixelRatio();
+  world.add(new THREE.Points(dotGeo, new THREE.ShaderMaterial({
+    transparent: true, depthWrite: false,
+    uniforms: { uSize: { value: 2.2 * dpr } },
+    vertexShader: 'uniform float uSize; varying float vF; void main(){ vec4 mv = modelViewMatrix*vec4(position,1.); vec3 n = normalize(normalMatrix*position); vF = clamp(dot(n, normalize(-mv.xyz))*1.6, 0., 1.); gl_PointSize = uSize; gl_Position = projectionMatrix*mv; }',
+    fragmentShader: 'varying float vF; void main(){ vec2 p = gl_PointCoord-.5; if(dot(p,p)>.25) discard; gl_FragColor = vec4(vec3(0.78,0.8,0.84), 0.25+0.7*vF); }',
+  })));
+
+  // pins: a short spike, a head, and a pulse ring; arcs from Seoul to each site
+  const red = new THREE.Color('#FF3D2E');
+  const pinMat = new THREE.MeshBasicMaterial({ color: red });
+  const dimMat = new THREE.MeshBasicMaterial({ color: 0xf1eee8 });
+  const ringGeo = new THREE.RingGeometry(0.028, 0.036, 32);
+  const pins = SITES.map((s) => {
+    const n = toVec(s.lat, s.lon, 1).normalize();
+    const g = new THREE.Group(); g.position.copy(n);
+    g.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), n);
+    const spike = new THREE.Mesh(new THREE.CylinderGeometry(0.004, 0.004, 0.09, 6).translate(0, 0.045, 0), s.now ? pinMat : dimMat);
+    const head = new THREE.Mesh(new THREE.SphereGeometry(0.016, 12, 8).translate(0, 0.09, 0), pinMat);
+    const ring = new THREE.Mesh(ringGeo, new THREE.MeshBasicMaterial({ color: red, transparent: true, side: THREE.DoubleSide, depthWrite: false }));
+    ring.rotation.x = -Math.PI / 2; ring.position.y = 0.002;
+    g.add(spike, head, ring); world.add(g);
+    return { g, ring, n };
+  });
+  const home = toVec(37.55, 126.99, 1);
+  const arcMat = new THREE.LineBasicMaterial({ color: red, transparent: true, opacity: 0.55 });
+  const arcs = SITES.map((s) => {
+    const b = toVec(s.lat, s.lon, 1), mid = home.clone().add(b).multiplyScalar(0.5);
+    const h = 1 + home.distanceTo(b) * 0.35;
+    const curve = new THREE.QuadraticBezierCurve3(home, mid.normalize().multiplyScalar(h), b);
+    const geo = new THREE.BufferGeometry().setFromPoints(curve.getPoints(64)); geo.setDrawRange(0, 0);
+    const line = new THREE.Line(geo, arcMat); world.add(line); return line;
+  });
+
+  // caption + list
+  const place = $('g-place'), name = $('g-name'), yr = $('g-yr'), list = $('g-list');
+  let cur = 0, pauseUntil = 0;
+  const caption = () => {
+    const s = SITES[cur], k = lang === 'ko' ? 1 : 0;
+    place.textContent = s.p[k]; name.textContent = s.n[k]; yr.textContent = s.y;
+    list.querySelectorAll('li').forEach((li, i) => li.classList.toggle('on', i === cur));
+  };
+  onLang(caption);
+
+  // orientation: rotate the world so the current site faces the camera, slightly above centre
+  const qTarget = new THREE.Quaternion(), qDrag = new THREE.Quaternion();
+  const focus = (i) => {
+    cur = (i + SITES.length) % SITES.length; caption();
+    const n = pins[cur].n.clone();
+    const want = new THREE.Vector3(0, 0.32, 1).normalize();
+    qTarget.setFromUnitVectors(n, want);
+    arcs.forEach((a, j) => { a.userData.on = j === cur; });
+  };
+  $('g-prev').addEventListener('click', () => { focus(cur - 1); pauseUntil = performance.now() + 9000; });
+  $('g-next').addEventListener('click', () => { focus(cur + 1); pauseUntil = performance.now() + 9000; });
+
+  // drag to spin
+  let drag = null, spin = 0;
+  canvas.addEventListener('pointerdown', (e) => { drag = { x: e.clientX, y: e.clientY }; canvas.setPointerCapture(e.pointerId); pauseUntil = Infinity; });
+  canvas.addEventListener('pointermove', (e) => {
+    if (!drag) return;
+    const dx = e.clientX - drag.x, dy = e.clientY - drag.y; drag = { x: e.clientX, y: e.clientY };
+    qDrag.setFromEuler(new THREE.Euler(dy * 0.006, dx * 0.006, 0));
+    world.quaternion.premultiply(qDrag); qTarget.copy(world.quaternion);
+  });
+  const end = () => { if (drag) { drag = null; pauseUntil = performance.now() + 6000; } };
+  canvas.addEventListener('pointerup', end); canvas.addEventListener('pointercancel', end);
+
+  const resize = () => {
+    const r = canvas.getBoundingClientRect(); if (!r.width) return;
+    renderer.setSize(r.width, r.height, false); camera.aspect = r.width / r.height;
+    // fit the sphere to the card and push it right on wide cards so the caption sits beside it
+    const fitH = 1.08 / Math.tan(15 * Math.PI / 180), fitW = fitH / Math.min(1, camera.aspect);
+    camera.position.z = Math.max(fitH, fitW) * 1.32;
+    world.position.x = camera.aspect > 1.15 ? 0.42 : 0; world.position.y = camera.aspect > 1.15 ? -0.02 : 0.12;
+    camera.updateProjectionMatrix();
+  };
+  new ResizeObserver(resize).observe(canvas); resize();
+  let visible = false;
+  new IntersectionObserver((e) => { visible = e[0].isIntersecting; }).observe(canvas);
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const SNAP = new URLSearchParams(location.search).has('snap');
+  focus(0); world.quaternion.copy(qTarget);
+  let next = performance.now() + 3800;
+  const loop = (t) => {
+    requestAnimationFrame(loop);
+    if (!visible) return;
+    if (!reduced && !SNAP && t > next && t > pauseUntil) { focus(cur + 1); next = t + 3800; }
+    if (!drag) world.quaternion.slerp(qTarget, reduced ? 1 : 0.045);
+    spin = (spin + 0.016) % 1;
+    pins.forEach((p, i) => {
+      const k = i === cur ? (spin * 1.0) : 0;
+      p.ring.scale.setScalar(1 + k * 3); p.ring.material.opacity = i === cur ? 1 - spin : 0.35;
+    });
+    arcs.forEach((a) => {
+      const n = a.geometry.attributes.position.count, d = a.geometry.drawRange.count;
+      const want = a.userData.on ? n : 0;
+      if (d !== want) a.geometry.setDrawRange(0, d < want ? Math.min(want, d + 3) : Math.max(0, d - 4));
+    });
+    renderer.render(scene, camera);
+  };
+  requestAnimationFrame(loop);
+}

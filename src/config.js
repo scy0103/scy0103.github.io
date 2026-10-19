@@ -20,16 +20,7 @@ export const KEYS = [
   { p: [-62, 40, OZ + 52], t: [-6, 4, OZ] },      // 6 B / Fab hook-up
   { p: [-50, 5.2, OZ - 4.5], t: [10, 6.5, OZ - 3] }, // 7 B / Under the rack
   { p: [72, 92, -66], t: [0, 0, 0] },             // 8 A in numbers
-  // career sheets: slow orbit around Project A behind the veil
-  { p: [110, 64, 70], t: [0, 2, 0] },             // 9 Experience
-  { p: [40, 20, 10], t: [55, 3, -13] },           // 10 Data center (close on the POU cabinets)
-  { p: [1, 175, 12], t: [0, 0, 0] },              // 11 Field record (plan view)
-  { p: [-100, 58, -80], t: [0, 2, 0] },           // 12 Skills
-  { p: [-58, 22, -40], t: [-66, 4, 12] },         // 13 Education (tank farm from behind)
-  { p: [-30, 120, 95], t: [0, 0, 0] },            // 14 Gallery
-  { p: [-118, 42, 74], t: [0, 2, 0] },            // 15 Contact
 ];
-export const DOC_FROM = 8.6; // stage where the veil starts to dim the model for text-heavy sheets
 export const MOBILE_DIST = 1.3;
 
 // Pipe reveal: scroll stage -> fraction of the x-ordered model shown

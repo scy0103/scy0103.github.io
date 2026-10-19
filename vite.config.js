@@ -3,8 +3,9 @@ import * as C from './src/content.js';
 
 // Fills <!--@experience--> style markers in index.html with the career content, so it ships as static HTML.
 const BLOCKS = {
-  experience: C.renderExperience, datacenter: C.renderDatacenter, countries: C.renderCountries,
-  skills: C.renderSkills, education: C.renderEducation, certs: C.renderCerts, gallery: C.renderGallery,
+  matrix: C.renderMatrix, domains: C.renderDomains, services: C.renderServices, skillrows: C.renderSkillRows,
+  timeline: C.renderTimeline, carousel: C.renderCarousel, education: C.renderEducation, certs: C.renderCerts,
+  sites: C.renderSites, clients: () => C.CLIENTS,
 };
 const careerContent = () => ({
   name: 'career-content',

@@ -235,35 +235,111 @@ export const GALLERY = [
   ['Budapest, Hungary', '헝가리 부다페스트', 'travel'],
 ];
 
+/* ---------- dashboard / redesign data ---------- */
+// Project sites for the globe. Coordinates are city-level (public locations), not facility surveys.
+export const SITES = [
+  { n: ['Arizona LGAZ CESS', 'Arizona LGAZ CESS'], p: ['Arizona, USA', '미국 애리조나'], y: '2025 – ', lat: 33.25, lon: -111.63, now: true },
+  { n: ['Kokomo SDI utility hook-up', 'Kokomo SDI 유틸리티 Hook-up'], p: ['Kokomo, Indiana', '미국 인디애나 코코모'], y: '2024 – 25', lat: 40.49, lon: -86.13 },
+  { n: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], p: ['Holland, Michigan', '미국 미시간 홀랜드'], y: '2022 – 24', lat: 42.76, lon: -86.07 },
+  { n: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], p: ['Lordstown, Ohio', '미국 오하이오 로즈타운'], y: '2021 – 22', lat: 41.24, lon: -81.06 },
+  { n: ['Vancouver airport, Alaska highway', '밴쿠버 공항, 알래스카 국도'], p: ['Vancouver, Canada', '캐나다 밴쿠버'], y: '2018 – 19', lat: 49.28, lon: -123.12 },
+  { n: ['LGESWA P3 CESS', 'LGESWA P3 CESS'], p: ['Wrocław, Poland', '폴란드 브로츠와프'], y: '2020 – 21', lat: 51.07, lon: 17.02 },
+  { n: ['SK Innovation separator plant', 'SK이노베이션 분리막'], p: ['Dąbrowa Górnicza, Poland', '폴란드 돔브로바'], y: '2021', lat: 50.33, lon: 19.19 },
+  { n: ['SDIHU #6 BCU line', 'SDIHU #6 BCU 라인'], p: ['Göd, Hungary', '헝가리 괴드'], y: '2020', lat: 47.68, lon: 19.13 },
+  { n: ['Samsung Semiconductor operations', '삼성반도체 운영'], p: ["Xi'an, China", '중국 시안'], y: '2019', lat: 34.2, lon: 108.85 },
+  { n: ['Samsung P3 reverse engineering', '삼성 P3 역설계'], p: ['Pyeongtaek, Korea', '평택'], y: '2019 – 20', lat: 37.02, lon: 127.05 },
+  { n: ['Seoul Metro Line 2 bogie', '서울메트로 2호선 대차'], p: ['Seoul, Korea', '서울'], y: '2015 – 17', lat: 37.55, lon: 126.99 },
+  { n: ['Valve design and production', '밸브 설계 및 생산'], p: ['Gyeongbuk, Korea', '경북'], y: '2013 – 17', lat: 36.14, lon: 128.11 },
+  { n: ['Fast Pack desalination plant', 'Fast Pack 담수화 플랜트'], p: ['Antofagasta, Chile', '칠레 안토파가스타'], y: '2015', lat: -23.65, lon: -70.4 },
+  { n: ['Yanbu 3 (Hanwha E&C)', 'Yanbu 3 (한화E&C)'], p: ['Yanbu, Saudi Arabia', '사우디 얀부'], y: '2014', lat: 24.09, lon: 38.06 },
+];
+
+// Dashboard career gauge: one segment per employer, 2013.03 to today
+export const ERAS = [
+  { co: 'S&W IND.', from: 2013.17, to: 2017.38 },
+  { co: 'EBA Tetra Tech', from: 2018.08, to: 2019.0 },
+  { co: 'IAAN', from: 2019.17, to: 2020.7 },
+  { co: 'EKG', from: 2020.7, to: 2021.6 },
+  { co: 'AIKOREA', from: 2021.67, to: 2026.8 },
+];
+
+export const MATRIX = [
+  ['Revit', 'Advanced', '고급'], ['CATIA V5', 'Advanced', '고급'], ['AutoCAD', 'Advanced', '고급'],
+  ['Plant 3D', 'Intermediate', '중급'], ['Navisworks', 'Intermediate', '중급'], ['S5D', 'Intermediate', '중급'],
+  ['SolidWorks', 'Intermediate', '중급'], ['Business English', 'Intermediate', '중급'],
+];
+export const DOMAINS = [
+  ['CESS electrolyte supply', 'CESS 전해액 공급'], ['Utility hook-up', '유틸리티 Hook-up'], ['P&ID / PFD / PMS', 'P&ID / PFD / PMS'],
+  ['3-party clash coordination', '3사 간섭 조율'], ['Site PL, schedule, QA/QC', '현장 PL, 공정, QA/QC'], ['Data center liquid cooling', '데이터센터 액체 냉각'],
+];
+export const SERVICES = [
+  ['Hook-up design', 'Hook-up 설계'], ['CESS systems', 'CESS 시스템'], ['P&ID · PFD · PMS', 'P&ID · PFD · PMS'], ['Clash coordination', '간섭 조율'],
+  ['Site PL', '현장 PL'], ['Reverse engineering', '역설계'], ['Valve design', '밸브 설계'], ['Liquid cooling', '액체 냉각'],
+];
+// companies named in resume R0 as clients or partners of the projects
+export const CLIENTS = 'LG Energy Solution · Samsung SDI · Ultium Cells · Samsung Semiconductor · Samsung SDS · SK Innovation · Hanwha E&C · POSCO E&C · Hyundai Rotem · Hyundai Heavy Industries · Tetra Tech';
+
 /* ---------- HTML renderers (used by the vite plugin) ---------- */
-const per = (p) => t(p, p.replace('Present', '현재'), 'span', 'mono soft');
-export function renderExperience() {
-  return EXPERIENCE.map((e) => `
-      <article class="job">
-        <header class="job-h">
-          <div>${t(e.co[0], e.co[1], 'h3')}${t(e.role[0], e.role[1], 'p', 'job-role')}</div>
-          <div class="job-meta">${t(e.period, e.period.replace('Present', '현재'), 'span', 'mono')}${t(e.where[0], e.where[1], 'span', 'mono soft')}</div>
-        </header>
-        <ul class="pj">${e.projects.map((p) => `
-          <li>
-            <div class="pj-h">${t(p.name[0], p.name[1], 'h4')}${per(p.period)}</div>
-            ${p.role || p.size ? `<div class="pj-tags">${p.role ? t(p.role[0], p.role[1], 'span', 'chip') : ''}${p.size ? t(p.size[0], p.size[1], 'span', 'chip') : ''}</div>` : ''}
-            ${p.points.length ? `<ul class="pts">${p.points.map((x) => t(x[0], x[1], 'li')).join('')}</ul>` : ''}
-            ${p.result ? t(p.result[0], p.result[1], 'p', 'result') : ''}
-          </li>`).join('')}
-        </ul>
-      </article>`).join('');
+const now = (p) => t(p.replace('Present', 'Now'), p.replace('Present', '현재'));
+const startYear = (p) => p.slice(0, 4);
+const endYear = (p) => (/Present/.test(p) ? null : p.slice(-7, -3));
+
+export const renderMatrix = () => MATRIX.map((m) => `<li><span>${m[0]}</span>${t(m[1], m[2], 'em')}</li>`).join('');
+export const renderDomains = () => DOMAINS.map((d) => t(d[0], d[1], 'li')).join('');
+export const renderServices = () => SERVICES.map((s, i) => `<li style="--i:${i}">${t(s[0], s[1], 'span')}</li>`).join('');
+
+// skill rows: one huge line per group, tools underneath
+export const renderSkillRows = () => SKILLS.map((g, i) => `
+      <li class="srow" data-reveal>
+        <span class="srow-n">${String(i + 1).padStart(2, '0')}</span>
+        ${t(g.g[0], g.g[1], 'h3', 'srow-h')}
+        <ul class="srow-tools">${g.items.map((s) => `<li><b>${s[0]}</b>${t(s[1], s[2], 'span')}</li>`).join('')}</ul>
+      </li>`).join('');
+
+// timeline: year to year, company, role; projects inside a disclosure
+export function renderTimeline() {
+  const rows = [];
+  EXPERIENCE.forEach((e, ei) => {
+    rows.push({ period: e.period, title: e.co, role: e.role, where: e.where, projects: e.projects, open: ei === 0 });
+    if (ei === 0) rows.push({ dc: true, period: DATACENTER.period });
+  });
+  return rows.map((r) => {
+    const y0 = startYear(r.period), y1 = endYear(r.period);
+    const years = `<span class="tl-y">${y0}<i>→</i>${y1 ? y1 : t('Now', '현재')}</span>`;
+    if (r.dc) {
+      return `
+      <li class="tl tl-dc" data-reveal>
+        ${years}
+        <details>
+          <summary>${t('Data center cooling', '데이터센터 냉각', 'h3')}${t('AIKOREA, New Business Div. / Technical Sales Team Lead', '에이아이코리아 신사업본부 / 기술영업 팀장', 'p')}</summary>
+          <ul class="tl-pts">${DATACENTER.points.map((x) => t(x[0], x[1], 'li')).join('')}</ul>
+        </details>
+      </li>`;
+    }
+    return `
+      <li class="tl" data-reveal>
+        ${years}
+        <details${r.open ? ' open' : ''}>
+          <summary>${t(r.title[0], r.title[1], 'h3')}${t(r.role[0], r.role[1], 'p')}${t(r.where[0], r.where[1], 'p', 'tl-where')}</summary>
+          <ul class="tl-pj">${r.projects.map((p) => `
+            <li>
+              <div class="tl-pj-h">${t(p.name[0], p.name[1], 'h4')}<span class="tl-when">${now(p.period)}</span></div>
+              ${p.role || p.size ? `<p class="tl-meta">${[p.role, p.size].filter(Boolean).map((x) => t(x[0], x[1])).join('<span aria-hidden="true"> · </span>')}</p>` : ''}
+              ${p.points.length ? `<ul class="tl-pts">${p.points.map((x) => t(x[0], x[1], 'li')).join('')}</ul>` : ''}
+              ${p.result ? t(p.result[0], p.result[1], 'p', 'tl-result') : ''}
+            </li>`).join('')}
+          </ul>
+        </details>
+      </li>`;
+  }).join('');
 }
-export const renderDatacenter = () => `<ul class="pts">${DATACENTER.points.map((x) => t(x[0], x[1], 'li')).join('')}</ul>`;
-export const renderCountries = () => `<ul class="countries">${COUNTRIES.map((c) => `<li>${t(c.c[0], c.c[1], 'b')}${t(c.s[0], c.s[1], 'span', 'soft')}<span class="mono soft">${c.y}</span></li>`).join('')}</ul>`;
-export const renderSkills = () => SKILLS.map((g) => `
-      <div class="skg">${t(g.g[0], g.g[1], 'h4', 'eyebrow')}<ul>${g.items.map((s) => `<li><b>${s[0]}</b>${t(s[1], s[2], 'span', 'soft')}</li>`).join('')}</ul></div>`).join('');
-export const renderEducation = () => `
-      <ul class="edu">${EDUCATION.map((e) => `<li>${t(e[0], e[1], 'b')}${t(e[2], e[3], 'span', 'soft')}<span class="mono soft">${e[4]}</span></li>`).join('')}</ul>`;
-export const renderCerts = () => `
-      <ul class="edu">${CERTS.map((c) => `<li>${t(c[0], c[1], 'b')}${t(c[2], c[3], 'span', 'soft')}<span class="mono soft">${c[4]}</span></li>`).join('')}</ul>`;
-export const renderGallery = () => GALLERY.map((g, i) => {
+
+export const renderCarousel = () => GALLERY.map((g, i) => {
   const n = String(i + 1).padStart(2, '0');
   return `
-      <figure class="ph ph-${g[2]}"><button type="button" class="ph-btn" data-full="gallery/g${n}.jpg" aria-label="${g[0]}"><img src="gallery/g${n}_s.jpg" alt="${g[0]}" loading="lazy" decoding="async"></button>${t(g[0], g[1], 'figcaption')}</figure>`;
+        <li class="cr-item" style="--i:${i}"><figure><button type="button" class="ph-btn" data-full="gallery/g${n}.jpg" aria-label="${g[0]}"><img src="gallery/g${n}_s.jpg" alt="${g[0]}" loading="lazy" decoding="async" draggable="false"></button>${t(g[0], g[1], 'figcaption')}</figure></li>`;
 }).join('');
+
+export const renderEducation = () => EDUCATION.map((e) => `<li>${t(e[0], e[1], 'b')}${t(e[2], e[3], 'span')}<span class="yr">${e[4]}</span></li>`).join('');
+export const renderCerts = () => CERTS.map((c) => `<li>${t(c[0], c[1], 'b')}${t(c[2], c[3], 'span')}<span class="yr">${c[4]}</span></li>`).join('');
+export const renderSites = () => SITES.map((s, i) => `<li data-i="${i}">${t(s.p[0], s.p[1], 'b')}${t(s.n[0], s.n[1], 'span')}<span class="yr">${s.y}</span></li>`).join('');

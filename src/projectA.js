@@ -37,6 +37,7 @@ export function createProjectA(scene, onProgress) {
       if (!o.geometry.attributes.normal) o.geometry.computeVertexNormals();
     });
     group.add(gltf.scene);
+    api.model = gltf.scene; // the dashboard turntable clones this with its own materials
     meta.clashes.forEach((p) => {
       const m = new THREE.Mesh(new THREE.SphereGeometry(1.1, 18, 12),
         new THREE.MeshBasicMaterial({ color: 0xf87171, wireframe: true, transparent: true, opacity: 0, depthTest: false }));
