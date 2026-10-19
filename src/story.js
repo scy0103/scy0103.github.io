@@ -95,6 +95,7 @@ export function initStory() {
       canvas.style.opacity = v; labelsEl.style.opacity = v;
       document.body.classList.toggle('in-story', v > 0.5);
       loader.hidden = window.__cys.ready || v < 0.5;
+      if (v <= 0) { hud.style.opacity = 0; legA.style.opacity = 0; legB.style.opacity = 0; }
     }
     if (v <= 0) return; // off screen: skip the render entirely
 

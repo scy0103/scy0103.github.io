@@ -76,7 +76,11 @@ export function initGlobe() {
   const pinMat = new THREE.MeshBasicMaterial({ color: red });
   const dimMat = new THREE.MeshBasicMaterial({ color: 0xf1eee8 });
   const ringGeo = new THREE.RingGeometry(0.028, 0.036, 32);
-  const pins = SITES.map((s) => {
+  // invisible, larger spheres make the pins easy to hover
+  const hitGeo = new THREE.SphereGeometry(0.075, 10, 8);
+  const hitMat = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false });
+  const pins = [];
+  SITES.forEach((s) => {
     const n = toVec(s.lat, s.lon, 1).normalize();
     const g = new THREE.Group(); g.position.copy(n);
     g.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), n);
@@ -84,8 +88,9 @@ export function initGlobe() {
     const head = new THREE.Mesh(new THREE.SphereGeometry(0.016, 12, 8).translate(0, 0.09, 0), pinMat);
     const ring = new THREE.Mesh(ringGeo, new THREE.MeshBasicMaterial({ color: red, transparent: true, side: THREE.DoubleSide, depthWrite: false }));
     ring.rotation.x = -Math.PI / 2; ring.position.y = 0.002;
-    g.add(spike, head, ring); world.add(g);
-    return { g, ring, n };
+    const hit = new THREE.Mesh(hitGeo, hitMat); hit.position.y = 0.08; hit.userData.i = pins.length;
+    g.add(spike, head, ring, hit); world.add(g);
+    const pin = { g, ring, n, hit }; pins.push(pin); return pin;
   });
   const home = toVec(37.55, 126.99, 1);
   const arcMat = new THREE.LineBasicMaterial({ color: red, transparent: true, opacity: 0.55 });
@@ -119,17 +124,59 @@ export function initGlobe() {
   $('g-prev').addEventListener('click', () => { focus(cur - 1); pauseUntil = performance.now() + 9000; });
   $('g-next').addEventListener('click', () => { focus(cur + 1); pauseUntil = performance.now() + 9000; });
 
-  // drag to spin
-  let drag = null, spin = 0;
-  canvas.addEventListener('pointerdown', (e) => { drag = { x: e.clientX, y: e.clientY }; canvas.setPointerCapture(e.pointerId); pauseUntil = Infinity; });
+  // hover a pin to read it; click or tap a pin to bring it to the front; drag the globe to spin it
+  const tip = $('g-tip'), card = canvas.parentElement;
+  const ray = new THREE.Raycaster(), ndc = new THREE.Vector2(), tmpV = new THREE.Vector3(), camDir = new THREE.Vector3();
+  let hover = -1;
+  const pick = (e) => {
+    const r = canvas.getBoundingClientRect();
+    ndc.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
+    ray.setFromCamera(ndc, camera);
+    const hits = ray.intersectObjects(pins.map((p) => p.hit), false);
+    for (const h of hits) {
+      const p = pins[h.object.userData.i];
+      p.hit.getWorldPosition(tmpV); camDir.copy(camera.position).sub(tmpV);
+      const nW = p.n.clone().applyQuaternion(world.quaternion);
+      if (nW.dot(camDir) > 0) return h.object.userData.i; // only pins on the visible side
+    }
+    return -1;
+  };
+  const showTip = (i, e) => {
+    if (i < 0) { tip.hidden = true; return; }
+    const s = SITES[i], k = lang === 'ko' ? 1 : 0, cr = card.getBoundingClientRect();
+    const img = s.img ? `<img src="gallery/g${String(s.img).padStart(2, '0')}_s.jpg" alt="">` : '';
+    tip.innerHTML = `${img}<b>${s.p[k]}</b><span>${s.n[k]}</span><em>${s.y}</em>`;
+    tip.hidden = false;
+    const x = e.clientX - cr.left, y = e.clientY - cr.top, w = tip.offsetWidth, h = tip.offsetHeight;
+    tip.style.left = Math.min(cr.width - w - 12, Math.max(12, x + 16)) + 'px';
+    tip.style.top = Math.min(cr.height - h - 12, Math.max(12, y - h / 2)) + 'px';
+  };
+  const setHover = (i, e) => {
+    if (i !== hover) {
+      hover = i;
+      canvas.style.cursor = i >= 0 ? 'pointer' : '';
+      if (i >= 0) { cur = i; caption(); arcs.forEach((a, j) => { a.userData.on = j === i; }); }
+    }
+    showTip(i, e);
+    pauseUntil = i >= 0 ? Infinity : Math.min(pauseUntil, performance.now() + 4000);
+  };
+  let drag = null, spin = 0, moved = 0;
+  canvas.addEventListener('pointerdown', (e) => { drag = { x: e.clientX, y: e.clientY }; moved = 0; canvas.setPointerCapture(e.pointerId); pauseUntil = Infinity; });
   canvas.addEventListener('pointermove', (e) => {
-    if (!drag) return;
-    const dx = e.clientX - drag.x, dy = e.clientY - drag.y; drag = { x: e.clientX, y: e.clientY };
+    if (!drag) { if (e.pointerType === 'mouse') setHover(pick(e), e); return; }
+    const dx = e.clientX - drag.x, dy = e.clientY - drag.y; drag = { x: e.clientX, y: e.clientY }; moved += Math.abs(dx) + Math.abs(dy);
+    if (moved > 4) { tip.hidden = true; hover = -1; }
     qDrag.setFromEuler(new THREE.Euler(dy * 0.006, dx * 0.006, 0));
     world.quaternion.premultiply(qDrag); qTarget.copy(world.quaternion);
   });
-  const end = () => { if (drag) { drag = null; pauseUntil = performance.now() + 6000; } };
-  canvas.addEventListener('pointerup', end); canvas.addEventListener('pointercancel', end);
+  const end = (e) => {
+    if (!drag) return;
+    drag = null;
+    if (moved <= 4) { const i = pick(e); if (i >= 0) { focus(i); showTip(i, e); } } // a tap or click on a pin
+    pauseUntil = performance.now() + 6000;
+  };
+  canvas.addEventListener('pointerup', end); canvas.addEventListener('pointercancel', () => { drag = null; });
+  canvas.addEventListener('pointerleave', (e) => { if (!drag && e.pointerType === 'mouse') setHover(-1, e); });
 
   const resize = () => {
     const r = canvas.getBoundingClientRect(); if (!r.width) return;
@@ -157,6 +204,7 @@ export function initGlobe() {
     pins.forEach((p, i) => {
       const k = i === cur ? (spin * 1.0) : 0;
       p.ring.scale.setScalar(1 + k * 3); p.ring.material.opacity = i === cur ? 1 - spin : 0.35;
+      const sc = i === hover ? 1.6 : 1; p.g.scale.x += (sc - p.g.scale.x) * 0.25; p.g.scale.z = p.g.scale.y = p.g.scale.x;
     });
     arcs.forEach((a) => {
       const n = a.geometry.attributes.position.count, d = a.geometry.drawRange.count;

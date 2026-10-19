@@ -8,7 +8,7 @@ export const t = (en, ko, tag = 'span', cls = '') =>
 
 export const EXPERIENCE = [
   {
-    co: ['AIKOREA', '에이아이코리아'], period: '2021.09 – Present',
+    co: ['AIKOREA', '에이아이코리아'], period: '2021.09 – Present', photos: [11, 12, 13, 1],
     role: ['Project Leader, Infrastructure Division / Team Lead', 'PL(프로젝트리더) · 인프라사업부 / 팀장'],
     where: ['United States', '미국'],
     projects: [
@@ -50,7 +50,7 @@ export const EXPERIENCE = [
     ],
   },
   {
-    co: ['EKG', 'EKG'], period: '2020.09 – 2021.08',
+    co: ['EKG', 'EKG'], period: '2020.09 – 2021.08', photos: [17, 18],
     role: ['Piping Design, Expatriate in Hungary and Poland / Deputy General Manager, Team Lead', '배관설계 · 주재원(헝가리, 폴란드) / 차장, 팀장'],
     where: ['Hungary, Poland', '헝가리, 폴란드'],
     projects: [
@@ -117,7 +117,7 @@ export const EXPERIENCE = [
     ],
   },
   {
-    co: ['S&W IND. CO., LTD.', 'S&W IND. CO., LTD.'], period: '2013.03 – 2017.05',
+    co: ['S&W IND. CO., LTD.', 'S&W IND. CO., LTD.'], period: '2013.03 – 2017.05', photos: [9, 16, 10, 14, 15],
     role: ['Mechanical Design, Engineering Dept. / Assistant Manager', '기계설계 · 기술부 / 대리'],
     where: ['Korea, Saudi Arabia, Chile', '한국, 사우디아라비아, 칠레'],
     projects: [
@@ -243,15 +243,15 @@ export const SITES = [
   { n: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], p: ['Holland, Michigan', '미국 미시간 홀랜드'], y: '2022 – 24', lat: 42.76, lon: -86.07 },
   { n: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], p: ['Lordstown, Ohio', '미국 오하이오 로즈타운'], y: '2021 – 22', lat: 41.24, lon: -81.06 },
   { n: ['Vancouver airport, Alaska highway', '밴쿠버 공항, 알래스카 국도'], p: ['Vancouver, Canada', '캐나다 밴쿠버'], y: '2018 – 19', lat: 49.28, lon: -123.12 },
-  { n: ['LGESWA P3 CESS', 'LGESWA P3 CESS'], p: ['Wrocław, Poland', '폴란드 브로츠와프'], y: '2020 – 21', lat: 51.07, lon: 17.02 },
+  { n: ['LGESWA P3 CESS', 'LGESWA P3 CESS'], p: ['Wrocław, Poland', '폴란드 브로츠와프'], y: '2020 – 21', lat: 51.07, lon: 17.02, img: 17 },
   { n: ['SK Innovation separator plant', 'SK이노베이션 분리막'], p: ['Dąbrowa Górnicza, Poland', '폴란드 돔브로바'], y: '2021', lat: 50.33, lon: 19.19 },
   { n: ['SDIHU #6 BCU line', 'SDIHU #6 BCU 라인'], p: ['Göd, Hungary', '헝가리 괴드'], y: '2020', lat: 47.68, lon: 19.13 },
   { n: ['Samsung Semiconductor operations', '삼성반도체 운영'], p: ["Xi'an, China", '중국 시안'], y: '2019', lat: 34.2, lon: 108.85 },
   { n: ['Samsung P3 reverse engineering', '삼성 P3 역설계'], p: ['Pyeongtaek, Korea', '평택'], y: '2019 – 20', lat: 37.02, lon: 127.05 },
-  { n: ['Seoul Metro Line 2 bogie', '서울메트로 2호선 대차'], p: ['Seoul, Korea', '서울'], y: '2015 – 17', lat: 37.55, lon: 126.99 },
-  { n: ['Valve design and production', '밸브 설계 및 생산'], p: ['Gyeongbuk, Korea', '경북'], y: '2013 – 17', lat: 36.14, lon: 128.11 },
-  { n: ['Fast Pack desalination plant', 'Fast Pack 담수화 플랜트'], p: ['Antofagasta, Chile', '칠레 안토파가스타'], y: '2015', lat: -23.65, lon: -70.4 },
-  { n: ['Yanbu 3 (Hanwha E&C)', 'Yanbu 3 (한화E&C)'], p: ['Yanbu, Saudi Arabia', '사우디 얀부'], y: '2014', lat: 24.09, lon: 38.06 },
+  { n: ['Seoul Metro Line 2 bogie', '서울메트로 2호선 대차'], p: ['Seoul, Korea', '서울'], y: '2015 – 17', lat: 37.55, lon: 126.99, img: 16 },
+  { n: ['Valve design and production', '밸브 설계 및 생산'], p: ['Gyeongbuk, Korea', '경북'], y: '2013 – 17', lat: 36.14, lon: 128.11, img: 10 },
+  { n: ['Fast Pack desalination plant', 'Fast Pack 담수화 플랜트'], p: ['Antofagasta, Chile', '칠레 안토파가스타'], y: '2015', lat: -23.65, lon: -70.4, img: 15 },
+  { n: ['Yanbu 3 (Hanwha E&C)', 'Yanbu 3 (한화E&C)'], p: ['Yanbu, Saudi Arabia', '사우디 얀부'], y: '2014', lat: 24.09, lon: 38.06, img: 14 },
 ];
 
 // Dashboard career gauge: one segment per employer, 2013.03 to today
@@ -300,7 +300,7 @@ export const renderSkillRows = () => SKILLS.map((g, i) => `
 export function renderTimeline() {
   const rows = [];
   EXPERIENCE.forEach((e, ei) => {
-    rows.push({ period: e.period, title: e.co, role: e.role, where: e.where, projects: e.projects, open: ei === 0 });
+    rows.push({ period: e.period, title: e.co, role: e.role, where: e.where, projects: e.projects, photos: e.photos || [], open: ei === 0 });
     if (ei === 0) rows.push({ dc: true, period: DATACENTER.period });
   });
   return rows.map((r) => {
@@ -330,8 +330,14 @@ export function renderTimeline() {
             </li>`).join('')}
           </ul>
         </details>
+        ${r.photos.length ? `<ul class="tl-ph">${r.photos.map(photo).join('')}</ul>` : ''}
       </li>`;
   }).join('');
+}
+// one gallery picture as a lightbox thumbnail
+function photo(n) {
+  const g = GALLERY[n - 1], id = String(n).padStart(2, '0');
+  return `<li><figure><button type="button" class="ph-btn" data-full="gallery/g${id}.jpg" aria-label="${g[0]}"><img src="gallery/g${id}_s.jpg" alt="${g[0]}" loading="lazy" decoding="async"></button>${t(g[0], g[1], 'figcaption')}</figure></li>`;
 }
 
 export const renderCarousel = () => GALLERY.map((g, i) => {

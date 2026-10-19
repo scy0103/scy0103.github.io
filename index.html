@@ -13,7 +13,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230E0F11'/%3E%3Ccircle cx='32' cy='32' r='14' fill='%23FF3D2E'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="/src/styles.css">
 </head>
@@ -103,6 +103,7 @@
       <h2 class="ct" data-en="Global projects" data-ko="글로벌 프로젝트">Global projects</h2>
       <a class="btn small" href="#career" data-en="Full career" data-ko="전체 경력">Full career</a>
       <canvas id="globe" aria-label="Globe with pins on 14 project sites in 8 countries"></canvas>
+      <div class="g-tip" id="g-tip" role="tooltip" hidden></div>
       <div class="g-cap" aria-live="polite">
         <p class="g-place" id="g-place">Arizona, USA</p>
         <p class="g-name" id="g-name">Arizona LGAZ CESS</p>
@@ -112,6 +113,7 @@
         <button type="button" id="g-prev" aria-label="Previous site">&larr;</button>
         <button type="button" id="g-next" aria-label="Next site">&rarr;</button>
       </div>
+      <p class="g-hint" data-en="Point at a pin to see the project. Drag to spin." data-ko="핀에 커서를 올리면 프로젝트가 보입니다. 드래그로 돌려 보세요.">Point at a pin to see the project. Drag to spin.</p>
       <p class="g-count"><b>8</b> <span data-en="countries" data-ko="개국">countries</span> <b>14</b> <span data-en="sites" data-ko="현장">sites</span></p>
       <ol class="g-list" id="g-list"><!--@sites--></ol>
     </article>
