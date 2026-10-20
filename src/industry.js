@@ -4,7 +4,7 @@ import { t } from './content.js';
 export const INDUSTRY = [
   { k: ['Battery', '이차전지'], c: '#FF7A1A', p: [
     ['Arizona LGAZ CESS', 'Arizona LGAZ CESS'], ['Kokomo SDI hook-up', 'Kokomo SDI Hook-up'], ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'],
-    ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], ['Göd SDIHU #6', '괴드 SDIHU #6'], ['Wrocław P3 CESS', '브로츠와프 P3 CESS'], ['SK Innovation separator', 'SK이노베이션 분리막']] },
+    ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], ['Göd SDIHU #6', '괴드 SDIHU #6'], ['Wrocław P3 CESS', '브로츠와프 P3 CESS'], ['SK On separator', 'SK온 분리막']] },
   { k: ['Semiconductor', '반도체'], c: '#7FA6D6', p: [['Samsung Xi’an operations', '삼성 시안 운영'], ['Samsung Pyeongtaek P3', '삼성 평택 P3 역설계']] },
   { k: ['Plant and infrastructure', '플랜트·인프라'], c: '#C9D6E6', p: [
     ['Yanbu 3, Saudi Arabia', '사우디 얀부 3'], ['Fast Pack, Chile', '칠레 Fast Pack'], ['Seoul Metro Line 2', '서울메트로 2호선'],

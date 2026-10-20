@@ -9,12 +9,12 @@ export const t = (en, ko, tag = 'span', cls = '') =>
 export const EXPERIENCE = [
   {
     co: ['AIKOREA', '에이아이코리아'], period: '2021.09 – Present',
-    role: ['Project Leader, Infrastructure Division / Team Lead', 'PL(프로젝트리더) · 인프라사업부 / 팀장'],
+    role: ['Project Manager, Infrastructure Division / Team Lead', 'PM(프로젝트매니저) · 인프라사업부 / 팀장'],
     where: ['United States', '미국'],
     projects: [
       {
         cc: 'us', st: 'az', name: ['Arizona LGAZ CESS', 'Arizona LGAZ CESS'], photos: [37], period: '2025.02 – Present', size: ['KRW 22 bn', '220억 원'],
-        role: ['Site PL', '현장 PL'],
+        role: ['Site PM', '현장 PM'],
         points: [
           ['Coordinated the master schedule and led 3D piping clash review on site.', '마스터 스케줄 조율 및 3D 배관 간섭 검토 주도'],
           ['Chairs the hook-up clash meetings between three contractors. Phase 2 under construction.', 'Hook-up 3사 간섭 미팅 주관. 2기 공사 진행 중'],
@@ -22,7 +22,7 @@ export const EXPERIENCE = [
       },
       {
         cc: 'us', st: 'in', name: ['Indiana Kokomo SDI (SPEPP) utility hook-up', 'Indiana Kokomo SDI(SPEPP) 유틸리티 Hook-up'], photos: [38], period: '2024.02 – 2025.02', size: ['KRW 130 bn', '1,300억 원'],
-        role: ['Site PL', '현장 PL'],
+        role: ['Site PM', '현장 PM'],
         points: [
           ['Drove completion of the electrode, formation and environmental-system lines 1 to 4.', '전극동, 화성동, 환경설비 1~4라인 완공 주도'],
           ['Coordinated piping clashes between three contractors and chaired the clash meetings.', '3사 간 배관 간섭 조율 및 간섭 미팅 주관'],
@@ -72,8 +72,8 @@ export const EXPERIENCE = [
         ],
       },
       {
-        cc: 'pl', name: ['Dąbrowa Górnicza, Poland: SK Innovation battery separator plant', '폴란드 돔브로바 SK이노베이션 배터리 분리막'], period: '2021.03 – 2021.08', size: ['KRW 17 bn', '170억 원'],
-        role: ['Process design PL', '분리막 공정설계 PL'],
+        cc: 'pl', name: ['Dąbrowa Górnicza, Poland: SK On battery separator plant', '폴란드 돔브로바 SK온 배터리 분리막'], period: '2021.03 – 2021.08', size: ['KRW 17 bn', '170억 원'],
+        role: ['Process design PM', '분리막 공정설계 PM'],
         points: [],
       },
     ],
@@ -95,7 +95,7 @@ export const EXPERIENCE = [
         cc: 'kr', name: ['Pyeongtaek P3, Korea: Samsung reverse engineering', '평택 P3 삼성 역설계'], period: '2019.12 – 2020.09', size: null,
         role: ['Reverse engineering team, Samsung SDS', '역설계팀 과장, Samsung SDS'],
         points: [
-          ['Imported site scan data into Revit and remodeled the hook-up lines missing from S5D.', '현장 스캔 원본 데이터를 Revit에 Import하여 S5D 미반영 Hook-up 구간 역모델링'],
+          ['Imported site scan data into Revit and remodeled the hook-up lines missing from S5D.', '현장 스캔 원본 데이터를 Revit에 Import해 S5D 미반영 Hook-up 구간 역모델링'],
           ['Updated attribute data in Revit and Navisworks; delivered on time.', 'Revit, Navisworks 속성 정보 수정 및 반영, 납기 내 납품'],
         ],
       },
@@ -283,7 +283,7 @@ export const SITES = [
   { n: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], p: ['Lordstown, Ohio', '미국 오하이오 로즈타운'], y: '2021 – 22', lat: 41.24, lon: -81.06, img: 40 },
   { n: ['Vancouver airport, Alaska highway', '밴쿠버 공항, 알래스카 국도'], p: ['Vancouver, Canada', '캐나다 밴쿠버'], y: '2018 – 19', lat: 49.28, lon: -123.12, img: 26 },
   { n: ['LGESWA P3 CESS', 'LGESWA P3 CESS'], p: ['Wrocław, Poland', '폴란드 브로츠와프'], y: '2020 – 21', lat: 51.07, lon: 17.02, img: 19 },
-  { n: ['SK Innovation separator plant', 'SK이노베이션 분리막'], p: ['Dąbrowa Górnicza, Poland', '폴란드 돔브로바'], y: '2021', lat: 50.33, lon: 19.19 },
+  { n: ['SK On separator plant', 'SK온 분리막'], p: ['Dąbrowa Górnicza, Poland', '폴란드 돔브로바'], y: '2021', lat: 50.33, lon: 19.19 },
   { n: ['SDIHU #6 BCU line', 'SDIHU #6 BCU 라인'], p: ['Göd, Hungary', '헝가리 괴드'], y: '2020', lat: 47.68, lon: 19.13, img: 23 },
   { n: ['Samsung Semiconductor operations', '삼성반도체 운영'], p: ["Xi'an, China", '중국 시안'], y: '2019', lat: 34.2, lon: 108.85, img: 27 },
   { n: ['Samsung P3 reverse engineering', '삼성 P3 역설계'], p: ['Pyeongtaek, Korea', '평택'], y: '2019 – 20', lat: 37.02, lon: 127.05 },
@@ -309,14 +309,14 @@ export const MATRIX = [
 ];
 export const DOMAINS = [
   ['CESS electrolyte supply', 'CESS 전해액 공급'], ['Utility hook-up', '유틸리티 Hook-up'], ['P&ID / PFD / PMS', 'P&ID / PFD / PMS'],
-  ['3-party clash coordination', '3사 간섭 조율'], ['Site PL, schedule, QA/QC', '현장 PL, 공정, QA/QC'], ['Data center liquid cooling', '데이터센터 액체 냉각'],
+  ['3-party clash coordination', '3사 간섭 조율'], ['Site PM, schedule, QA/QC', '현장 PM, 공정, QA/QC'], ['Data center liquid cooling', '데이터센터 액체 냉각'],
 ];
 export const SERVICES = [
   ['Hook-up design', 'Hook-up 설계'], ['CESS systems', 'CESS 시스템'], ['P&ID · PFD · PMS', 'P&ID · PFD · PMS'], ['Clash coordination', '간섭 조율'],
-  ['Site PL', '현장 PL'], ['Reverse engineering', '역설계'], ['Valve design', '밸브 설계'], ['Liquid cooling', '액체 냉각'],
+  ['Site PM', '현장 PM'], ['Reverse engineering', '역설계'], ['Valve design', '밸브 설계'], ['Liquid cooling', '액체 냉각'],
 ];
 // companies named in resume R0 as clients or partners of the projects
-export const CLIENTS = 'LG Energy Solution · Samsung SDI · Ultium Cells · Samsung Semiconductor · Samsung SDS · SK Innovation · Hanwha E&C · POSCO E&C · Hyundai Rotem · Hyundai Heavy Industries · Tetra Tech';
+export const CLIENTS = 'LG Energy Solution · Samsung SDI · Ultium Cells · Samsung Semiconductor · Samsung SDS · SK On · Hanwha E&C · POSCO E&C · Hyundai Rotem · Hyundai Heavy Industries · Tetra Tech';
 
 /* ---------- HTML renderers (used by the vite plugin) ---------- */
 const now = (p) => t(p.replace('Present', 'Now'), p.replace('Present', '현재'));
@@ -394,7 +394,7 @@ export const renderSites = () => SITES.map((s, i) => `<li data-i="${i}">${t(s.p[
 /* ---------- capability hexagon (dashboard) ---------- */
 // Self-assessed scores (0-100): engineering is the anchor at 92, the other axes were scaled by 0.9. Edit here.
 export const RADAR = [
-  { k: ['Project management', '프로젝트 관리'], v: 88, ev: ['Site PL on four US projects up to KRW 130 bn; owns the master schedule and the three-contractor interface.', '최대 1,300억 원 규모 미국 프로젝트 4건 현장 PL, 마스터 스케줄과 3사 인터페이스 총괄'] },
+  { k: ['Project management', '프로젝트 관리'], v: 88, ev: ['Site PM on four US projects up to KRW 130 bn; owns the master schedule and the three-contractor interface.', '최대 1,300억 원 규모 미국 프로젝트 4건 현장 PM, 마스터 스케줄과 3사 인터페이스 총괄'] },
   { k: ['Engineering', '엔지니어링'], v: 92, ev: ['CESS process design (PFD, P&ID, PMS), 3D piping in Revit and Plant 3D, valve and bogie design in CATIA.', 'CESS 공정설계(PFD·P&ID·PMS), Revit·Plant 3D 배관 설계, CATIA 밸브·대차 설계'] },
   { k: ['Cost control', '손익 관리'], v: 79, ev: ['10% under budget at Kokomo and 15% under at Michigan; earlier, product weight and cost estimates for valves.', '코코모 예산 대비 10%, 미시간 15% 절감, 밸브 제품 중량·원가 산출'] },
   { k: ['Global communication', '글로벌 커뮤니케이션'], v: 77, ev: ['Daily meetings, TBM and GC interpretation on US sites; work in Canada, Poland, Hungary, China, Chile and Saudi Arabia.', '미국 현장 Daily 미팅·TBM·GC 통역, 캐나다·폴란드·헝가리·중국·칠레·사우디 근무'] },
@@ -432,12 +432,12 @@ export const KPIS = [
   { v: '2,220', u: ['억 KRW', '억 원'], k: ['Contract value of my projects', '참여 프로젝트 규모 합계'] },
 ];
 export const SCALE = [
-  { n: ['Kokomo SDI hook-up', 'Kokomo SDI Hook-up'], v: 1300, r: ['Site PL', '현장 PL'] },
+  { n: ['Kokomo SDI hook-up', 'Kokomo SDI Hook-up'], v: 1300, r: ['Site PM', '현장 PM'] },
   { n: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], v: 240, r: ['Design lead', '설계팀장'] },
-  { n: ['Arizona LGAZ CESS', 'Arizona LGAZ CESS'], v: 220, r: ['Site PL', '현장 PL'] },
+  { n: ['Arizona LGAZ CESS', 'Arizona LGAZ CESS'], v: 220, r: ['Site PM', '현장 PM'] },
   { n: ['Wrocław P3 CESS (bid)', '브로츠와프 P3 CESS (입찰)'], v: 189, r: ['Process design', '공정설계'], bid: true },
   { n: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], v: 180, r: ['Acting site manager', '현장소장 대행'] },
-  { n: ['SK Innovation separator', 'SK이노베이션 분리막'], v: 170, r: ['Process design PL', '공정설계 PL'] },
+  { n: ['SK On separator', 'SK온 분리막'], v: 170, r: ['Process design PM', '공정설계 PM'] },
   { n: ['Göd SDIHU #6', '괴드 SDIHU #6'], v: 110, r: ['Design and build', '설계·시공'] },
 ];
 export const RESULTS = [
@@ -470,7 +470,7 @@ export function renderMetrics() {
         <h3>${t('Project scale I worked on', '참여 프로젝트 규모')}</h3>
         <p class="mt-sub">${t('Contract value, KRW 100 million', '계약 규모, 단위 억 원')}</p>
         <ul class="mt-bars">${scale}</ul>
-        <p class="mt-foot">${t('The Wrocław bid was not awarded and is left out of the total above.', '브로츠와프는 미수주 입찰로, 위 합계에서 제외했습니다.')}</p>
+        <p class="mt-foot">${t('The Wrocław bid was not awarded and is left out of the total above.', '브로츠와프는 미수주 입찰이라 위 합계에서 제외했습니다.')}</p>
       </article>
       <article class="mt-card" data-reveal>
         <h3>${t('Delivered ahead and under budget', '공기 단축과 원가 절감')}</h3>
@@ -488,7 +488,7 @@ export function renderMetrics() {
 /* ---------- clients (logo wall) ---------- */
 export const CLIENT_LIST = [
   ['lg-energy-solution', 'LG Energy Solution'], ['samsung-sdi', 'Samsung SDI'], ['ultium-cells', 'Ultium Cells'],
-  ['samsung-semiconductor', 'Samsung Semiconductor'], ['samsung-sds', 'Samsung SDS'], ['sk-innovation', 'SK Innovation'],
+  ['samsung-semiconductor', 'Samsung Semiconductor'], ['samsung-sds', 'Samsung SDS'], ['sk-on', 'SK On'],
   ['hanwha-ec', 'Hanwha E&C'], ['posco-ec', 'POSCO E&C'], ['hyundai-rotem', 'Hyundai Rotem'],
   ['hyundai-heavy-industries', 'Hyundai Heavy Industries'], ['tetra-tech', 'Tetra Tech'],
 ];
@@ -508,7 +508,7 @@ export const ABOUT_PHOTOS = [
   { f: 'p14', c: ['Whistler, British Columbia', '캐나다 BC주, 휘슬러'], s: ['Ski day while living in Vancouver', '밴쿠버 시절 스키 여행'], y: '2018', cc: 'ca' },
   { f: 'p13', c: ['Universal Studios Hollywood, USA', '미국 LA, 유니버설 스튜디오'], s: ['', ''], y: '2018', cc: 'us' },
   { f: 'p03', c: ['Zakopane, Poland', '폴란드 자코파네'], s: ['Winter in the Tatras while working in Poland', '폴란드 근무 시절, 겨울 타트라산맥'], y: '2020 – 21', cc: 'pl' },
-  { f: 'p02', c: ['Dąbrowa Górnicza, Poland', '폴란드 돔브로바'], s: ['SK IE battery separator plant site, during COVID-19', 'SKIE 배터리 분리막 공장 공사 현장, 코로나 시기'], y: '2021', cc: 'pl' },
+  { f: 'p02', c: ['Dąbrowa Górnicza, Poland', '폴란드 돔브로바'], s: ['SK On battery separator plant site, during COVID-19', 'SK온 배터리 분리막 공장 공사 현장, 코로나 시기'], y: '2021', cc: 'pl' },
   { f: 'p08', c: ['Night swim', '밤 수영'], s: ['', ''], y: '', cc: '' },
   { f: 'p12', c: ['Niagara Falls, New York', '미국 뉴욕주, 나이아가라 폭포'], s: ['Weekend trip during the Ohio project', '오하이오 프로젝트 기간 중 주말 여행'], y: '2022', cc: 'us' },
   { f: 'p21', c: ['Horseshoe Falls, Ontario', '캐나다 온타리오, 나이아가라 호스슈 폭포'], s: ['A rainbow over the falls', '폭포 위에 뜬 무지개'], y: '', cc: 'ca' },
@@ -520,7 +520,7 @@ export const ABOUT_PHOTOS = [
   { f: 'p16', c: ['New truck day, USA', '미국, 새 픽업트럭'], s: ['With my daughter', '딸과 함께'], y: '', cc: 'us' },
   { f: 'p17', c: ['Family trip, USA', '미국, 가족 여행'], s: ['First pool day with my daughter', '딸과 함께한 수영장'], y: '', cc: 'us' },
   { f: 'p18', c: ['Chicago in winter, USA', '미국 시카고, 겨울'], s: ['Shoulder ride with my daughter', '딸을 목마 태우고'], y: '', cc: 'us' },
-  { f: 'p19', c: ['Meeting Santa, USA', '미국, 산타와 첫 만남'], s: ['Not everyone was a fan', '딸은 산타가 무서웠던 날'], y: '', cc: 'us' },
+  { f: 'p19', c: ['Meeting Santa, USA', '미국, 산타와 첫 만남'], s: ['Not everyone was a fan', '딸이 산타를 무서워했던 날'], y: '', cc: 'us' },
   { f: 'p07', c: ['Grand Canyon West, USA', '미국 그랜드캐니언 웨스트'], s: ['Weekend trip during the Arizona LGAZ CESS project', 'Arizona LGAZ CESS 프로젝트 기간 중 주말 여행'], y: '2025 –', cc: 'us' },
   { f: 'p06', c: ['Hungary', '헝가리'], s: ['Business trip for the CATL Debrecen project meetings', 'CATL 데브레첸 프로젝트 업무 미팅 출장'], y: '2026', cc: 'hu' },
 ];
@@ -539,7 +539,7 @@ export function renderAbout() {
       <div class="ab-head">
         <h2 id="ab-h" class="mega"><span data-en="About" data-ko="About">About</span> <span class="hl" data-en="me" data-ko="me">me</span></h2>
         <div class="ab-txt">
-          ${t('I started out drawing valves and rolling-stock bogies, then followed piping to eight countries. What I like most about site work is standing at the same drawing with a local crew until it makes sense to everyone.', '밸브와 전동차 대차를 그리던 기계설계에서 시작해 배관을 따라 8개국 현장을 다녔습니다. 낯선 현장에서 현지 작업자와 같은 도면을 펼쳐 놓고, 모두가 이해할 때까지 맞춰 가는 일을 좋아합니다.', 'p')}
+          ${t('I started out drawing valves and rolling-stock bogies, then followed piping to eight countries. What I like most about site work is standing at the same drawing with a local crew until it makes sense to everyone.', '밸브와 전동차 대차를 그리던 기계설계에서 시작해 배관을 따라 8개국 현장을 다녔습니다. 낯선 현장에서 현지 작업자와 같은 도면을 펼쳐 놓고 모두가 이해할 때까지 맞춰 가는 일을 좋아합니다.', 'p')}
           ${t('Between projects I hike, go fishing, take photos and edit video, a habit from making company catalogues and promo films early in my career.', '프로젝트 사이에는 산에 오르고, 낚시를 하고, 사진을 찍고, 영상을 편집합니다. 첫 직장에서 카탈로그와 홍보 영상을 만들던 습관이 남았습니다.', 'p')}
           <ul class="ab-tags">${tags}</ul>
         </div>
