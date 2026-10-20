@@ -13,7 +13,7 @@ export const EXPERIENCE = [
     where: ['United States', '미국'],
     projects: [
       {
-        cc: 'us', name: ['Arizona LGAZ CESS', 'Arizona LGAZ CESS'], photos: [37], period: '2025.02 – Present', size: ['KRW 22 bn', '220억 원'],
+        cc: 'us', st: 'az', name: ['Arizona LGAZ CESS', 'Arizona LGAZ CESS'], photos: [37], period: '2025.02 – Present', size: ['KRW 22 bn', '220억 원'],
         role: ['Site PL', '현장 PL'],
         points: [
           ['Coordinated the master schedule and led 3D piping clash review on site.', '마스터 스케줄 조율 및 3D 배관 간섭 검토 주도'],
@@ -21,7 +21,7 @@ export const EXPERIENCE = [
         ],
       },
       {
-        cc: 'us', name: ['Indiana Kokomo SDI (SPEPP) utility hook-up', 'Indiana Kokomo SDI(SPEPP) 유틸리티 Hook-up'], photos: [38], period: '2024.02 – 2025.02', size: ['KRW 130 bn', '1,300억 원'],
+        cc: 'us', st: 'in', name: ['Indiana Kokomo SDI (SPEPP) utility hook-up', 'Indiana Kokomo SDI(SPEPP) 유틸리티 Hook-up'], photos: [38], period: '2024.02 – 2025.02', size: ['KRW 130 bn', '1,300억 원'],
         role: ['Site PL', '현장 PL'],
         points: [
           ['Drove completion of the electrode, formation and environmental-system lines 1 to 4.', '전극동, 화성동, 환경설비 1~4라인 완공 주도'],
@@ -30,7 +30,7 @@ export const EXPERIENCE = [
         result: ['2 months ahead of schedule, 10% under budget', '공기 2개월 단축, 예산 대비 10% 절감'],
       },
       {
-        cc: 'us', name: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], photos: [39], period: '2022.10 – 2024.03', size: ['KRW 24 bn', '240억 원'],
+        cc: 'us', st: 'mi', name: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], photos: [39], period: '2022.10 – 2024.03', size: ['KRW 24 bn', '240억 원'],
         role: ['Design Team Lead', '설계팀장'],
         points: [
           ['Designed the central electrolyte supply system (PFD, P&ID, BIM) and ran site clash review.', 'CESS 시스템 설계(PFD, P&ID, BIM) 및 현장 간섭 검토'],
@@ -39,7 +39,7 @@ export const EXPERIENCE = [
         result: ['1 month ahead of schedule, 15% under budget', '공기 1개월 단축, 예산 대비 15% 절감'],
       },
       {
-        cc: 'us', name: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], photos: [40], period: '2021.09 – 2022.09', size: ['KRW 18 bn', '180억 원'],
+        cc: 'us', st: 'oh', name: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], photos: [40], period: '2021.09 – 2022.09', size: ['KRW 18 bn', '180억 원'],
         role: ['Acting Site Manager', '현장소장 대행'],
         points: [
           ['CESS design (PFD, P&ID, BIM), site clash review, client and GC interface.', 'CESS 시스템 설계(PFD, P&ID, BIM), 현장 간섭 검토, 고객사 및 GC 대응'],

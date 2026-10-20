@@ -32,7 +32,9 @@
 .t2-side{background:transparent;border:1.5px dashed #3d5a82}
 .t2-when{font-size:14px;color:var(--soft);font-variant-numeric:tabular-nums;padding-top:3px;display:grid;gap:12px;align-content:start}
 .t2-flag{display:grid;gap:6px;justify-items:start;font-size:13px;font-weight:600;color:var(--ink)}
+.t2-flags{display:flex;gap:6px}
 .t2-flag img{width:48px;height:36px;object-fit:cover;border-radius:5px;box-shadow:0 0 0 1px rgba(234,240,246,.18)}
+.t2-flag img.t2-state{object-fit:contain;background:rgba(234,240,246,.06)}
 .t2-body{display:grid;gap:8px;min-width:0}
 .t2-body h4{font-size:18px;font-weight:700;line-height:1.3}
 .t2-meta{display:flex;flex-wrap:wrap;gap:6px}
@@ -56,6 +58,7 @@
   .t2-when{display:flex;align-items:center;justify-content:space-between}
   .t2-flag{display:flex;align-items:center;gap:8px}
   .t2-flag img{width:32px;height:24px}
+  .t2-flags{gap:4px}
   .t2-photos .t2-ph{width:50%}
   .t2-seg{font-size:0;padding:0}
   .t2-seg.t2-cur{font-size:12px;padding:0 6px}
