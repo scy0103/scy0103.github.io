@@ -23,6 +23,11 @@ function heroMarkup() {
       <p class="fx-k" data-en="Plant piping design · overseas site PL" data-ko="플랜트 배관 설계 · 해외 현장 PL"></p>
       <h1 class="fx-name" aria-label="Jacob Song"><span class="fx-split">JACOB</span><span class="fx-split hl">SONG</span></h1>
       <p class="fx-sub" data-en="13 years · 8 countries · 2,039 m of pipe in this model" data-ko="13년 · 8개국 · 이 모델의 배관 2,039 m"></p>
+      <div class="fx-cta">
+        <a class="btn accent big" href="#career" data-en="See my career" data-ko="경력 보기"></a>
+        <a class="btn ghost big" href="#contact" data-en="Contact me" data-ko="연락하기"></a>
+        <span class="status-chip" data-en="Open to offers · start date negotiable" data-ko="포지션 제안 받는 중 · 입사 시기 협의 가능"></span>
+      </div>
     </div>
     <a class="fx-cue" href="#top"><span data-en="Scroll" data-ko="스크롤"></span><i></i></a>`;
   document.getElementById('main').prepend(sec);
@@ -49,7 +54,7 @@ function initSplitHeadings() {
 
 function initTilt() {
   if (touch || reduced) return;
-  const els = document.querySelectorAll('.dash .card:not(.c-globe):not(.c-model), .mt-card, .mt-kpi, .sm-card, .lg, .t2-pj, .cd-list li, .ct-facts div, .srow-tools li');
+  const els = document.querySelectorAll('.dash .card:not(.c-globe):not(.c-model)'); // dashboard only; reading sections stay still
   els.forEach((el) => {
     el.classList.add('fx-tilt');
     el.addEventListener('pointermove', (e) => {
@@ -66,11 +71,11 @@ function initTilt() {
 
 function initCursor() {
   if (touch) return;
-  const dot = document.createElement('div'), ring = document.createElement('div');
-  dot.className = 'fx-dot'; ring.className = 'fx-ring';
-  document.body.append(dot, ring);
+  const ring = document.createElement('div');
+  ring.className = 'fx-ring';
+  document.body.append(ring); // the system cursor stays visible; the ring only follows it
   let x = innerWidth / 2, y = innerHeight / 2, rx = x, ry = y;
-  addEventListener('pointermove', (e) => { x = e.clientX; y = e.clientY; dot.style.transform = `translate(${x}px,${y}px)`; }, { passive: true });
+  addEventListener('pointermove', (e) => { x = e.clientX; y = e.clientY; }, { passive: true });
   document.addEventListener('pointerover', (e) => {
     ring.classList.toggle('big', !!e.target.closest('a, button, .card, .lg, .ph-btn, .rd-ax, .in-legend li, summary'));
   });

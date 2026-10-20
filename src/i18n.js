@@ -20,5 +20,8 @@ export function initLang() {
   let saved = null;
   try { saved = localStorage.getItem('cys-lang-v3'); } catch (e) { /* storage blocked */ }
   const q = new URLSearchParams(location.search).get('lang');
-  setLang((q || saved) === 'en' ? 'en' : 'ko'); // Korean by default, English on request
+  // ?lang= wins, then the visitor's last choice, then the browser: Korean browsers get Korean, everyone else English
+  const browser = (navigator.languages && navigator.languages[0]) || navigator.language || 'ko';
+  const pick = q || saved || (/^ko\b/i.test(browser) ? 'ko' : 'en');
+  setLang(pick === 'en' ? 'en' : 'ko');
 }

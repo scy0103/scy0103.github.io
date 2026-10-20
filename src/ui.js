@@ -10,6 +10,19 @@ export function initUI() {
     mail.href = `mailto:${addr}?subject=${encodeURIComponent('[포지션 제안] 송찬영님께 / Role for Jacob Song')}`;
     mail.textContent = addr;
   }
+  // resume request: opens a mail with subject and a short body
+  const cv = document.getElementById('cv');
+  if (cv) cv.href = `mailto:${cv.dataset.u}@${cv.dataset.d}?subject=${encodeURIComponent('[이력서 요청] 송찬영님 / Resume request for Jacob Song')}&body=${encodeURIComponent('안녕하세요,\n\n상세 이력서를 받아볼 수 있을까요?\n회사 / 포지션:\n\nHello Jacob,\nCould you send me your full resume?\nCompany / role:\n')}`;
+
+  // mobile menu
+  const bar = document.getElementById('bar'), menu = document.getElementById('menu-btn');
+  if (bar && menu) {
+    const set = (open) => { bar.classList.toggle('open', open); menu.setAttribute('aria-expanded', open); };
+    menu.addEventListener('click', () => set(!bar.classList.contains('open')));
+    bar.querySelectorAll('.nav a').forEach((a) => a.addEventListener('click', () => set(false)));
+    addEventListener('keydown', (e) => { if (e.key === 'Escape') set(false); });
+  }
+
   const copy = document.getElementById('copy'), copied = document.getElementById('copied');
   if (copy) copy.addEventListener('click', async () => {
     try { await navigator.clipboard.writeText(addr); copied.textContent = lang === 'ko' ? '복사했습니다' : 'Copied'; }

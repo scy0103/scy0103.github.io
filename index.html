@@ -24,9 +24,9 @@
 <canvas id="scene" aria-hidden="true"></canvas>
 <div id="labels" aria-hidden="true"></div>
 
-<header class="bar">
+<header class="bar" id="bar">
   <a class="wordmark" href="#top">Jacob Song</a>
-  <nav class="nav" aria-label="Sections">
+  <nav class="nav" id="nav" aria-label="Sections">
     <a href="#top" data-sec="top" data-en="Dashboard" data-ko="대시보드">Dashboard</a>
     <a href="#story" data-sec="story" data-en="3D projects" data-ko="3D 프로젝트">3D projects</a>
     <a href="#skills" data-sec="skills" data-en="Skills" data-ko="스킬">Skills</a>
@@ -34,9 +34,13 @@
     <a href="#career" data-sec="career" data-en="Career" data-ko="경력">Career</a>
     <a href="#contact" data-sec="contact" data-en="Contact" data-ko="연락처">Contact</a>
   </nav>
-  <div class="lang" role="group" aria-label="Language">
-    <button type="button" id="lang-ko" aria-pressed="true">KO</button>
-    <button type="button" id="lang-en" aria-pressed="false">EN</button>
+  <div class="bar-r">
+    <a class="btn accent small cv-btn" id="cv" href="#contact" data-u="scy0103" data-d="naver.com" data-en="Request resume" data-ko="이력서 받기">Request resume</a>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" id="lang-ko" aria-pressed="true">KO</button>
+      <button type="button" id="lang-en" aria-pressed="false">EN</button>
+    </div>
+    <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Menu"><i></i><i></i><i></i></button>
   </div>
 </header>
 
@@ -122,6 +126,7 @@
 
   <!-- ============ 3D STORY ============ -->
   <div id="story" class="story" data-sec="story">
+  <a class="skip-story" href="#career" data-en="Skip 3D · go to career →" data-ko="3D 건너뛰기 · 경력으로 →">Skip 3D · go to career →</a>
   <section class="sheet" id="s0" data-k="0">
     <div class="panel">
       <div class="tb"><span>DWG JS-000</span><span>Sheet 1/9</span><span>Project A</span></div>
@@ -272,6 +277,7 @@
   <section id="contact" class="contact" data-sec="contact" aria-labelledby="ct-h">
     <p class="ct-q" data-en="Hiring for plant piping, overseas site PL or data center cooling?" data-ko="플랜트 배관, 해외 현장 PL, 데이터센터 냉각 인재를 찾고 계신가요?">Hiring for plant piping, overseas site PL or data center cooling?</p>
     <h2 id="ct-h" class="giant"><span data-en="Open to" data-ko="포지션 제안">Open to</span> <span class="hl" data-en="new roles." data-ko="환영합니다">new roles.</span></h2>
+    <p class="status-chip" data-en="Open to offers · start date negotiable" data-ko="포지션 제안 받는 중 · 입사 시기 협의 가능">Open to offers · start date negotiable</p>
     <dl class="ct-facts">
       <div><dt data-en="Roles" data-ko="희망 직무">Roles</dt><dd data-en="Plant piping design, overseas site PL / PM, data center cooling technical sales" data-ko="플랜트 배관 설계, 해외 현장 PL·PM, 데이터센터 냉각 기술영업">Plant piping design, overseas site PL / PM, data center cooling technical sales</dd></div>
       <div><dt data-en="In short" data-ko="경력 요약">In short</dt><dd data-en="13 years 3 months, 8 countries, site PL up to KRW 130 bn" data-ko="13년 3개월, 8개국, 최대 1,300억 원 현장 PL">13 years 3 months, 8 countries, site PL up to KRW 130 bn</dd></div>

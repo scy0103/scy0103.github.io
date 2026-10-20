@@ -30,12 +30,21 @@ html.fx .bar{background:rgba(10,20,36,.6);backdrop-filter:blur(12px);-webkit-bac
 .dash .card.fx-tilt{overflow:hidden}
 
 /* cursor */
-html.fx,html.fx a,html.fx button{cursor:none}
-html.fx canvas{cursor:grab}
 .fx-dot,.fx-ring{position:fixed;left:0;top:0;z-index:100;pointer-events:none;border-radius:50%}
 .fx-dot{width:6px;height:6px;margin:-3px 0 0 -3px;background:var(--signal)}
 .fx-ring{width:36px;height:36px;margin:-18px 0 0 -18px;border:1.5px solid rgba(255,122,26,.7);transition:width .25s,height .25s,margin .25s,background .25s}
 .fx-ring.big{width:64px;height:64px;margin:-32px 0 0 -32px;background:rgba(255,122,26,.08)}
-@media (hover:none){html.fx,html.fx a,html.fx button{cursor:auto}}
+@media (hover:none){.fx-ring{display:none}}
 @media (prefers-reduced-motion:reduce){.fx-ch{opacity:1;transform:none;transition:none;animation:none!important}.fx-cue i{animation:none}}
 .fx-w{display:inline-block;white-space:nowrap}
+/* hero CTA */
+.fx-cta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}
+.fx-cta .btn.big{font-size:17px;padding:14px 24px}
+/* reading sections: calmer ground so text stays legible over the stage */
+html.fx .career,html.fx .creds,html.fx .contact{background:rgba(10,20,36,.86)}
+html.fx .t2-pj,html.fx .cd-list li,html.fx .ct-facts div{background:rgba(22,38,61,.95);backdrop-filter:none;-webkit-backdrop-filter:none}
+@media (max-width:760px){
+  /* phones: no blur (expensive) */
+  html.fx .card,html.fx .mt-card,html.fx .mt-kpi,html.fx .sm-card,html.fx .t2-over,html.fx .srow-tools li{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(22,38,61,.92)}
+  .fx-cta .btn.big{font-size:15px;padding:12px 18px}
+}
