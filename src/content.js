@@ -277,20 +277,20 @@ export const GALLERY = [
 /* ---------- dashboard / redesign data ---------- */
 // Project sites for the globe. Coordinates are city-level (public locations), not facility surveys.
 export const SITES = [
-  { n: ['Arizona LGAZ CESS', 'Arizona LGAZ CESS'], p: ['Arizona, USA', '미국 애리조나'], y: '2025 – ', lat: 33.25, lon: -111.63, now: true, img: 37 },
-  { n: ['Kokomo SDI utility hook-up', 'Kokomo SDI 유틸리티 Hook-up'], p: ['Kokomo, Indiana', '미국 인디애나 코코모'], y: '2024 – 25', lat: 40.49, lon: -86.13, img: 38 },
-  { n: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], p: ['Holland, Michigan', '미국 미시간 홀랜드'], y: '2022 – 24', lat: 42.76, lon: -86.07, img: 39 },
-  { n: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], p: ['Lordstown, Ohio', '미국 오하이오 로즈타운'], y: '2021 – 22', lat: 41.24, lon: -81.06, img: 40 },
-  { n: ['Vancouver airport, Alaska highway', '밴쿠버 공항, 알래스카 국도'], p: ['Vancouver, Canada', '캐나다 밴쿠버'], y: '2018 – 19', lat: 49.28, lon: -123.12, img: 26 },
-  { n: ['LGESWA P3 CESS', 'LGESWA P3 CESS'], p: ['Wrocław, Poland', '폴란드 브로츠와프'], y: '2020 – 21', lat: 51.07, lon: 17.02, img: 19 },
-  { n: ['SK On separator plant', 'SK온 분리막'], p: ['Dąbrowa Górnicza, Poland', '폴란드 돔브로바'], y: '2021', lat: 50.33, lon: 19.19 },
-  { n: ['SDIHU #6 BCU line', 'SDIHU #6 BCU 라인'], p: ['Göd, Hungary', '헝가리 괴드'], y: '2020', lat: 47.68, lon: 19.13, img: 23 },
-  { n: ['Samsung Semiconductor operations', '삼성반도체 운영'], p: ["Xi'an, China", '중국 시안'], y: '2019', lat: 34.2, lon: 108.85, img: 27 },
-  { n: ['Samsung P3 reverse engineering', '삼성 P3 역설계'], p: ['Pyeongtaek, Korea', '평택'], y: '2019 – 20', lat: 37.02, lon: 127.05 },
-  { n: ['Seoul Metro Line 2 bogie', '서울메트로 2호선 대차'], p: ['Seoul, Korea', '서울'], y: '2015 – 17', lat: 37.55, lon: 126.99, img: 28 },
-  { n: ['Valve design and production', '밸브 설계 및 생산'], p: ['Gyeongbuk, Korea', '경북'], y: '2013 – 17', lat: 36.14, lon: 128.11, img: 35 },
-  { n: ['Fast Pack desalination plant', 'Fast Pack 담수화 플랜트'], p: ['Antofagasta, Chile', '칠레 안토파가스타'], y: '2015', lat: -23.65, lon: -70.4, img: 30 },
-  { n: ['Yanbu 3 (Hanwha E&C)', 'Yanbu 3 (한화E&C)'], p: ['Yanbu, Saudi Arabia', '사우디 얀부'], y: '2014', lat: 24.09, lon: 38.06, img: 32 },
+  { n: ['Arizona LGAZ CESS', 'Arizona LGAZ CESS'], p: ['Arizona, USA', '미국 애리조나'], y: '2025 – ', cc: 'us', lat: 33.25, lon: -111.63, now: true, img: 37 },
+  { n: ['Kokomo SDI utility hook-up', 'Kokomo SDI 유틸리티 Hook-up'], p: ['Kokomo, Indiana', '미국 인디애나 코코모'], y: '2024 – 25', cc: 'us', lat: 40.49, lon: -86.13, img: 38 },
+  { n: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], p: ['Holland, Michigan', '미국 미시간 홀랜드'], y: '2022 – 24', cc: 'us', lat: 42.76, lon: -86.07, img: 39 },
+  { n: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], p: ['Lordstown, Ohio', '미국 오하이오 로즈타운'], y: '2021 – 22', cc: 'us', lat: 41.24, lon: -81.06, img: 40 },
+  { n: ['Vancouver airport, Alaska highway', '밴쿠버 공항, 알래스카 국도'], p: ['Vancouver, Canada', '캐나다 밴쿠버'], y: '2018 – 19', cc: 'ca', lat: 49.28, lon: -123.12, img: 26 },
+  { n: ['LGESWA P3 CESS', 'LGESWA P3 CESS'], p: ['Wrocław, Poland', '폴란드 브로츠와프'], y: '2020 – 21', cc: 'pl', lat: 51.07, lon: 17.02, img: 19 },
+  { n: ['SK On separator plant', 'SK온 분리막'], p: ['Dąbrowa Górnicza, Poland', '폴란드 돔브로바'], y: '2021', cc: 'pl', lat: 50.33, lon: 19.19 },
+  { n: ['SDIHU #6 BCU line', 'SDIHU #6 BCU 라인'], p: ['Göd, Hungary', '헝가리 괴드'], y: '2020', cc: 'hu', lat: 47.68, lon: 19.13, img: 23 },
+  { n: ['Samsung Semiconductor operations', '삼성반도체 운영'], p: ["Xi'an, China", '중국 시안'], y: '2019', cc: 'cn', lat: 34.2, lon: 108.85, img: 27 },
+  { n: ['Samsung P3 reverse engineering', '삼성 P3 역설계'], p: ['Pyeongtaek, Korea', '평택'], y: '2019 – 20', cc: 'kr', lat: 37.02, lon: 127.05 },
+  { n: ['Seoul Metro Line 2 bogie', '서울메트로 2호선 대차'], p: ['Seoul, Korea', '서울'], y: '2015 – 17', cc: 'kr', lat: 37.55, lon: 126.99, img: 28 },
+  { n: ['Valve design and production', '밸브 설계 및 생산'], p: ['Gyeongbuk, Korea', '경북'], y: '2013 – 17', cc: 'kr', lat: 36.14, lon: 128.11, img: 35 },
+  { n: ['Fast Pack desalination plant', 'Fast Pack 담수화 플랜트'], p: ['Antofagasta, Chile', '칠레 안토파가스타'], y: '2015', cc: 'cl', lat: -23.65, lon: -70.4, img: 30 },
+  { n: ['Yanbu 3 (Hanwha E&C)', 'Yanbu 3 (한화E&C)'], p: ['Yanbu, Saudi Arabia', '사우디 얀부'], y: '2014', cc: 'sa', lat: 24.09, lon: 38.06, img: 32 },
 ];
 
 // Dashboard career gauge: one segment per employer, 2013.03 to today

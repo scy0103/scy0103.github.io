@@ -158,7 +158,8 @@ button{font:inherit;color:inherit}
 #globe{position:absolute;inset:0;width:100%;height:100%;cursor:grab;touch-action:pan-y}
 #globe:active{cursor:grabbing}
 .g-cap{position:absolute;left:20px;bottom:20px;z-index:2;max-width:60%;pointer-events:none}
-.g-place{font-family:var(--display);font-weight:600;font-size:clamp(24px,1.9vw,32px);line-height:1.05;text-transform:uppercase}
+.g-place{font-family:var(--display);font-weight:600;font-size:clamp(24px,1.9vw,32px);line-height:1.05;text-transform:uppercase;display:flex;align-items:center;gap:12px}
+.g-flag{width:1.35em;height:.9em;object-fit:cover;border-radius:3px;flex:none;box-shadow:0 0 0 1px rgba(255,255,255,.15)}
 .g-name{font-size:15px;margin-top:6px}
 .g-yr{font-size:14px;color:var(--signal);font-weight:600}
 .g-nav{position:absolute;right:16px;bottom:16px;z-index:2;display:flex;gap:6px}

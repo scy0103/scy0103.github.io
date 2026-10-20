@@ -107,7 +107,8 @@ export function initGlobe() {
   let cur = 0, pauseUntil = 0;
   const caption = () => {
     const s = SITES[cur], k = lang === 'ko' ? 1 : 0;
-    place.textContent = s.p[k]; name.textContent = s.n[k]; yr.textContent = s.y;
+    place.innerHTML = `<img class="g-flag" src="flags/${s.cc}.svg" alt="">`; place.append(s.p[k]);   // country flag before the place name
+    name.textContent = s.n[k]; yr.textContent = s.y;
     list.querySelectorAll('li').forEach((li, i) => li.classList.toggle('on', i === cur));
   };
   onLang(caption);
