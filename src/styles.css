@@ -539,4 +539,28 @@ html.fx .about{background:transparent}
   .ab-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:200px;grid-auto-flow:dense}
   .ab-ph:nth-child(n){grid-column:span 1;grid-row:span 1}
   .ab-ph:nth-child(1),.ab-ph:nth-child(5){grid-column:span 2;grid-row:span 2}
+}/* About me, 3D walk-through (about3d.js); the grid above is the fallback */
+.about.ab-3d{padding-bottom:0}
+.about.ab-3d .ab-grid{display:none}
+.ab-stage{position:relative;height:calc(var(--n,6) * 75vh + 100vh);margin:0 calc(var(--pad) * -1)}
+.ab-sticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+#ab-gl{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y}
+.ab-hud{position:absolute;left:var(--pad);bottom:7vh;display:grid;gap:12px;max-width:min(460px,80vw);pointer-events:none}
+.ab-count{font-family:var(--display);font-size:15px;letter-spacing:.08em;color:#9fb3cc}
+.ab-count b{font-size:40px;color:var(--ink);font-weight:700;letter-spacing:0}
+.ab-cap{display:grid;gap:4px;padding:16px 18px;border-radius:16px;background:rgba(10,20,36,.62);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:inset 0 0 0 1px rgba(127,166,214,.18)}
+.ab-cap.in{animation:abIn .55s var(--ease)}
+.ab-cap .ab-flag{width:30px;height:20px;object-fit:cover;border-radius:3px;margin-bottom:4px}
+.ab-cap b{font-size:20px}
+.ab-cap span{font-size:15px;color:#cfd9e6}
+.ab-cap em{font-style:normal;font-size:14px;font-weight:700;color:var(--signal)}
+.ab-bar{height:3px;width:220px;background:rgba(234,240,246,.15);border-radius:3px;overflow:hidden}
+.ab-bar i{display:block;height:100%;background:var(--signal);transform-origin:left;transform:scaleX(0)}
+.ab-hint{position:absolute;right:var(--pad);bottom:7vh;margin:0;font-size:13px;color:#8aa0bb;pointer-events:none}
+@keyframes abIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (max-width:760px){
+  .ab-stage{height:calc(var(--n,6) * 65vh + 100vh)}
+  .ab-hud{bottom:5vh;right:var(--pad)}
+  .ab-cap b{font-size:17px}.ab-cap span{font-size:14px}
+  .ab-hint{display:none}
 }

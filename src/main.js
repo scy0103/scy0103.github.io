@@ -7,6 +7,7 @@ import { initCarousel } from './carousel.js';
 import { initMotion } from './motion.js';
 import { initFx } from './fx.js';
 import { initBgm } from './bgm.js';
+import { initAbout3d } from './about3d.js';
 import './fx.css';
 
 // The 3D FX layer (hero, bloom stage, glass cards, tilt, cursor) is on by default; ?fx=0 shows the plain site.
@@ -21,4 +22,5 @@ const A = initStory();     // loads the Project A model once; the dashboard turn
 initDashboard(A);
 initGlobe();
 initCarousel();
+initAbout3d();
 if (fx) initFx(A);

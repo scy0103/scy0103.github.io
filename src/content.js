@@ -496,14 +496,15 @@ export const renderClients = (logos = new Set()) => CLIENT_LIST.map(([slug, name
 }).join('');
 
 /* ---------- About me ---------- */
-// p02-p07 in public/about. Captions: place, country, and what I was there for.
+// p02-p07 in public/about, oldest first: the 3D gallery (about3d.js) flies through them in this order.
+// Captions: place, country, and what I was there for.
 export const ABOUT_PHOTOS = [
-  { f: 'p04', c: ['Joffre Lakes, British Columbia', '캐나다 BC주, 조프리 레이크'], s: ['Weekend hike during my year at EBA Tetra Tech, Vancouver', 'EBA Tetra Tech 밴쿠버 근무 시절 주말 산행'], y: '2018', cc: 'ca' },
   { f: 'p05', c: ['Horseshoe Bay, Vancouver', '캐나다 밴쿠버, 호스슈 베이'], s: ['Studying and working in Vancouver', '밴쿠버 유학·근무 시절'], y: '2017 – 18', cc: 'ca' },
+  { f: 'p04', c: ['Joffre Lakes, British Columbia', '캐나다 BC주, 조프리 레이크'], s: ['Weekend hike during my year at EBA Tetra Tech, Vancouver', 'EBA Tetra Tech 밴쿠버 근무 시절 주말 산행'], y: '2018', cc: 'ca' },
   { f: 'p03', c: ['Zakopane, Poland', '폴란드 자코파네'], s: ['Winter in the Tatras while working in Poland', '폴란드 근무 시절, 겨울 타트라산맥'], y: '2020 – 21', cc: 'pl' },
   { f: 'p02', c: ['Dąbrowa Górnicza, Poland', '폴란드 돔브로바'], s: ['SK IE battery separator plant site, during COVID-19', 'SKIE 배터리 분리막 공장 공사 현장, 코로나 시기'], y: '2021', cc: 'pl' },
-  { f: 'p06', c: ['Hungary', '헝가리'], s: ['Business trip for the CATL Debrecen project meetings', 'CATL 데브레첸 프로젝트 업무 미팅 출장'], y: '2026', cc: 'hu' },
   { f: 'p07', c: ['Grand Canyon West, USA', '미국 그랜드캐니언 웨스트'], s: ['Weekend trip during the Arizona LGAZ CESS project', 'Arizona LGAZ CESS 프로젝트 기간 중 주말 여행'], y: '2025 –', cc: 'us' },
+  { f: 'p06', c: ['Hungary', '헝가리'], s: ['Business trip for the CATL Debrecen project meetings', 'CATL 데브레첸 프로젝트 업무 미팅 출장'], y: '2026', cc: 'hu' },
 ];
 export const ABOUT_TAGS = [
   ['Studied in Vancouver, Canada', '캐나다 밴쿠버 유학'], ['Exchange student, Kyushu University', '일본 규슈대 교환학생'],
@@ -513,7 +514,7 @@ export const ABOUT_TAGS = [
 export function renderAbout() {
   const tags = ABOUT_TAGS.map((x) => t(x[0], x[1], 'li')).join('');
   const photos = ABOUT_PHOTOS.map((p, i) => `
-        <figure class="ab-ph${p.q ? ' ab-q' : ''}" style="--i:${i}">
+        <figure class="ab-ph" style="--i:${i}" data-cc="${p.cc}" data-y="${p.y}">
           <button type="button" class="ph-btn" data-full="about/${p.f}.jpg" aria-label="${p.c[0]}"><img src="about/${p.f}_s.jpg" alt="${p.c[0]}" loading="lazy" decoding="async"></button>
           <figcaption><b>${t(p.c[0], p.c[1])}</b>${t(p.s[0], p.s[1], 'span')}<em>${p.y}</em></figcaption>
         </figure>`).join('');
@@ -526,6 +527,17 @@ export function renderAbout() {
           <ul class="ab-tags">${tags}</ul>
         </div>
       </div>
-      <div class="ab-grid">${photos}
+      <div class="ab-stage" id="ab-stage" hidden>
+        <div class="ab-sticky">
+          <canvas id="ab-gl" aria-hidden="true"></canvas>
+          <div class="ab-hud" aria-live="polite">
+            <div class="ab-count"><b id="ab-n">01</b> / ${String(ABOUT_PHOTOS.length).padStart(2, '0')}</div>
+            <div class="ab-cap" id="ab-cap"></div>
+            <div class="ab-bar"><i id="ab-bar"></i></div>
+          </div>
+          <p class="ab-hint">${t('Scroll to walk through · click a photo to open', '스크롤하면 사진 사이를 걸어 들어갑니다 · 사진을 누르면 크게 봅니다', 'span')}</p>
+        </div>
+      </div>
+      <div class="ab-grid" id="ab-grid">${photos}
       </div>`;
 }
