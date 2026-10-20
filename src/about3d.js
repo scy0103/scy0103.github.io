@@ -73,7 +73,7 @@ export function initAbout3d() {
     strip.add(m);
     const lab = document.createElement('div');
     lab.className = 'ab-lab';
-    lab.innerHTML = `<img src="flags/${fig.dataset.cc}.svg" alt="">${fig.dataset.y ? `<span>${fig.dataset.y}</span>` : ''}`;
+    lab.innerHTML = `${fig.dataset.cc ? `<img src="flags/${fig.dataset.cc}.svg" alt="">` : ''}${fig.dataset.y ? `<span>${fig.dataset.y}</span>` : ''}`;
     labels.appendChild(lab);
     m.userData.lab = lab;
     return m;
@@ -108,7 +108,6 @@ export function initAbout3d() {
   const showCap = (i) => {
     active = i;
     cap.innerHTML = figs[i].querySelector('figcaption').innerHTML;
-    cap.classList.toggle('q', figs[i].classList.contains('ab-q'));   // caption still to confirm
     num.textContent = String(i + 1).padStart(2, '0');
     cap.classList.remove('in'); void cap.offsetWidth; cap.classList.add('in');
   };

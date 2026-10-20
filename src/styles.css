@@ -556,7 +556,6 @@ html.fx .about{background:transparent}
 .ab-cap.in{animation:abIn .6s var(--ease)}
 .ab-cap b{font-size:clamp(20px,1.8vw,26px)}
 .ab-cap span{font-size:15px;color:#cfd9e6}
-.ab-q .ab-cap b::after,.ab-cap.q b::after{content:" 확인 필요";margin-left:6px;font-size:11px;font-weight:700;color:#0F1B2D;background:#FACC15;border-radius:4px;padding:1px 5px;vertical-align:2px}
 .ab-cap em{font-style:normal;font-size:14px;font-weight:700;color:var(--signal)}
 .ab-bar{position:absolute;left:var(--pad);right:var(--pad);top:calc(60px + 4vh);height:2px;background:rgba(234,240,246,.12)}
 .ab-bar i{display:block;height:100%;background:var(--signal);transform-origin:left;transform:scaleX(0)}
