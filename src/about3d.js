@@ -3,7 +3,7 @@ import { onLang } from './i18n.js';
 
 // About me as a bending film strip: the photos sit side by side on a gently curved WebGL strip.
 // Scrolling the pinned section (or dragging) slides the strip; the faster it moves, the more each
-// photo bows and the more its colour channels split. The bento grid stays in the DOM as the
+// photo bows. Photos keep their own colours (no filters). The bento grid stays in the DOM as the
 // no-WebGL fallback and as the source for captions and the lightbox.
 const VERT = `
 uniform float uVel, uCurve;
@@ -26,10 +26,7 @@ void main() {
   float zoom = 1.08 - 0.08 * max(uOn, uHover);
   vec2 s = uPlane / uImg; s /= max(s.x, s.y);
   vec2 uv = (vUv - 0.5) * s / zoom + 0.5;
-  float k = uVel * 0.006;
-  vec3 c = vec3(texture2D(uTex, uv + vec2(k, 0.0)).r, texture2D(uTex, uv).g, texture2D(uTex, uv - vec2(k, 0.0)).b);
-  float g = dot(c, vec3(0.299, 0.587, 0.114));
-  c = mix(vec3(g) * 0.75, c, 0.35 + 0.65 * max(uOn, uHover));   // photos away from the middle are muted
+  vec3 c = texture2D(uTex, uv).rgb;
   c = mix(vec3(0.10, 0.16, 0.25), c, uLoaded);
   vec2 p = (vUv - 0.5) * uPlane;
   float d = box(p, uPlane * 0.5, 0.12);
@@ -103,7 +100,7 @@ export function initAbout3d() {
     const narrow = camera.aspect < 0.8;
     // a landscape photo should never be wider than ~84% of the view
     const viewW = 2 * camera.position.z * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect;
-    H = Math.min(3.4, (viewW * 0.84) / 1.33); GAP = narrow ? 0.25 : 0.45; curve.value = narrow ? 0.12 : 0.035;
+    H = Math.min(2.3, (viewW * 0.62) / 1.33); GAP = narrow ? 0.25 : 0.45; curve.value = narrow ? 0.12 : 0.035;
     layout();
   };
   new ResizeObserver(resize).observe(canvas); resize();
