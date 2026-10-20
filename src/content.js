@@ -257,17 +257,18 @@ export const GALLERY = [
   ['Kokomo utility hook-up, Navisworks coordination model', '코코모 유틸리티 Hook-up, Navisworks 간섭 조율 모델', 'design', false],
   ['Michigan LGESMI2 CESS tank farm under construction', '미시간 LGESMI2 CESS 탱크 팜 시공 중', 'site', false],
   ['Ohio Ultium Cells CESS, 3D walking view', '오하이오 Ultium Cells CESS 3D 워킹 뷰', 'design', false],
-  // g41-g50: work photos added for the gallery (captions marked ? still to confirm)
+  // g41-g51: work photos added for the gallery
   ['Plant model in AVEVA E3D', 'AVEVA E3D 플랜트 모델', 'design', false],
   ['Vessels and piping in AVEVA E3D', 'AVEVA E3D 용기·배관 모델', 'design', false],
-  ['Briefing the crew in the site office, USA', '미국 현장 사무실, 작업자 대상 브리핑', 'site', false],
-  ['Coordination meeting with contractors, USA', '미국 현장, 협력사 조율 미팅', 'site', false],
-  ['Walking the line with the piping crew, USA', '미국 현장, 배관 작업자와 현장 점검', 'site', false],
-  ['Getting around a battery plant site, USA', '미국 배터리 공장 현장 이동', 'site', false],
+  ['Briefing the crew in the site office, Ohio Ultium Cells U1', '오하이오 Ultium Cells U1, 현장 사무실 작업자 브리핑', 'site', false],
+  ['Coordination meeting with contractors, Michigan LGESMI2', '미시간 LGESMI2, 협력사 조율 미팅', 'site', false],
+  ['Walking the line with the piping crew, Ohio Ultium Cells U1', '오하이오 Ultium Cells U1, 배관 작업자와 현장 점검', 'site', false],
+  ['Getting around the site, Michigan LGESMI2', '미시간 LGESMI2, 현장 이동', 'site', false],
   ['CESS tank farm, Revit model', 'CESS 탱크 팜 Revit 모델', 'design', false],
   ['Ohio Ultium Cells CESS, tank-top walking view', '오하이오 Ultium Cells CESS 탱크 상부 워킹 뷰', 'design', false],
   ['Ohio Ultium Cells CESS, unloading area walking view', '오하이오 Ultium Cells CESS 언로딩 구역 워킹 뷰', 'design', false],
   ['CESS piping over the tank farm, wireframe view', 'CESS 배관 와이어프레임 뷰', 'design', false],
+  ['Driving to site, USA', '미국 현장 출근길', 'site', false],
 ];
 
 /* ---------- dashboard / redesign data ---------- */
@@ -376,7 +377,7 @@ function photo(n) {
   return `<li><figure><button type="button" class="ph-btn" data-full="gallery/g${id}.jpg" aria-label="${g[0]}"><img src="gallery/g${id}_s.jpg" alt="${g[0]}" loading="lazy" decoding="async"></button>${t(g[0], g[1], 'figcaption')}</figure></li>`;
 }
 
-export const CAROUSEL = [43, 45, 44, 46, 1, 47, 48, 49, 50, 2, 3, 41, 42, 4, 5, 6, 7, 8, 11, 12, 13, 14, 15, 9, 16, 10];
+export const CAROUSEL = [43, 45, 44, 46, 51, 1, 47, 48, 49, 50, 2, 3, 41, 42, 4, 5, 6, 7, 8, 11, 12, 13, 14, 15, 9, 16, 10];
 export const renderCarousel = () => CAROUSEL.map((k, i) => {
   const g = GALLERY[k - 1], n = String(k).padStart(2, '0');
   return `
@@ -495,15 +496,14 @@ export const renderClients = (logos = new Set()) => CLIENT_LIST.map(([slug, name
 }).join('');
 
 /* ---------- About me ---------- */
-// p01-p07 in public/about. Captions: place, country, and what I was there for.
+// p02-p07 in public/about. Captions: place, country, and what I was there for.
 export const ABOUT_PHOTOS = [
   { f: 'p04', c: ['Joffre Lakes, British Columbia', '캐나다 BC주, 조프리 레이크'], s: ['Weekend hike during my year at EBA Tetra Tech, Vancouver', 'EBA Tetra Tech 밴쿠버 근무 시절 주말 산행'], y: '2018', cc: 'ca' },
   { f: 'p05', c: ['Horseshoe Bay, Vancouver', '캐나다 밴쿠버, 호스슈 베이'], s: ['Studying and working in Vancouver', '밴쿠버 유학·근무 시절'], y: '2017 – 18', cc: 'ca' },
-  { f: 'p03', c: ['Snowy forest, Poland?', '폴란드? 눈 덮인 숲'], s: ['Weekend off during the Wrocław CESS project?', '브로츠와프 CESS 프로젝트 중 휴일?'], y: '2020 – 21', cc: 'pl', q: true },
-  { f: 'p02', c: ['Site office, Europe?', '유럽 현장 사무실?'], s: ['Göd / Wrocław, the COVID-19 years?', '괴드·브로츠와프, 코로나 시기?'], y: '2020 – 21', cc: 'hu', q: true },
-  { f: 'p06', c: ['Prague, Czech Republic', '체코 프라하'], s: ['A day off while posted in Central Europe?', '중부 유럽 근무 중 휴일?'], y: '2021?', cc: 'cz', q: true },
-  { f: 'p07', c: ['On the road in Arizona', '미국 애리조나, 사막 도로'], s: ['Weekend trip while on the Arizona LGAZ CESS site?', 'Arizona LGAZ CESS 현장 근무 중 주말 여행?'], y: '2025', cc: 'us', q: true },
-  { f: 'p01', c: ['Morning drive to site, USA', '미국, 현장 출근길'], s: ['Which project? Ohio, Michigan, Indiana or Arizona', '어느 프로젝트인지 확인 필요'], y: '20??', cc: 'us', q: true },
+  { f: 'p03', c: ['Zakopane, Poland', '폴란드 자코파네'], s: ['Winter in the Tatras while working in Poland', '폴란드 근무 시절, 겨울 타트라산맥'], y: '2020 – 21', cc: 'pl' },
+  { f: 'p02', c: ['Dąbrowa Górnicza, Poland', '폴란드 돔브로바'], s: ['SK IE battery separator plant site, during COVID-19', 'SKIE 배터리 분리막 공장 공사 현장, 코로나 시기'], y: '2021', cc: 'pl' },
+  { f: 'p06', c: ['Hungary', '헝가리'], s: ['Business trip for the CATL Debrecen project meetings', 'CATL 데브레첸 프로젝트 업무 미팅 출장'], y: '2026', cc: 'hu' },
+  { f: 'p07', c: ['Grand Canyon West, USA', '미국 그랜드캐니언 웨스트'], s: ['Weekend trip during the Arizona LGAZ CESS project', 'Arizona LGAZ CESS 프로젝트 기간 중 주말 여행'], y: '2025 –', cc: 'us' },
 ];
 export const ABOUT_TAGS = [
   ['Studied in Vancouver, Canada', '캐나다 밴쿠버 유학'], ['Exchange student, Kyushu University', '일본 규슈대 교환학생'],
