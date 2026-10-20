@@ -149,6 +149,7 @@ export const EXPERIENCE = [
 
 export const DATACENTER = {
   cc: 'kr',
+  photos: [55],
   period: '2026.02 – Present',
   points: [
     ['Leads technical sales and proposals for data center cooling: CRAH, in-row, CDU, manifold, QD.', '데이터센터 냉각 솔루션(CRAH, In-row, CDU, Manifold, QD) 기술영업 및 제안 총괄'],
@@ -272,6 +273,7 @@ export const GALLERY = [
   ['Walking the site with the crew, USA', '미국 현장, 작업자들과 현장 이동', 'site', false],
   ['On site by the nitrogen skid, USA', '미국 현장, 질소 스키드 앞에서', 'site', false],
   ['Coordinating the 3D model in the site office, USA', '미국 현장 사무실, 3D 모델 검토', 'design', false],
+  ['Data center cooling water piping, 3D model', '데이터센터 냉각수 배관 3D 모델', 'design', false],
 ];
 
 /* ---------- dashboard / redesign data ---------- */

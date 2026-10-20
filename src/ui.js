@@ -28,8 +28,9 @@ export function initUI() {
 
   const lb = document.getElementById('lb'), img = document.getElementById('lb-img'), cap = document.getElementById('lb-cap');
   document.querySelectorAll('.ph-btn').forEach((b) => b.addEventListener('click', () => {
-    const fc = b.closest('figure').querySelector('figcaption');
-    img.src = b.dataset.full; img.alt = fc.textContent; cap.textContent = fc.textContent;
+    // gallery photos have a figcaption; timeline thumbnails only carry an aria-label
+    const fc = b.closest('figure')?.querySelector('figcaption'), text = fc ? fc.textContent : b.dataset['cap' + (lang === 'ko' ? 'Ko' : 'En')] || b.getAttribute('aria-label') || '';
+    img.src = b.dataset.full; img.alt = text; cap.textContent = text;
     if (lb.showModal) lb.showModal(); else window.open(b.dataset.full, '_blank');
   }));
   lb.addEventListener('click', (e) => { if (e.target === lb) lb.close(); });
