@@ -440,13 +440,13 @@ export const KPIS = [
   { v: '2,220', u: ['억 KRW', '억 원'], k: ['Contract value of my projects', '참여 프로젝트 규모 합계'] },
 ];
 export const SCALE = [
-  { n: ['Kokomo SDI hook-up', 'Kokomo SDI Hook-up'], cc: ['us'], s: ['Kokomo', '코코모'], v: 1300, r: ['Site PM', '현장 PM'] },
-  { n: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], cc: ['us'], s: ['Michigan', '미시간'], v: 240, r: ['Design lead', '설계팀장'] },
-  { n: ['Arizona LGAZ CESS', 'Arizona LGAZ CESS'], cc: ['us'], s: ['Arizona', '애리조나'], v: 220, r: ['Site PM', '현장 PM'] },
-  { n: ['Wrocław P3 CESS (bid)', '브로츠와프 P3 CESS (입찰)'], cc: ['pl'], s: ['Wrocław', '브로츠와프'], v: 189, r: ['Process design', '공정설계'], bid: true },
-  { n: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], cc: ['us'], s: ['Ohio', '오하이오'], v: 180, r: ['Acting site manager', '현장소장 대행'] },
-  { n: ['SK On separator', 'SK온 분리막'], cc: ['pl'], s: ['SK On', 'SK온'], v: 170, r: ['Process design PM', '공정설계 PM'] },
-  { n: ['Göd SDIHU #6', '괴드 SDIHU #6'], cc: ['hu'], s: ['Göd', '괴드'], v: 110, r: ['Design and build', '설계·시공'] },
+  { n: ['Kokomo SDI hook-up', 'Kokomo SDI Hook-up'], cc: ['us'], s: ['Kokomo', '코코모'], y: 2024.08, v: 1300, r: ['Site PM', '현장 PM'] },
+  { n: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], cc: ['us'], s: ['Michigan', '미시간'], y: 2022.75, v: 240, r: ['Design lead', '설계팀장'] },
+  { n: ['Arizona LGAZ CESS', 'Arizona LGAZ CESS'], cc: ['us'], s: ['Arizona', '애리조나'], y: 2025.08, v: 220, r: ['Site PM', '현장 PM'] },
+  { n: ['Wrocław P3 CESS (bid)', '브로츠와프 P3 CESS (입찰)'], cc: ['pl'], s: ['Wrocław', '브로츠와프'], y: 2020.92, v: 189, r: ['Process design', '공정설계'], bid: true },
+  { n: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], cc: ['us'], s: ['Ohio', '오하이오'], y: 2021.67, v: 180, r: ['Acting site manager', '현장소장 대행'] },
+  { n: ['SK On separator', 'SK온 분리막'], cc: ['pl'], s: ['SK On', 'SK온'], y: 2021.17, v: 170, r: ['Process design PM', '공정설계 PM'] },
+  { n: ['Göd SDIHU #6', '괴드 SDIHU #6'], cc: ['hu'], s: ['Göd', '괴드'], y: 2020.67, v: 110, r: ['Design and build', '설계·시공'] },
 ];
 export const RESULTS = [
   { n: ['Kokomo SDI', 'Kokomo SDI'], m: 2, b: 10 },
@@ -464,24 +464,27 @@ export const ABROAD = [
   { n: ['United States', '미국'], cc: 'us', a: 2021.67, b: 2026.8, m: 48 },
 ];
 const dur = (m) => (m >= 12 ? [`${Math.floor(m / 12)} yr${m >= 24 ? 's' : ''}${m % 12 ? ` ${m % 12} mo` : ''}`, `${Math.floor(m / 12)}년${m % 12 ? ` ${m % 12}개월` : ''}`] : [`${m} mo`, `${m}개월`]);
-// cumulative months abroad over the years: flat at home, rising on site
-function abroadChart() {
-  const W = 640, H = 230, L = 34, R = 16, T = 14, B = 26, X0 = 2014, X1 = 2027, YM = 96;
-  const x = (y) => L + (y - X0) / (X1 - X0) * (W - L - R), y = (m) => T + (1 - m / YM) * (H - T - B);
-  let cum = 0; const pts = [[x(X0), y(0)]], marks = [];
-  ABROAD.forEach((s) => { pts.push([x(s.a), y(cum)]); cum += s.m; pts.push([x(s.b), y(cum)]); marks.push({ s, px: x(s.b), py: y(cum) }); });
+// project scale as a line over time: one point per project in start order, KRW 100 million on the y axis
+function scaleChart() {
+  const P = [...SCALE].sort((a, b) => a.y - b.y);
+  const W = 640, H = 300, L = 44, R = 24, T = 30, B = 62, YM = 1400;
+  const x = (k) => L + 20 + k * ((W - L - R - 40) / (P.length - 1)), y = (v) => T + (1 - v / YM) * (H - T - B);
+  const grid = [0, 400, 800, 1200].map((v) => `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L - 8}" y="${y(v) + 4}" text-anchor="end">${v.toLocaleString('en-US')}</text>`).join('');
+  const pts = P.map((s, k) => [x(k), y(s.v)]);
   const line = pts.map((p) => p.map((v) => v.toFixed(1)).join(',')).join(' ');
-  const area = `${L},${y(0)} ${line} ${x(ABROAD.at(-1).b).toFixed(1)},${y(0)}`;
-  const grid = [0, 24, 48, 72, 96].map((m) => `<line x1="${L}" x2="${W - R}" y1="${y(m)}" y2="${y(m)}"/><text x="${L - 6}" y="${y(m) + 4}" text-anchor="end">${m / 12}</text>`).join('');
-  const years = [2014, 2016, 2018, 2020, 2022, 2024, 2026].map((v) => `<text x="${x(v)}" y="${H - 6}" text-anchor="middle">${v}</text>`).join('');
-  const segs = ABROAD.map((s, k) => { const c0 = ABROAD.slice(0, k).reduce((a, d) => a + d.m, 0); return `<line class="ab-seg" x1="${x(s.a).toFixed(1)}" y1="${y(c0).toFixed(1)}" x2="${x(s.b).toFixed(1)}" y2="${y(c0 + s.m).toFixed(1)}"/>`; }).join('');
-  const flags = marks.map((k, n) => `<image href="flags/${k.s.cc}.svg" x="${(k.px - 10).toFixed(1)}" y="${(k.py - 26 - (n % 2) * 0).toFixed(1)}" width="20" height="14" preserveAspectRatio="xMidYMid slice"/>`).join('');
-  return `<svg class="ab-chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Cumulative months on overseas sites, 2014 to 2026: ${ABROAD.map((s) => `${s.n[0]} ${s.m} months`).join(', ')}">
-          <defs><linearGradient id="abFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#FF7A1A" stop-opacity=".35"/><stop offset="1" stop-color="#FF7A1A" stop-opacity="0"/></linearGradient></defs>
-          <g class="ab-grid">${grid}${years}</g>
-          <polygon class="ab-area" points="${area}"/>
-          <polyline class="ab-line" points="${line}"/>${segs}${flags}
-          <text class="ab-y" x="${L}" y="${T - 2}">${'yrs'}</text>
+  const area = `${x(0)},${y(0)} ${line} ${x(P.length - 1)},${y(0)}`;
+  const dots = P.map((s, k) => `<g class="sc-pt${s.bid ? ' bid' : ''}"><title>${s.n[0]}: ${s.v}</title>
+            <circle cx="${pts[k][0].toFixed(1)}" cy="${pts[k][1].toFixed(1)}" r="6"/>
+            <text class="sc-v" x="${pts[k][0].toFixed(1)}" y="${(pts[k][1] - 14).toFixed(1)}" text-anchor="middle">${s.v.toLocaleString('en-US')}</text>
+            <image href="flags/${s.cc[0]}.svg" x="${(pts[k][0] - 10).toFixed(1)}" y="${H - B + 12}" width="20" height="14" preserveAspectRatio="xMidYMid slice"/>
+            <text class="sc-n" x="${pts[k][0].toFixed(1)}" y="${H - B + 42}" text-anchor="middle" data-en="${s.s[0]}" data-ko="${s.s[1]}">${s.s[1]}</text>
+            <text class="sc-y" x="${pts[k][0].toFixed(1)}" y="${H - B + 58}" text-anchor="middle">${Math.floor(s.y)}</text></g>`).join('');
+  return `<svg class="sc-chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Project value by start year, KRW 100 million: ${P.map((s) => `${s.s[0]} ${Math.floor(s.y)} ${s.v}`).join(', ')}">
+          <defs><linearGradient id="scFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#FF7A1A" stop-opacity=".32"/><stop offset="1" stop-color="#FF7A1A" stop-opacity="0"/></linearGradient></defs>
+          <g class="sc-grid">${grid}</g>
+          <polygon class="sc-area" points="${area}"/>
+          <polyline class="sc-line" points="${line}"/>
+          ${dots}
         </svg>`;
 }
 
@@ -492,8 +495,9 @@ export function renderMetrics() {
   const kpis = KPIS.map((k) => `<div class="mt-kpi" data-reveal><b>${k.v}<small>${t(k.u[0], k.u[1])}</small></b>${t(k.k[0], k.k[1], 'span')}</div>`).join('');
   const maxS = Math.max(...SCALE.map((s) => s.v));
   // vertical columns: value on top, flag, short name and role underneath
-  const scale = SCALE.map((s) => `<li${s.bid ? ' class="bid"' : ''} title="${s.n[0]}"><span class="mt-cv">${s.v.toLocaleString('en-US')}</span><span class="mt-col"><i style="--h:${(s.v / maxS * 100).toFixed(1)}%"></i></span><span class="mt-cl">${flags(s.cc)}${t(s.s[0], s.s[1], 'b')}${t(s.r[0], s.r[1], 'em')}</span></li>`).join('');
-  const legend = ABROAD.map((s) => `<li>${flags([s.cc])}${t(s.n[0], s.n[1])}<b>${t(dur(s.m)[0], dur(s.m)[1])}</b></li>`).join('');
+  // time abroad as vertical columns, oldest stint first
+  const maxA = Math.max(...ABROAD.map((s) => s.m));
+  const abroad = ABROAD.map((s) => `<li title="${s.n[0]}"><span class="mt-cv">${t(dur(s.m)[0], dur(s.m)[1])}</span><span class="mt-col alt"><i style="--h:${(s.m / maxA * 100).toFixed(1)}%"></i></span><span class="mt-cl">${flags([s.cc])}${t(s.n[0], s.n[1], 'b')}<em>${Math.floor(s.a)}</em></span></li>`).join('');
   // skills as a dashboard: four groups, tools as rows with a level tag where the matrix has one
   const lvl = Object.fromEntries(MATRIX.map((m) => [m[0], m]));
   const lv = (name) => { const k = Object.keys(lvl).find((n) => name.includes(n) || n.includes(name.split(' ')[0])); return k ? `<em class="sk-lv${lvl[k][1] === 'Advanced' ? ' hi' : ''}">${t(lvl[k][1], lvl[k][2])}</em>` : ''; };
@@ -505,15 +509,14 @@ export function renderMetrics() {
     <div class="mt-grid">
       <article class="mt-card" data-reveal>
         <h3>${t('Project scale I worked on', '참여 프로젝트 규모')}</h3>
-        <p class="mt-sub">${t('Contract value, KRW 100 million', '계약 규모, 단위 억 원')}</p>
-        <ol class="mt-cols">${scale}</ol>
-        <p class="mt-foot">${t('The Wrocław bid was not awarded and is left out of the total.', '브로츠와프는 미수주 입찰이라 합계에서 제외했습니다.')}</p>
+        <p class="mt-sub">${t('Contract value by start year, KRW 100 million', '연도별 수행 프로젝트, 계약 규모 단위 억 원')}</p>
+        ${scaleChart()}
+        <p class="mt-foot">${t('The Wrocław bid (hollow point) was not awarded and is left out of the total.', '브로츠와프는 미수주 입찰(빈 점)이라 합계에서 제외했습니다.')}</p>
       </article>
       <article class="mt-card" data-reveal>
         <h3>${t('Time on overseas sites', '해외 현장 근무 기간')}</h3>
-        <p class="mt-sub">${t('Cumulative, about 7 years 3 months in total', '누적 기준, 합계 약 7년 3개월')}</p>
-        ${abroadChart()}
-        <ul class="ab-legend">${legend}</ul>
+        <p class="mt-sub">${t('About 7 years 3 months in total', '합계 약 7년 3개월')}</p>
+        <ol class="mt-cols">${abroad}</ol>
       </article>
       <article class="mt-card" data-reveal>
         <h3>${t('Delivered ahead and under budget', '공기 단축과 원가 절감')}</h3>
