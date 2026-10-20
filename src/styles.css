@@ -183,9 +183,11 @@ button{font:inherit;color:inherit}
 
 /* ---------- summary (recruiter view) ---------- */
 .summary{position:relative;z-index:2;padding:14vh var(--pad) 12vh;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:40px 56px;align-items:center}
-.sm-head{display:grid;gap:20px;max-width:38rem}
+.sm-head{display:grid;gap:20px;max-width:44rem}
 .sm-kicker{font-size:15px;font-weight:700;color:var(--signal)}
-.sm-head h2{font-family:var(--text);font-weight:700;font-size:clamp(32px,3vw,50px);letter-spacing:-.03em;line-height:1.2}
+.sm-head h2{font-family:var(--text);font-weight:700;font-size:clamp(28px,2.5vw,44px);letter-spacing:-.03em;line-height:1.2}
+/* the headline breaks after its first phrase on wide screens */
+@media (min-width:1000px){.sm-l{display:block;white-space:nowrap}}
 .sm-head > p{font-size:clamp(17px,1.3vw,20px);line-height:1.6}
 .sm-fit{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:10px}
 .sm-fit li{position:relative;padding-left:32px;font-size:16px;line-height:1.45}

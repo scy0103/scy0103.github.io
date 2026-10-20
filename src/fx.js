@@ -45,7 +45,7 @@ function split(el) {
 }
 
 function initSplitHeadings() {
-  const heads = [...document.querySelectorAll('.fx-split, .t2-h, #sm-h, .cd-col h2, #ct-h > span, #wk-h > span, #sk-h > span')];
+  const heads = [...document.querySelectorAll('.fx-split, .t2-h, #sm-h > span, .cd-col h2, #ct-h > span, #wk-h > span, #sk-h > span')];
   const run = () => heads.forEach(split);
   run(); onLang(() => requestAnimationFrame(run));
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) e.target.classList.add('fx-in'); }), { rootMargin: '0px 0px -10% 0px' });
