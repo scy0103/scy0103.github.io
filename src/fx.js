@@ -20,7 +20,7 @@ function heroMarkup() {
   sec.setAttribute('aria-label', 'Intro');
   sec.innerHTML = `
     <div class="fx-title">
-      <p class="fx-k" data-en="Plant piping design · overseas site PL" data-ko="플랜트 배관 설계 · 해외 현장 PL"></p>
+      <p class="fx-k" data-en="Plant piping design · overseas site PM" data-ko="플랜트 배관 설계 · 해외 현장 PM"></p>
       <h1 class="fx-name" aria-label="Jacob Song"><span class="fx-split">JACOB</span><span class="fx-split hl">SONG</span></h1>
       <p class="fx-sub" data-en="13 years · 8 countries · 3,850 m of pipe in this model" data-ko="13년 · 8개국 · 이 모델의 배관 3,850 m"></p>
       <div class="fx-cta">
