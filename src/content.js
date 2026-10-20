@@ -507,9 +507,8 @@ export const ABOUT_PHOTOS = [
   { f: 'p06', c: ['Hungary', '헝가리'], s: ['Business trip for the CATL Debrecen project meetings', 'CATL 데브레첸 프로젝트 업무 미팅 출장'], y: '2026', cc: 'hu' },
 ];
 export const ABOUT_TAGS = [
-  ['Studied in Vancouver, Canada', '캐나다 밴쿠버 유학'], ['Exchange student, Kyushu University', '일본 규슈대 교환학생'],
-  ['8 countries worked in', '8개국 근무'], ['Forklift and 5-ton truck', '지게차·5톤 트럭 운전'],
-  ['Photo and video editing', '사진·영상 편집'], ['Hiking', '등산'],
+  ['Studied in Vancouver, Canada', '캐나다 밴쿠버 유학'], ['8 countries worked in', '8개국 근무'],
+  ['Photo and video editing', '사진·영상 편집'], ['Hiking', '등산'], ['Fishing', '낚시'],
 ];
 export function renderAbout() {
   const tags = ABOUT_TAGS.map((x) => t(x[0], x[1], 'li')).join('');
@@ -523,7 +522,7 @@ export function renderAbout() {
         <h2 id="ab-h" class="mega"><span data-en="About" data-ko="About">About</span> <span class="hl" data-en="me" data-ko="me">me</span></h2>
         <div class="ab-txt">
           ${t('I started out drawing valves and rolling-stock bogies, then followed piping to eight countries. What I like most about site work is standing at the same drawing with a local crew until it makes sense to everyone.', '밸브와 전동차 대차를 그리던 기계설계에서 시작해 배관을 따라 8개국 현장을 다녔습니다. 낯선 현장에서 현지 작업자와 같은 도면을 펼쳐 놓고, 모두가 이해할 때까지 맞춰 가는 일을 좋아합니다.', 'p')}
-          ${t('Between projects I hike, take photos and edit video, a habit from making company catalogues and promo films early in my career.', '프로젝트 사이에는 산에 오르고, 사진을 찍고, 영상을 편집합니다. 첫 직장에서 카탈로그와 홍보 영상을 만들던 습관이 남았습니다.', 'p')}
+          ${t('Between projects I hike, go fishing, take photos and edit video, a habit from making company catalogues and promo films early in my career.', '프로젝트 사이에는 산에 오르고, 낚시를 하고, 사진을 찍고, 영상을 편집합니다. 첫 직장에서 카탈로그와 홍보 영상을 만들던 습관이 남았습니다.', 'p')}
           <ul class="ab-tags">${tags}</ul>
         </div>
       </div>
