@@ -22,10 +22,8 @@ uniform float uVel, uOn, uHover, uLoaded;
 varying vec2 vUv;
 float box(vec2 p, vec2 b, float r) { vec2 q = abs(p) - b + r; return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - r; }
 void main() {
-  // object-fit: cover, plus a slight zoom that relaxes when the photo is active or hovered
-  float zoom = 1.08 - 0.08 * max(uOn, uHover);
-  vec2 s = uPlane / uImg; s /= max(s.x, s.y);
-  vec2 uv = (vUv - 0.5) * s / zoom + 0.5;
+  // each plane has the photo's own aspect ratio, so the whole photo shows, uncropped
+  vec2 uv = vUv;
   vec3 c = texture2D(uTex, uv).rgb;
   c = mix(vec3(0.10, 0.16, 0.25), c, uLoaded);
   vec2 p = (vUv - 0.5) * uPlane;
@@ -68,9 +66,9 @@ export function initAbout3d() {
     m.userData = { i, u };
     loader.load(fig.querySelector('.ph-btn').dataset.full, (tex) => {   // full-size file: the strip shows photos large
       tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
-      tex.colorSpace = THREE.SRGBColorSpace;
+      // no colour-space conversion: the shader writes the file's pixel values straight to the screen
       u.uTex.value = tex; u.uImg.value.set(tex.image.width, tex.image.height); u.uLoaded.value = 1;
-      m.userData.portrait = tex.image.height > tex.image.width * 1.05; layout();
+      m.userData.aspect = tex.image.width / tex.image.height; layout();
     });
     strip.add(m);
     const lab = document.createElement('div');
@@ -81,12 +79,12 @@ export function initAbout3d() {
     return m;
   });
 
-  // all photos share one height; widths follow a portrait / landscape split so the strip reads evenly
+  // all photos share one height; each width follows the photo's own aspect ratio
   let H = 3.4, GAP = 0.45;
   function layout() {
     let x = 0;
     items.forEach((m) => {
-      const w = H * (m.userData.portrait ? 0.8 : 1.33);
+      const w = H * (m.userData.aspect || 1.33);
       m.scale.set(w, H, 1); m.userData.u.uPlane.value.set(w, H);
       m.userData.cx = x + w / 2; m.userData.w = w; m.position.x = m.userData.cx; x += w + GAP;
     });
