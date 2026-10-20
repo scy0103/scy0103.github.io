@@ -48,7 +48,7 @@ export function renderTimeline2() {
             ${p.points.length ? `<ul class="t2-pts">${p.points.map((x) => t(x[0], x[1], 'li')).join('')}</ul>` : ''}
             ${p.result ? `<p class="t2-result">${t(p.result[0], p.result[1])}</p>` : ''}
           </div>
-          ${p.photos ? `<div class="t2-photos">${p.photos.slice(0, 2).map(thumb).join('')}</div>` : '<div></div>'}
+          ${p.photos ? `<div class="t2-photos">${p.photos.slice(0, 3).map(thumb).join('')}</div>` : '<div></div>'}
         </li>`).join('');
     const side = i === 0 ? `
         <li class="t2-pj t2-side">

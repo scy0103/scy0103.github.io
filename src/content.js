@@ -127,17 +127,17 @@ export const EXPERIENCE = [
         points: [['Designed bogie parts (center pivot, axle, hub) through casting and machining; 200 cars delivered.', 'Center Pivot, Axle, Hub 등 대차 부품 설계부터 주조, 가공까지 수행, 200량 납품 완료']],
       },
       {
-        cc: 'cl', name: ['Fast Pack, Chile', '칠레 FAST PACK'], photos: [15, 30, 31], period: '2015.02 – 2015.07', size: null,
+        cc: 'cl', name: ['Fast Pack, Chile', '칠레 FAST PACK'], photos: [60, 61, 15, 30, 31], period: '2015.02 – 2015.07', size: null,
         role: ['Tier-1 vendor to POSCO E&C', '포스코건설 1차 벤더'],
         points: [['Five months on site: valve installation, field fit-up and as-built drawings.', '5개월 현장 상주, 자사 밸브 설치, 현장 맞춤 시공, As-built 도면 수정']],
       },
       {
-        cc: 'sa', name: ['Yanbu 3, Saudi Arabia (Hanwha E&C)', '사우디아라비아 YANBU 3 (한화E&C)'], photos: [14, 32, 33, 34], period: '2014.08 – 2014.09', size: null,
+        cc: 'sa', name: ['Yanbu 3, Saudi Arabia (Hanwha E&C)', '사우디아라비아 YANBU 3 (한화E&C)'], photos: [58, 59, 14, 32, 33, 34], period: '2014.08 – 2014.09', size: null,
         role: ['Valve supply and site meetings', '밸브 공급 및 고객사 미팅'],
         points: [['Supplied and installed additional 12" trunnion butterfly valves within 4 weeks, leading to a follow-on contract.', '12인치 Trunnion 버터플라이 밸브 추가 공급 및 설치를 4주 내 완료, 추가 계약 체결']],
       },
       {
-        cc: 'kr', name: ['Valve development', '밸브 개발'], photos: [10, 35, 36], period: '2013 – 2017', size: null, role: null,
+        cc: 'kr', name: ['Valve development', '밸브 개발'], photos: [57, 10, 35, 36], period: '2013 – 2017', size: null, role: null,
         points: [
           ['Pressure-reducing and 5/2-way valves for Hyundai Heavy Industries marine engines; casting suppliers and production jigs.', '현대중공업 선박엔진용 감압밸브 및 5/2-way 밸브 개발, 주조 협력사 및 생산 지그 관리'],
           ['3/2-way valve under the 2017 SME growth program, with an industry-academia agreement with Kumoh National Institute of Technology.', '2017 중소기업 신성장동력 사업 3/2-way 밸브 개발, 금오공대 산학협력 체결'],
@@ -275,6 +275,11 @@ export const GALLERY = [
   ['Coordinating the 3D model in the site office, USA', '미국 현장 사무실, 3D 모델 검토', 'design', false],
   ['Data center cooling water piping, 3D model', '데이터센터 냉각수 배관 3D 모델', 'design', false],
   ['Alaska Route 93 corridor, above-ground pipeline', '알래스카 93번 국도 구간 지상 배관', 'site', false],
+  ['Valve flow simulation, SolidWorks Flow Simulation', '밸브 유동 해석 (SolidWorks Flow Simulation)', 'design', false],
+  ['On site in Yanbu, Saudi Arabia', '사우디아라비아 얀부 현장', 'site', false],
+  ['With a colleague in Yanbu, Saudi Arabia', '사우디아라비아 얀부, 현지 동료와 함께', 'site', false],
+  ['Reviewing drawings with the client team, Chile', '칠레 현장, 고객사 담당자들과 도면 검토', 'site', false],
+  ['Valve repair work in the workshop, Chile', '칠레 현장, 작업장에서 밸브 보수 작업', 'site', false],
 ];
 
 /* ---------- dashboard / redesign data ---------- */
