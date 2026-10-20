@@ -432,13 +432,13 @@ export const KPIS = [
   { v: '2,220', u: ['억 KRW', '억 원'], k: ['Contract value of my projects', '참여 프로젝트 규모 합계'] },
 ];
 export const SCALE = [
-  { n: ['Kokomo SDI hook-up', 'Kokomo SDI Hook-up'], v: 1300, r: ['Site PM', '현장 PM'] },
-  { n: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], v: 240, r: ['Design lead', '설계팀장'] },
-  { n: ['Arizona LGAZ CESS', 'Arizona LGAZ CESS'], v: 220, r: ['Site PM', '현장 PM'] },
-  { n: ['Wrocław P3 CESS (bid)', '브로츠와프 P3 CESS (입찰)'], v: 189, r: ['Process design', '공정설계'], bid: true },
-  { n: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], v: 180, r: ['Acting site manager', '현장소장 대행'] },
-  { n: ['SK On separator', 'SK온 분리막'], v: 170, r: ['Process design PM', '공정설계 PM'] },
-  { n: ['Göd SDIHU #6', '괴드 SDIHU #6'], v: 110, r: ['Design and build', '설계·시공'] },
+  { n: ['Kokomo SDI hook-up', 'Kokomo SDI Hook-up'], cc: ['us'], v: 1300, r: ['Site PM', '현장 PM'] },
+  { n: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], cc: ['us'], v: 240, r: ['Design lead', '설계팀장'] },
+  { n: ['Arizona LGAZ CESS', 'Arizona LGAZ CESS'], cc: ['us'], v: 220, r: ['Site PM', '현장 PM'] },
+  { n: ['Wrocław P3 CESS (bid)', '브로츠와프 P3 CESS (입찰)'], cc: ['pl'], v: 189, r: ['Process design', '공정설계'], bid: true },
+  { n: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], cc: ['us'], v: 180, r: ['Acting site manager', '현장소장 대행'] },
+  { n: ['SK On separator', 'SK온 분리막'], cc: ['pl'], v: 170, r: ['Process design PM', '공정설계 PM'] },
+  { n: ['Göd SDIHU #6', '괴드 SDIHU #6'], cc: ['hu'], v: 110, r: ['Design and build', '설계·시공'] },
 ];
 export const RESULTS = [
   { n: ['Kokomo SDI', 'Kokomo SDI'], m: 2, b: 10 },
@@ -446,23 +446,25 @@ export const RESULTS = [
   { n: ['Ohio Ultium Cells', 'Ohio Ultium Cells'], m: 1, b: null },
 ];
 export const ABROAD = [
-  { n: ['United States', '미국'], v: 48, l: ['4 yrs', '4년'] },
-  { n: ['Canada', '캐나다'], v: 12, l: ['1 yr', '1년'] },
-  { n: ['Hungary, Poland', '헝가리·폴란드'], v: 12, l: ['1 yr', '1년'] },
-  { n: ['China', '중국'], v: 9, l: ['9 mo', '9개월'] },
-  { n: ['Chile', '칠레'], v: 5, l: ['5 mo', '5개월'] },
-  { n: ['Saudi Arabia', '사우디'], v: 1, l: ['1 mo', '1개월'] },
+  { n: ['United States', '미국'], cc: ['us'], v: 48, l: ['4 yrs', '4년'] },
+  { n: ['Canada', '캐나다'], cc: ['ca'], v: 12, l: ['1 yr', '1년'] },
+  { n: ['Hungary, Poland', '헝가리·폴란드'], cc: ['hu', 'pl'], v: 12, l: ['1 yr', '1년'] },
+  { n: ['China', '중국'], cc: ['cn'], v: 9, l: ['9 mo', '9개월'] },
+  { n: ['Chile', '칠레'], cc: ['cl'], v: 5, l: ['5 mo', '5개월'] },
+  { n: ['Saudi Arabia', '사우디'], cc: ['sa'], v: 1, l: ['1 mo', '1개월'] },
 ];
 
+// country flags in front of a bar label
+const flags = (cc) => cc.map((c) => `<img class="mt-fl" src="flags/${c}.svg" alt="">`).join('');
 const bar = (pct, cls = '') => `<span class="mt-bar${cls}"><i style="--w:${pct.toFixed(1)}%"></i></span>`;
 export function renderMetrics() {
   const kpis = KPIS.map((k) => `<div class="mt-kpi" data-reveal><b>${k.v}<small>${t(k.u[0], k.u[1])}</small></b>${t(k.k[0], k.k[1], 'span')}</div>`).join('');
   const maxS = Math.max(...SCALE.map((s) => s.v));
-  const scale = SCALE.map((s) => `<li${s.bid ? ' class="bid"' : ''}><span class="mt-n">${t(s.n[0], s.n[1])}<em>${t(s.r[0], s.r[1])}</em></span>${bar(s.v / maxS * 100)}<span class="mt-v">${s.v.toLocaleString('en-US')}</span></li>`).join('');
+  const scale = SCALE.map((s) => `<li${s.bid ? ' class="bid"' : ''}><span class="mt-n"><span class="mt-t">${flags(s.cc)}${t(s.n[0], s.n[1])}</span><em>${t(s.r[0], s.r[1])}</em></span>${bar(s.v / maxS * 100)}<span class="mt-v">${s.v.toLocaleString('en-US')}</span></li>`).join('');
   const res = RESULTS.map((r) => `<li><span class="mt-n">${t(r.n[0], r.n[1])}</span>
       <span class="mt-pair"><span class="mt-chip"><b>-${r.m}</b>${t('mo schedule', '개월 공기')}</span>${r.b ? `<span class="mt-chip alt"><b>-${r.b}%</b>${t('budget', '예산')}</span>` : ''}</span></li>`).join('');
   const maxA = Math.max(...ABROAD.map((a) => a.v));
-  const abroad = ABROAD.map((a) => `<li><span class="mt-n">${t(a.n[0], a.n[1])}</span>${bar(a.v / maxA * 100, ' alt')}<span class="mt-v">${t(a.l[0], a.l[1])}</span></li>`).join('');
+  const abroad = ABROAD.map((a) => `<li><span class="mt-n"><span class="mt-t">${flags(a.cc)}${t(a.n[0], a.n[1])}</span></span>${bar(a.v / maxA * 100, ' alt')}<span class="mt-v">${t(a.l[0], a.l[1])}</span></li>`).join('');
   return `
     <div class="mt-kpis">${kpis}</div>
     <div class="mt-grid">

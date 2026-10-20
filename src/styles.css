@@ -237,6 +237,9 @@ button{font:inherit;color:inherit}
 .mt-bars li{display:grid;grid-template-columns:minmax(150px,240px) minmax(0,1fr) 72px;gap:14px;align-items:center}
 .mt-n{font-size:15px;display:grid;gap:1px}
 .mt-n em{font-style:normal;font-size:13px;color:var(--soft)}
+.mt-t{display:flex;align-items:center;gap:6px}
+.mt-fl{width:21px;height:14px;object-fit:cover;border-radius:2px;flex:none;box-shadow:0 0 0 1px rgba(255,255,255,.15)}
+.mt-fl + span{margin-left:2px}
 .mt-v{font-family:var(--display);font-weight:600;font-size:22px;text-align:right;white-space:nowrap}
 .mt-bar{height:14px;border-radius:999px;background:var(--card-2);overflow:hidden}
 .mt-bar i{display:block;height:100%;width:var(--w);border-radius:inherit;background:var(--signal);transform-origin:left;transition:transform 1.2s var(--ease) .2s}
