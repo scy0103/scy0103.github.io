@@ -201,12 +201,23 @@ export function initGlobe() {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const SNAP = new URLSearchParams(location.search).has('snap');
   focus(0); world.quaternion.copy(qTarget);
-  let next = performance.now() + 3800;
+  let next = 0, lastT = 0;
+  const qSpin = new THREE.Quaternion(), yAxis = new THREE.Vector3(0, 1, 0), tmpN = new THREE.Vector3();
   const loop = (t) => {
     requestAnimationFrame(loop);
     if (!visible) return;
-    if (!reduced && !SNAP && t > next && t > pauseUntil) { focus(cur + 1); next = t + 3800; }
-    if (!drag) world.quaternion.slerp(qTarget, reduced ? 1 : 0.045);
+    const dt = Math.min(0.05, (t - (lastT || t)) / 1000); lastT = t;
+    if (!drag && !SNAP && t > pauseUntil && hover < 0) {
+      // idle: turn slowly around the poles and caption whichever site faces the viewer
+      qSpin.setFromAxisAngle(yAxis, dt * (reduced ? 0.06 : 0.12));
+      world.quaternion.multiply(qSpin); qTarget.copy(world.quaternion);
+      if (t > next) {
+        let best = -2, bi = cur;
+        pins.forEach((p, i) => { const d = tmpN.copy(p.n).applyQuaternion(world.quaternion).z; if (d > best) { best = d; bi = i; } });
+        if (bi !== cur) { cur = bi; caption(); arcs.forEach((a, j) => { a.userData.on = j === cur; }); }
+        next = t + 600;
+      }
+    } else if (!drag) world.quaternion.slerp(qTarget, reduced ? 1 : 0.045);
     // zooming in moves the camera toward the site in focus (hovered pin, else the current one)
     const f = pins[hover >= 0 ? hover : cur].hit.getWorldPosition(tmpV);
     const k = Math.min(1, Math.max(0, (1 - zoom) / 0.45));

@@ -494,3 +494,11 @@ html[lang="ko"] .giant{font-size:clamp(46px,6.4vw,120px)}
 .skip-story{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);transform:translateX(-50%);z-index:25;font-size:14px;font-weight:700;text-decoration:none;color:var(--on-signal);background:var(--signal);border-radius:999px;padding:10px 18px;box-shadow:0 10px 30px rgba(0,0,0,.4);opacity:0;pointer-events:none;transition:opacity .3s}
 body.in-story .skip-story{opacity:1;pointer-events:auto}
 @media (max-width:760px){.skip-story{bottom:auto;top:calc(env(safe-area-inset-top,0px) + 112px)}}@media (max-width:1180px){.menu-btn{display:grid}}
+
+/* slot-machine years */
+.slot{display:inline-flex;align-items:baseline}
+.slot-win{display:inline-block;height:1em;line-height:1;overflow:hidden;vertical-align:baseline}
+.slot-reel{display:flex;flex-direction:column;transform:translateY(0)}
+.slot-reel span{display:block;height:1em;line-height:1;text-align:center}
+.slot.spin .slot-reel{transform:translateY(calc(var(--n) * -1em));transition:transform var(--d) cubic-bezier(.15,.75,.2,1)}
+.slot-sep{display:inline-block;line-height:1}

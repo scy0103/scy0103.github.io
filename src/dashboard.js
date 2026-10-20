@@ -8,17 +8,26 @@ const $ = (id) => document.getElementById(id);
 const START = new Date('2013-03-01T00:00:00+09:00');
 const yearFrac = (d) => d.getFullYear() + (d.getMonth() + d.getDate() / 31) / 12;
 
+// Slot-machine digits: each digit is a reel of 0-9 that spins from 0 and lands on its value,
+// left to right, once the card scrolls into view.
+function slotReels(el, value) {
+  el.setAttribute('aria-label', value);
+  el.classList.add('slot');
+  el.innerHTML = [...value].map((c, i) => {
+    if (!/\d/.test(c)) return `<span class="slot-sep" aria-hidden="true">${c}</span>`;
+    const spins = 2 + i; // later reels spin longer, so they settle one after another
+    const cells = Array.from({ length: spins * 10 + (+c) + 1 }, (_, k) => `<span>${k % 10}</span>`).join('');
+    return `<span class="slot-win" aria-hidden="true"><span class="slot-reel" style="--n:${spins * 10 + (+c)};--d:${1.1 + i * 0.35}s">${cells}</span></span>`;
+  }).join('');
+  const go = () => el.classList.add('spin');
+  new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { setTimeout(go, 250); o.disconnect(); } }, { threshold: 0.6 }).observe(el);
+}
+
 // "Time in the field": live years since March 2013, and a gauge with one arc segment per employer.
 function initYears() {
   const el = $('yrs'), now = new Date();
   const years = (now - START) / (365.2425 * 864e5);
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduced) el.textContent = years.toFixed(1);
-  else {
-    const t0 = performance.now();
-    const tick = (t) => { const k = Math.min(1, (t - t0) / 1400); el.textContent = (years * (1 - (1 - k) ** 3)).toFixed(1); if (k < 1) requestAnimationFrame(tick); };
-    requestAnimationFrame(tick);
-  }
+  slotReels(el, years.toFixed(1));
   $('gauge-now').textContent = now.getFullYear();
 
   const y0 = 2013.17, y1 = Math.max(yearFrac(now), 2026.0), cx = 150, cy = 150, R = 118;
@@ -88,7 +97,7 @@ function initTurntable(A) {
     requestAnimationFrame(loop);
     const dt = Math.min(0.05, (t - last) / 1000); last = t;
     if (!visible || !model) return;
-    if (!drag && !reduced) angle += dt * 0.18;
+    if (!drag) angle += dt * (reduced ? 0.08 : 0.15);
     const d = 46;
     camera.position.set(target.x + Math.cos(angle) * d, target.y + 22, target.z + Math.sin(angle) * d);
     camera.lookAt(target);
