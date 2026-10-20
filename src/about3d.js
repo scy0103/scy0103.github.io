@@ -108,6 +108,7 @@ export function initAbout3d() {
   const showCap = (i) => {
     active = i;
     cap.innerHTML = figs[i].querySelector('figcaption').innerHTML;
+    cap.classList.toggle('q', figs[i].classList.contains('ab-q'));   // caption still to confirm
     num.textContent = String(i + 1).padStart(2, '0');
     cap.classList.remove('in'); void cap.offsetWidth; cap.classList.add('in');
   };
