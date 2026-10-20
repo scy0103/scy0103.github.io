@@ -4,7 +4,7 @@ import { chromium } from 'playwright';
 import { mkdirSync } from 'node:fs';
 
 const args = process.argv.slice(2);
-const base = args.find((a) => a.startsWith('http')) || 'http://localhost:5173/';
+const base = args.find((a) => a.startsWith('http')) || 'http://localhost:5174/';
 const opt = (k, d) => (args.find((a) => a.startsWith(`--${k}=`)) || `--${k}=${d}`).split('=')[1];
 const lang = opt('lang', 'en'), only = opt('only', ''), views = opt('views', 'desktop,mobile').split(',');
 // name → how to get there: '#id' scrolls the element's top under the bar, 'story:k' goes to a 3D chapter

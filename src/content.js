@@ -257,6 +257,17 @@ export const GALLERY = [
   ['Kokomo utility hook-up, Navisworks coordination model', '코코모 유틸리티 Hook-up, Navisworks 간섭 조율 모델', 'design', false],
   ['Michigan LGESMI2 CESS tank farm under construction', '미시간 LGESMI2 CESS 탱크 팜 시공 중', 'site', false],
   ['Ohio Ultium Cells CESS, 3D walking view', '오하이오 Ultium Cells CESS 3D 워킹 뷰', 'design', false],
+  // g41-g50: work photos added for the gallery (captions marked ? still to confirm)
+  ['Plant model in AVEVA E3D', 'AVEVA E3D 플랜트 모델', 'design', false],
+  ['Vessels and piping in AVEVA E3D', 'AVEVA E3D 용기·배관 모델', 'design', false],
+  ['Briefing the crew in the site office, USA', '미국 현장 사무실, 작업자 대상 브리핑', 'site', false],
+  ['Coordination meeting with contractors, USA', '미국 현장, 협력사 조율 미팅', 'site', false],
+  ['Walking the line with the piping crew, USA', '미국 현장, 배관 작업자와 현장 점검', 'site', false],
+  ['Getting around a battery plant site, USA', '미국 배터리 공장 현장 이동', 'site', false],
+  ['CESS tank farm, Revit model', 'CESS 탱크 팜 Revit 모델', 'design', false],
+  ['Ohio Ultium Cells CESS, tank-top walking view', '오하이오 Ultium Cells CESS 탱크 상부 워킹 뷰', 'design', false],
+  ['Ohio Ultium Cells CESS, unloading area walking view', '오하이오 Ultium Cells CESS 언로딩 구역 워킹 뷰', 'design', false],
+  ['CESS piping over the tank farm, wireframe view', 'CESS 배관 와이어프레임 뷰', 'design', false],
 ];
 
 /* ---------- dashboard / redesign data ---------- */
@@ -365,8 +376,9 @@ function photo(n) {
   return `<li><figure><button type="button" class="ph-btn" data-full="gallery/g${id}.jpg" aria-label="${g[0]}"><img src="gallery/g${id}_s.jpg" alt="${g[0]}" loading="lazy" decoding="async"></button>${t(g[0], g[1], 'figcaption')}</figure></li>`;
 }
 
-export const renderCarousel = () => GALLERY.filter((g) => g[3] !== false).map((g, i) => {
-  const n = String(i + 1).padStart(2, '0');
+export const CAROUSEL = [43, 45, 44, 46, 1, 47, 48, 49, 50, 2, 3, 41, 42, 4, 5, 6, 7, 8, 11, 12, 13, 14, 15, 9, 16, 10];
+export const renderCarousel = () => CAROUSEL.map((k, i) => {
+  const g = GALLERY[k - 1], n = String(k).padStart(2, '0');
   return `
         <li class="cr-item" style="--i:${i}"><figure><button type="button" class="ph-btn" data-full="gallery/g${n}.jpg" aria-label="${g[0]}"><img src="gallery/g${n}_s.jpg" alt="${g[0]}" loading="lazy" decoding="async" draggable="false"></button>${t(g[0], g[1], 'figcaption')}</figure></li>`;
 }).join('');
@@ -481,3 +493,39 @@ export const renderClients = (logos = new Set()) => CLIENT_LIST.map(([slug, name
   const ext = logos.has(slug + '.svg') ? 'svg' : logos.has(slug + '.png') ? 'png' : null;
   return `<li class="lg${ext ? '' : ' txt'}">${ext ? `<img src="logos/${slug}.${ext}" alt="${name}" loading="lazy">` : `<span>${name}</span>`}</li>`;
 }).join('');
+
+/* ---------- About me ---------- */
+// p01-p07 in public/about. Captions: place, country, and what I was there for.
+export const ABOUT_PHOTOS = [
+  { f: 'p04', c: ['Joffre Lakes, British Columbia', '캐나다 BC주, 조프리 레이크'], s: ['Weekend hike during my year at EBA Tetra Tech, Vancouver', 'EBA Tetra Tech 밴쿠버 근무 시절 주말 산행'], y: '2018', cc: 'ca' },
+  { f: 'p05', c: ['Horseshoe Bay, Vancouver', '캐나다 밴쿠버, 호스슈 베이'], s: ['Studying and working in Vancouver', '밴쿠버 유학·근무 시절'], y: '2017 – 18', cc: 'ca' },
+  { f: 'p03', c: ['Snowy forest, Poland?', '폴란드? 눈 덮인 숲'], s: ['Weekend off during the Wrocław CESS project?', '브로츠와프 CESS 프로젝트 중 휴일?'], y: '2020 – 21', cc: 'pl', q: true },
+  { f: 'p02', c: ['Site office, Europe?', '유럽 현장 사무실?'], s: ['Göd / Wrocław, the COVID-19 years?', '괴드·브로츠와프, 코로나 시기?'], y: '2020 – 21', cc: 'hu', q: true },
+  { f: 'p06', c: ['Prague, Czech Republic', '체코 프라하'], s: ['A day off while posted in Central Europe?', '중부 유럽 근무 중 휴일?'], y: '2021?', cc: 'cz', q: true },
+  { f: 'p07', c: ['On the road in Arizona', '미국 애리조나, 사막 도로'], s: ['Weekend trip while on the Arizona LGAZ CESS site?', 'Arizona LGAZ CESS 현장 근무 중 주말 여행?'], y: '2025', cc: 'us', q: true },
+  { f: 'p01', c: ['Morning drive to site, USA', '미국, 현장 출근길'], s: ['Which project? Ohio, Michigan, Indiana or Arizona', '어느 프로젝트인지 확인 필요'], y: '20??', cc: 'us', q: true },
+];
+export const ABOUT_TAGS = [
+  ['Studied in Vancouver, Canada', '캐나다 밴쿠버 유학'], ['Exchange student, Kyushu University', '일본 규슈대 교환학생'],
+  ['8 countries worked in', '8개국 근무'], ['Forklift and 5-ton truck', '지게차·5톤 트럭 운전'],
+  ['Photo and video editing', '사진·영상 편집'], ['Hiking', '등산'],
+];
+export function renderAbout() {
+  const tags = ABOUT_TAGS.map((x) => t(x[0], x[1], 'li')).join('');
+  const photos = ABOUT_PHOTOS.map((p, i) => `
+        <figure class="ab-ph${p.q ? ' ab-q' : ''}" style="--i:${i}">
+          <button type="button" class="ph-btn" data-full="about/${p.f}.jpg" aria-label="${p.c[0]}"><img src="about/${p.f}_s.jpg" alt="${p.c[0]}" loading="lazy" decoding="async"></button>
+          <figcaption><b>${t(p.c[0], p.c[1])}</b>${t(p.s[0], p.s[1], 'span')}<em>${p.y}</em></figcaption>
+        </figure>`).join('');
+  return `
+      <div class="ab-head">
+        <h2 id="ab-h" class="mega"><span data-en="About" data-ko="About">About</span> <span class="hl" data-en="me" data-ko="me">me</span></h2>
+        <div class="ab-txt">
+          ${t('I started out drawing valves and rolling-stock bogies, then followed piping to eight countries. What I like most about site work is standing at the same drawing with a local crew until it makes sense to everyone.', '밸브와 전동차 대차를 그리던 기계설계에서 시작해 배관을 따라 8개국 현장을 다녔습니다. 낯선 현장에서 현지 작업자와 같은 도면을 펼쳐 놓고, 모두가 이해할 때까지 맞춰 가는 일을 좋아합니다.', 'p')}
+          ${t('Between projects I hike, take photos and edit video, a habit from making company catalogues and promo films early in my career.', '프로젝트 사이에는 산에 오르고, 사진을 찍고, 영상을 편집합니다. 첫 직장에서 카탈로그와 홍보 영상을 만들던 습관이 남았습니다.', 'p')}
+          <ul class="ab-tags">${tags}</ul>
+        </div>
+      </div>
+      <div class="ab-grid">${photos}
+      </div>`;
+}

@@ -9,7 +9,7 @@ import { renderIndustry } from './src/industry.js';
 const BLOCKS = {
   matrix: C.renderMatrix, domains: C.renderDomains, services: C.renderServices, skillrows: C.renderSkillRows,
   timeline: renderTimeline2, summary: renderSummary, industry: renderIndustry, carousel: C.renderCarousel, education: C.renderEducation, certs: C.renderCerts,
-  sites: C.renderSites, radar: C.renderRadar, metrics: C.renderMetrics,
+  sites: C.renderSites, radar: C.renderRadar, about: C.renderAbout, metrics: C.renderMetrics,
   clients: () => C.renderClients(new Set(existsSync('public/logos') ? readdirSync('public/logos') : [])),
 };
 const careerContent = () => ({
