@@ -111,7 +111,7 @@ export const EXPERIENCE = [
         points: [['Buried piping drawings and revisions, BOM, liaison with Korean partners, invoicing.', '매설 배관 도면 출도 및 수정, BOM 관리, 한국 협력사 대응, 인보이스 발행']],
       },
       {
-        cc: 'ca', name: ['Alaska Route 93 highway', '알래스카 93번 국도'], period: '2018 – 2019', size: null, role: null,
+        cc: 'ca', name: ['Alaska Route 93 highway', '알래스카 93번 국도'], photos: [56], period: '2018 – 2019', size: null, role: null,
         points: [['Buried piping drawings, as-built revisions, BOM and invoicing.', '매설 배관 도면 출도, As-built 수정, BOM 관리, 인보이스 발행']],
       },
     ],
@@ -274,6 +274,7 @@ export const GALLERY = [
   ['On site by the nitrogen skid, USA', '미국 현장, 질소 스키드 앞에서', 'site', false],
   ['Coordinating the 3D model in the site office, USA', '미국 현장 사무실, 3D 모델 검토', 'design', false],
   ['Data center cooling water piping, 3D model', '데이터센터 냉각수 배관 3D 모델', 'design', false],
+  ['Alaska Route 93 corridor, above-ground pipeline', '알래스카 93번 국도 구간 지상 배관', 'site', false],
 ];
 
 /* ---------- dashboard / redesign data ---------- */
