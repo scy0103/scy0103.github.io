@@ -47,8 +47,8 @@ export function renderSummary() {
   return `
     <div class="sm-head">
       <p class="sm-kicker" data-reveal>${t('For recruiters, in 30 seconds', '채용 담당자를 위한 30초 요약')}</p>
-      <h2 id="sm-h" data-reveal>${t('A piping PL who brings overseas sites in early and under budget.', '해외 현장을 공기 안에, 예산 안에 끝내는 배관 PL.')}</h2>
-      <p data-reveal>${t('Thirteen years across design and construction. My last three completed US battery projects all finished ahead of plan, and two came in 10–15% under budget.', '설계와 시공을 모두 해온 13년 차 엔지니어입니다. 최근 완료한 미국 배터리 공장 3건은 모두 계획보다 일찍 끝났고, 그중 2건은 예산을 10~15% 절감했습니다.')}</p>
+      <h2 id="sm-h" data-reveal>${t('A piping PL who brings overseas sites in early and under budget.', '해외 현장의 공기와 예산을 지켜 온 배관 PL')}</h2>
+      <p data-reveal>${t('Thirteen years across design and construction. My last three completed US battery projects all finished ahead of plan, and two came in 10–15% under budget.', '설계와 시공을 모두 해온 13년 차 엔지니어입니다. 최근 완료한 미국 배터리 공장 3건은 모두 계획보다 일찍 끝났고 그중 2건은 예산을 10~15% 절감했습니다.')}</p>
       <ul class="sm-fit" data-reveal>${FIT.map((f) => t(f[0], f[1], 'li')).join('')}</ul>
     </div>
     <div class="sm-charts">
