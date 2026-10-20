@@ -87,7 +87,7 @@ button{font:inherit;color:inherit}
 /* live counter under the years figure: days, then h/m/s */
 .yrs-live{display:grid;justify-items:center;gap:0;margin-top:6px;font-variant-numeric:tabular-nums}
 .yrs-d{font-family:var(--display);font-weight:600;font-size:clamp(28px,2.4vw,40px);line-height:1}
-.yrs-d small,.yrs-t small{font-family:var(--text);font-size:14px;font-weight:500;color:var(--soft);margin:0 6px 0 3px}
+.yrs-d small,.yrs-t small{font-family:var(--text);font-size:18px;font-weight:600;color:var(--soft);margin:0 6px 0 3px}
 .yrs-t{font-family:var(--display);font-weight:600;font-size:clamp(20px,1.6vw,26px);color:var(--signal);line-height:1.1}
 .gauge{width:100%;max-width:320px;margin-top:auto;overflow:visible;flex:0 1 auto;min-height:60px}
 .g-base{fill:none;stroke:var(--mute);stroke-width:6}
@@ -583,4 +583,45 @@ html.fx .about{background:transparent}
   .ab-count b{font-size:48px}
   .ab-cap b{font-size:17px}.ab-cap span{font-size:14px}
   .ab-hint{display:none}
+}
+
+/* ---------- metrics v2: column chart, cumulative abroad line, skills dashboard ---------- */
+.mt-cols{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;align-items:end;height:300px}
+.mt-cols li{display:grid;grid-template-rows:auto 1fr auto;height:100%;gap:6px;justify-items:center;text-align:center;min-width:0}
+.mt-cv{font-family:var(--display);font-weight:600;font-size:clamp(17px,1.4vw,22px);align-self:end}
+.mt-col{width:100%;max-width:46px;height:100%;display:flex;align-items:flex-end;background:var(--card-2);border-radius:10px 10px 4px 4px;overflow:hidden}
+.mt-col i{display:block;width:100%;height:var(--h);background:linear-gradient(to top,#E0651A,var(--signal));border-radius:inherit;transform-origin:bottom;transition:transform 1.2s var(--ease) .2s}
+.mt-cols li.bid .mt-col i{background:repeating-linear-gradient(45deg,var(--signal) 0 6px,rgba(255,122,26,.35) 6px 12px)}
+.js .mt-card:not(.in) .mt-col i{transform:scaleY(0)}
+.mt-cl{display:grid;justify-items:center;gap:2px;font-size:13px;line-height:1.25;min-height:52px}
+.mt-cl b{font-weight:700}
+.mt-cl em{font-style:normal;font-size:12px;color:var(--soft)}
+.ab-chart{width:100%;height:auto;margin-top:4px;overflow:visible}
+.ab-grid line{stroke:rgba(234,240,246,.08)}
+.ab-grid text,.ab-y{font-size:11px;fill:var(--soft)}
+.ab-area{fill:url(#abFill)}
+.ab-line{fill:none;stroke:#7FA6D6;stroke-width:2;stroke-linejoin:round;opacity:.6}
+.ab-seg{stroke:var(--signal);stroke-width:4;stroke-linecap:round}
+.ab-legend{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.ab-legend li{display:flex;align-items:center;gap:6px;font-size:13px;background:var(--card-2);border-radius:10px;padding:7px 10px;min-width:0}
+.ab-legend li b{margin-left:auto;font-family:var(--display);font-weight:600;font-size:16px;white-space:nowrap}
+.sk-dash{list-style:none;margin:2px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.sk-g{background:var(--card-2);border-radius:14px;padding:12px 14px}
+.sk-g h4{display:flex;align-items:baseline;gap:8px;margin:0 0 6px;font-size:15px;font-weight:700}
+.sk-g h4 > span:first-child{font-family:var(--display);font-size:15px;color:var(--signal)}
+.sk-g ul{list-style:none;margin:0;padding:0;display:grid}
+.sk-g ul li{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:8px;padding:5px 0;border-top:1px solid rgba(234,240,246,.07);cursor:default}
+.sk-g ul li b{font-size:14px;font-weight:600}
+.sk-g ul li small{grid-column:1/-1;font-size:12px;color:var(--soft);line-height:1.35}
+.sk-lv{font-style:normal;font-size:11px;font-weight:700;color:var(--soft);background:rgba(234,240,246,.08);border-radius:999px;padding:1px 8px;align-self:center}
+.sk-lv.hi{color:var(--on-signal);background:var(--signal)}
+/* the results card fills the row next to the taller skills card */
+.mt-card:has(.mt-res){grid-template-rows:auto auto 1fr;align-content:stretch}
+.mt-card .mt-res{align-content:stretch}
+@media (max-width:1180px){.mt-grid{grid-template-columns:1fr}}
+@media (max-width:760px){
+  .mt-cols{gap:4px;height:260px}
+  .mt-cl{font-size:11px}.mt-cl em{display:none}
+  .ab-legend{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sk-dash{grid-template-columns:1fr}
 }
