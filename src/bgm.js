@@ -1,9 +1,9 @@
-// Background music: "Rhythmania 2" by August Wilhelmsson (Epidemic Sound), played from 0:14 and looped from there.
+// Background music: "Rhythmania 2" by August Wilhelmsson (Epidemic Sound), played from 0:17 and looped from there.
 // Browsers block sound until the visitor interacts, so it starts on the first click/tap/key,
 // and the header button turns it on and off (remembered per visitor).
 import { lang, onLang } from './i18n.js';
 
-const START = 14;
+const START = 17;
 
 export function initBgm() {
   const btn = document.getElementById('bgm'); if (!btn) return;
@@ -22,7 +22,7 @@ export function initBgm() {
     audio.play().then(() => { playing = true; label(); }).catch(() => { playing = false; label(); });
   };
   const stop = () => { audio.pause(); playing = false; label(); };
-  // loop from 0:14, not from the start of the file
+  // loop from 0:17, not from the start of the file
   audio.addEventListener('ended', () => { audio.currentTime = START; audio.play(); });
   audio.addEventListener('loadedmetadata', () => { if (audio.currentTime < START) audio.currentTime = START; });
 
