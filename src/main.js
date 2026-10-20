@@ -6,6 +6,7 @@ import { initGlobe } from './globe.js';
 import { initCarousel } from './carousel.js';
 import { initMotion } from './motion.js';
 import { initFx } from './fx.js';
+import { initBgm } from './bgm.js';
 import './fx.css';
 
 // The 3D FX layer (hero, bloom stage, glass cards, tilt, cursor) is on by default; ?fx=0 shows the plain site.
@@ -14,6 +15,7 @@ if (fx) document.documentElement.classList.add('fx');
 
 initLang();
 initUI();
+initBgm();
 initMotion();
 const A = initStory();     // loads the Project A model once; the dashboard turntable and the FX hero reuse it
 initDashboard(A);
