@@ -496,7 +496,7 @@ export const renderClients = (logos = new Set()) => CLIENT_LIST.map(([slug, name
 }).join('');
 
 /* ---------- About me ---------- */
-// p02-p07 in public/about, oldest first: the 3D gallery (about3d.js) flies through them in this order.
+// p02-p07 in public/about, oldest first: the film strip (about3d.js) runs left to right in this order.
 // Captions: place, country, and what I was there for.
 export const ABOUT_PHOTOS = [
   { f: 'p05', c: ['Horseshoe Bay, Vancouver', '캐나다 밴쿠버, 호스슈 베이'], s: ['Studying and working in Vancouver', '밴쿠버 유학·근무 시절'], y: '2017 – 18', cc: 'ca' },
@@ -530,12 +530,13 @@ export function renderAbout() {
       <div class="ab-stage" id="ab-stage" hidden>
         <div class="ab-sticky">
           <canvas id="ab-gl" aria-hidden="true"></canvas>
+          <div class="ab-labels" id="ab-labels" aria-hidden="true"></div>
+          <div class="ab-bar"><i id="ab-bar"></i></div>
           <div class="ab-hud" aria-live="polite">
             <div class="ab-count"><b id="ab-n">01</b> / ${String(ABOUT_PHOTOS.length).padStart(2, '0')}</div>
             <div class="ab-cap" id="ab-cap"></div>
-            <div class="ab-bar"><i id="ab-bar"></i></div>
           </div>
-          <p class="ab-hint">${t('Scroll to walk through · click a photo to open', '스크롤하면 사진 사이를 걸어 들어갑니다 · 사진을 누르면 크게 봅니다', 'span')}</p>
+          <p class="ab-hint">${t('Scroll or drag · click a photo to open', '스크롤하거나 끌어서 넘겨 보세요 · 사진을 누르면 크게 봅니다', 'span')}</p>
         </div>
       </div>
       <div class="ab-grid" id="ab-grid">${photos}
