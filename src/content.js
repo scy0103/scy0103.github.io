@@ -502,25 +502,25 @@ export const renderClients = (logos = new Set()) => CLIENT_LIST.map(([slug, name
 // p02-p07 in public/about, oldest first: the film strip (about3d.js) runs left to right in this order.
 // Captions: place, country, and what I was there for.
 export const ABOUT_PHOTOS = [
-  { f: 'p22', c: ['Wedding day, Korea', '한국, 결혼식'], s: ['The best day', '인생에서 가장 특별한 날'], y: '20??', cc: 'kr', q: true },
+  { f: 'p22', c: ['Wedding day, Korea', '한국, 결혼식'], s: ['The best day', '인생에서 가장 특별한 날'], y: '', cc: 'kr', q: true },
   { f: 'p05', c: ['Horseshoe Bay, Vancouver', '캐나다 밴쿠버, 호스슈 베이'], s: ['Studying and working in Vancouver', '밴쿠버 유학·근무 시절'], y: '2017 – 18', cc: 'ca' },
   { f: 'p04', c: ['Joffre Lakes, British Columbia', '캐나다 BC주, 조프리 레이크'], s: ['Weekend hike during my year at EBA Tetra Tech, Vancouver', 'EBA Tetra Tech 밴쿠버 근무 시절 주말 산행'], y: '2018', cc: 'ca' },
   { f: 'p14', c: ['Whistler, British Columbia', '캐나다 BC주, 휘슬러'], s: ['Ski day while living in Vancouver', '밴쿠버 시절 스키 여행'], y: '2018', cc: 'ca', q: true },
   { f: 'p13', c: ['Universal Studios Hollywood, USA', '미국 LA, 유니버설 스튜디오'], s: ['Trip from Vancouver?', '밴쿠버 시절 여행?'], y: '2018', cc: 'us', q: true },
   { f: 'p03', c: ['Zakopane, Poland', '폴란드 자코파네'], s: ['Winter in the Tatras while working in Poland', '폴란드 근무 시절, 겨울 타트라산맥'], y: '2020 – 21', cc: 'pl' },
   { f: 'p02', c: ['Dąbrowa Górnicza, Poland', '폴란드 돔브로바'], s: ['SK IE battery separator plant site, during COVID-19', 'SKIE 배터리 분리막 공장 공사 현장, 코로나 시기'], y: '2021', cc: 'pl' },
-  { f: 'p08', c: ['Night swim', '밤 수영'], s: ['Where and when?', '장소·시기 확인 필요'], y: '20??', cc: 'kr', q: true },
+  { f: 'p08', c: ['Night swim', '밤 수영'], s: ['Where and when?', '장소·시기 확인 필요'], y: '', cc: 'kr', q: true },
   { f: 'p12', c: ['Niagara Falls, New York', '미국 뉴욕주, 나이아가라 폭포'], s: ['Weekend trip during the Ohio project', '오하이오 프로젝트 기간 중 주말 여행'], y: '2022', cc: 'us', q: true },
-  { f: 'p21', c: ['Horseshoe Falls, Ontario', '캐나다 온타리오, 나이아가라 호스슈 폭포'], s: ['A rainbow over the falls', '폭포 위에 뜬 무지개'], y: '20??', cc: 'ca', q: true },
-  { f: 'p10', c: ['Toronto, Canada', '캐나다 토론토'], s: ['Gooderham Building, Old Town', '올드타운 구더햄 빌딩 앞'], y: '20??', cc: 'ca', q: true },
-  { f: 'p15', c: ['Chicago Riverwalk, USA', '미국 시카고 리버워크'], s: ['Summer weekend in Chicago', '시카고 여름 주말'], y: '20??', cc: 'us', q: true },
-  { f: 'p09', c: ['With a colleague, USA', '미국, 동료와 함께'], s: ['Who and where?', '누구와 어디서? 확인 필요'], y: '20??', cc: 'us', q: true },
-  { f: 'p20', c: ['Fishing in the fall, USA', '미국, 가을 낚시'], s: ['Bass fishing on a weekend', '주말 배스 낚시'], y: '20??', cc: 'us', q: true },
+  { f: 'p21', c: ['Horseshoe Falls, Ontario', '캐나다 온타리오, 나이아가라 호스슈 폭포'], s: ['A rainbow over the falls', '폭포 위에 뜬 무지개'], y: '', cc: 'ca', q: true },
+  { f: 'p10', c: ['Toronto, Canada', '캐나다 토론토'], s: ['Gooderham Building, Old Town', '올드타운 구더햄 빌딩 앞'], y: '', cc: 'ca', q: true },
+  { f: 'p15', c: ['Chicago Riverwalk, USA', '미국 시카고 리버워크'], s: ['Summer weekend in Chicago', '시카고 여름 주말'], y: '', cc: 'us', q: true },
+  { f: 'p09', c: ['With a colleague, USA', '미국, 동료와 함께'], s: ['Who and where?', '누구와 어디서? 확인 필요'], y: '', cc: 'us', q: true },
+  { f: 'p20', c: ['Fishing in the fall, USA', '미국, 가을 낚시'], s: ['Bass fishing on a weekend', '주말 배스 낚시'], y: '', cc: 'us', q: true },
   { f: 'p11', c: ['Total solar eclipse, Kokomo, Indiana', '미국 인디애나 코코모, 개기일식'], s: ['Watching the eclipse with the crew on site', '현장 동료들과 개기일식 관람'], y: '2024', cc: 'us', q: true },
-  { f: 'p16', c: ['New truck day, USA', '미국, 새 픽업트럭'], s: ['With my daughter', '딸과 함께'], y: '20??', cc: 'us', q: true },
-  { f: 'p17', c: ['Family trip, Florida?', '미국 플로리다? 가족 여행'], s: ['First pool day with my daughter', '딸과 함께한 수영장'], y: '20??', cc: 'us', q: true },
-  { f: 'p18', c: ['Chicago in winter, USA', '미국 시카고, 겨울'], s: ['Shoulder ride with my daughter', '딸을 목마 태우고'], y: '20??', cc: 'us', q: true },
-  { f: 'p19', c: ['Meeting Santa, USA', '미국, 산타와 첫 만남'], s: ['Not everyone was a fan', '딸은 산타가 무서웠던 날'], y: '20??', cc: 'us', q: true },
+  { f: 'p16', c: ['New truck day, USA', '미국, 새 픽업트럭'], s: ['With my daughter', '딸과 함께'], y: '', cc: 'us', q: true },
+  { f: 'p17', c: ['Family trip, Florida?', '미국 플로리다? 가족 여행'], s: ['First pool day with my daughter', '딸과 함께한 수영장'], y: '', cc: 'us', q: true },
+  { f: 'p18', c: ['Chicago in winter, USA', '미국 시카고, 겨울'], s: ['Shoulder ride with my daughter', '딸을 목마 태우고'], y: '', cc: 'us', q: true },
+  { f: 'p19', c: ['Meeting Santa, USA', '미국, 산타와 첫 만남'], s: ['Not everyone was a fan', '딸은 산타가 무서웠던 날'], y: '', cc: 'us', q: true },
   { f: 'p07', c: ['Grand Canyon West, USA', '미국 그랜드캐니언 웨스트'], s: ['Weekend trip during the Arizona LGAZ CESS project', 'Arizona LGAZ CESS 프로젝트 기간 중 주말 여행'], y: '2025 –', cc: 'us' },
   { f: 'p06', c: ['Hungary', '헝가리'], s: ['Business trip for the CATL Debrecen project meetings', 'CATL 데브레첸 프로젝트 업무 미팅 출장'], y: '2026', cc: 'hu' },
 ];
@@ -533,7 +533,7 @@ export function renderAbout() {
   const photos = ABOUT_PHOTOS.map((p, i) => `
         <figure class="ab-ph${p.q ? ' ab-q' : ''}" style="--i:${i}" data-cc="${p.cc}" data-y="${p.y}">
           <button type="button" class="ph-btn" data-full="about/${p.f}.jpg" aria-label="${p.c[0]}"><img src="about/${p.f}_s.jpg" alt="${p.c[0]}" loading="lazy" decoding="async"></button>
-          <figcaption><b>${t(p.c[0], p.c[1])}</b>${t(p.s[0], p.s[1], 'span')}<em>${p.y}</em></figcaption>
+          <figcaption><b>${t(p.c[0], p.c[1])}</b>${t(p.s[0], p.s[1], 'span')}${p.y ? `<em>${p.y}</em>` : ''}</figcaption>
         </figure>`).join('');
   return `
       <div class="ab-head">

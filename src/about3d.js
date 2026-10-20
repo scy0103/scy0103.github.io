@@ -73,7 +73,7 @@ export function initAbout3d() {
     strip.add(m);
     const lab = document.createElement('div');
     lab.className = 'ab-lab';
-    lab.innerHTML = `<img src="flags/${fig.dataset.cc}.svg" alt=""><span>${fig.dataset.y}</span>`;
+    lab.innerHTML = `<img src="flags/${fig.dataset.cc}.svg" alt="">${fig.dataset.y ? `<span>${fig.dataset.y}</span>` : ''}`;
     labels.appendChild(lab);
     m.userData.lab = lab;
     return m;
