@@ -22,7 +22,7 @@ export function renderIndustry() {
   }).join('');
   const top = INDUSTRY[0], pct = Math.round(top.p.length / total * 100);
   const legend = INDUSTRY.map((d, i) => `<li data-i="${i}" tabindex="0"><i style="background:${d.c}"></i>${t(d.k[0], d.k[1], 'span', 'in-k')}<span class="in-n"><b>${d.p.length}</b><em>${Math.round(d.p.length / total * 100)}%</em></span></li>`).join('');
-  const lists = INDUSTRY.map((d, i) => `<p class="in-list" data-i="${i}"${i ? ' hidden' : ''}>${d.p.map((x) => t(x[0], x[1])).join('<i aria-hidden="true"> · </i>')}</p>`).join('');
+  const lists = INDUSTRY.map((d, i) => `<ul class="in-list" data-i="${i}" style="--dot:${d.c}"${i ? ' hidden' : ''}>${d.p.map((x, k) => `<li style="--k:${k}">${t(x[0], x[1])}</li>`).join('')}</ul>`).join('');
   return `
       <div class="in-wrap">
         <svg class="in-donut" viewBox="0 0 180 180" role="img" aria-label="${INDUSTRY.map((d) => `${d.k[0]} ${d.p.length}`).join(', ')} of ${total} projects">
@@ -41,7 +41,8 @@ export function initIndustry() {
   const show = (i) => {
     arcs.forEach((a, j) => a.classList.toggle('on', j === i));
     rows.forEach((r, j) => r.classList.toggle('on', j === i));
-    lists.forEach((l, j) => { l.hidden = j !== i; });
+    // re-showing a list restarts the drop-in animation, so its projects unfold one by one
+    lists.forEach((l, j) => { if (j === i && l.hidden) { l.hidden = false; l.querySelectorAll('li').forEach((li) => { li.style.animation = 'none'; void li.offsetWidth; li.style.animation = ''; }); } else if (j !== i) l.hidden = true; });
   };
   [...arcs, ...rows].forEach((el) => {
     const i = +el.dataset.i;

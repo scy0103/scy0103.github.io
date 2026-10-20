@@ -29,6 +29,15 @@ function initYears() {
   const years = (now - START) / (365.2425 * 864e5);
   slotReels(el, years.toFixed(1));
   $('gauge-now').textContent = now.getFullYear();
+  // live count since the start date: days, then hours / minutes / seconds
+  const pad = (n) => String(n).padStart(2, '0');
+  const tick = () => {
+    let s = Math.floor((Date.now() - START) / 1000);
+    const d = Math.floor(s / 86400); s -= d * 86400;
+    $('yrs-d').textContent = d.toLocaleString('en-US');
+    $('yrs-h').textContent = Math.floor(s / 3600); $('yrs-m').textContent = pad(Math.floor(s / 60) % 60); $('yrs-s').textContent = pad(s % 60);
+  };
+  tick(); setInterval(tick, 1000);
 
   const y0 = 2013.17, y1 = Math.max(yearFrac(now), 2026.0), cx = 150, cy = 150, R = 118;
   const ang = (y) => Math.PI * (1 - (y - y0) / (y1 - y0)); // 180° at 2013 → 0° today
