@@ -607,6 +607,8 @@ html.fx .about{background:transparent}
 .sc-v{font-family:var(--display);font-weight:600;font-size:18px;fill:var(--ink)}
 .sc-n{font-size:12.5px;font-weight:700;fill:var(--ink)}
 .sc-y{font-size:11px;fill:var(--soft)}
+.ac-bar{fill:url(#abBar)}
+.ab-c:hover .ac-bar{fill:#B5D2F2}
 .sk-dash{list-style:none;margin:2px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .sk-g{background:var(--card-2);border-radius:14px;padding:12px 14px}
 .sk-g h4{display:flex;align-items:baseline;gap:8px;margin:0 0 6px;font-size:15px;font-weight:700}

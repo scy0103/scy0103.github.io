@@ -464,6 +464,28 @@ export const ABROAD = [
   { n: ['United States', '미국'], cc: 'us', a: 2021.67, b: 2026.8, m: 48 },
 ];
 const dur = (m) => (m >= 12 ? [`${Math.floor(m / 12)} yr${m >= 24 ? 's' : ''}${m % 12 ? ` ${m % 12} mo` : ''}`, `${Math.floor(m / 12)}년${m % 12 ? ` ${m % 12}개월` : ''}`] : [`${m} mo`, `${m}개월`]);
+// time abroad as columns, drawn on the same frame and type sizes as the project line chart
+function abroadChart() {
+  const W = 640, H = 300, L = 44, R = 24, T = 30, B = 62, YM = 60;
+  const n = ABROAD.length, slot = (W - L - R - 40) / (n - 1), bw = 34;
+  const x = (k) => L + 20 + k * slot, y = (m) => T + (1 - m / YM) * (H - T - B);
+  const grid = [0, 12, 24, 36, 48, 60].map((m) => `<line x1="${L}" x2="${W - R}" y1="${y(m)}" y2="${y(m)}"/><text x="${L - 8}" y="${y(m) + 4}" text-anchor="end">${m / 12}</text>`).join('');
+  const bars = ABROAD.map((s, k) => {
+    const top = Math.min(y(s.m), y(0) - 3), d = dur(s.m);
+    return `<g class="ab-c"><title>${s.n[0]}: ${d[0]}</title>
+            <rect class="ac-bar" x="${(x(k) - bw / 2).toFixed(1)}" y="${top.toFixed(1)}" width="${bw}" height="${(y(0) - top).toFixed(1)}" rx="6"/>
+            <text class="sc-v" x="${x(k).toFixed(1)}" y="${(top - 10).toFixed(1)}" text-anchor="middle" data-en="${d[0]}" data-ko="${d[1]}">${d[1]}</text>
+            <image href="flags/${s.cc}.svg" x="${(x(k) - 10).toFixed(1)}" y="${H - B + 12}" width="20" height="14" preserveAspectRatio="xMidYMid slice"/>
+            <text class="sc-n" x="${x(k).toFixed(1)}" y="${H - B + 42}" text-anchor="middle" data-en="${s.n[0] === 'United States' ? 'USA' : s.n[0] === 'Saudi Arabia' ? 'Saudi' : s.n[0]}" data-ko="${s.n[1]}">${s.n[1]}</text>
+            <text class="sc-y" x="${x(k).toFixed(1)}" y="${H - B + 58}" text-anchor="middle">${Math.floor(s.a)}</text></g>`;
+  }).join('');
+  return `<svg class="sc-chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Time on overseas sites: ${ABROAD.map((s) => `${s.n[0]} ${s.m} months`).join(', ')}">
+          <defs><linearGradient id="abBar" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#9CC0EA"/><stop offset="1" stop-color="#5E86B8"/></linearGradient></defs>
+          <g class="sc-grid">${grid}<text x="${L - 8}" y="${T - 14}" text-anchor="end">${'yrs'}</text></g>
+          ${bars}
+        </svg>`;
+}
+
 // project scale as a line over time: one point per project in start order, KRW 100 million on the y axis
 function scaleChart() {
   const P = [...SCALE].sort((a, b) => a.y - b.y);
@@ -495,9 +517,6 @@ export function renderMetrics() {
   const kpis = KPIS.map((k) => `<div class="mt-kpi" data-reveal><b>${k.v}<small>${t(k.u[0], k.u[1])}</small></b>${t(k.k[0], k.k[1], 'span')}</div>`).join('');
   const maxS = Math.max(...SCALE.map((s) => s.v));
   // vertical columns: value on top, flag, short name and role underneath
-  // time abroad as vertical columns, oldest stint first
-  const maxA = Math.max(...ABROAD.map((s) => s.m));
-  const abroad = ABROAD.map((s) => `<li title="${s.n[0]}"><span class="mt-cv">${t(dur(s.m)[0], dur(s.m)[1])}</span><span class="mt-col alt"><i style="--h:${(s.m / maxA * 100).toFixed(1)}%"></i></span><span class="mt-cl">${flags([s.cc])}${t(s.n[0], s.n[1], 'b')}<em>${Math.floor(s.a)}</em></span></li>`).join('');
   // skills as a dashboard: four groups, tools as rows with a level tag where the matrix has one
   const lvl = Object.fromEntries(MATRIX.map((m) => [m[0], m]));
   const lv = (name) => { const k = Object.keys(lvl).find((n) => name.includes(n) || n.includes(name.split(' ')[0])); return k ? `<em class="sk-lv${lvl[k][1] === 'Advanced' ? ' hi' : ''}">${t(lvl[k][1], lvl[k][2])}</em>` : ''; };
@@ -516,7 +535,7 @@ export function renderMetrics() {
       <article class="mt-card" data-reveal>
         <h3>${t('Time on overseas sites', '해외 현장 근무 기간')}</h3>
         <p class="mt-sub">${t('About 7 years 3 months in total', '합계 약 7년 3개월')}</p>
-        <ol class="mt-cols">${abroad}</ol>
+        ${abroadChart()}
       </article>
       <article class="mt-card" data-reveal>
         <h3>${t('Delivered ahead and under budget', '공기 단축과 원가 절감')}</h3>
