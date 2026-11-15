@@ -528,6 +528,8 @@ body.in-story .skip-story{opacity:1;pointer-events:auto}
 /* LinkedIn: round icon in the top bar, labelled button in contact */
 .li-btn{width:50px;height:50px;border-radius:999px;background:var(--card);color:var(--soft);display:flex;align-items:center;justify-content:center;flex:none;transition:background .2s,color .2s}
 .li-btn:hover{background:#0A66C2;color:#fff}
+.in-btn:hover{background:#2164F3;color:#fff}
+.ct-facts .wide{grid-column:1/-1}
 .li-link{gap:8px}
 .li-link svg{color:#0A66C2;background:#fff;border-radius:3px}
 @media (max-width:520px){.li-btn{display:none}.menu-btn{width:40px;height:40px}.lang button{padding:6px 10px;font-size:14px}}
