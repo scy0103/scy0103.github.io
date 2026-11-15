@@ -6,6 +6,11 @@ export function setLang(l) {
   lang = l;
   document.documentElement.lang = l;
   document.querySelectorAll('[data-en]').forEach((el) => { el.textContent = el.getAttribute('data-' + l); });
+  // resume links: Korean resume for KO, English resume for EN
+  document.querySelectorAll('[data-href-en]').forEach((el) => {
+    el.setAttribute('href', el.getAttribute('data-href-' + l));
+    el.setAttribute('download', el.getAttribute('data-dl-' + l));
+  });
   document.getElementById('lang-en').setAttribute('aria-pressed', l === 'en');
   document.getElementById('lang-ko').setAttribute('aria-pressed', l === 'ko');
   listeners.forEach((fn) => fn(l));
