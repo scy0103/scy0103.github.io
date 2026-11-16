@@ -112,6 +112,7 @@
       <a class="btn small" href="#career" data-en="Full career" data-ko="전체 경력">Full career</a>
       <canvas id="globe" aria-label="Globe with pins on 14 project sites in 8 countries"></canvas>
       <div class="g-tip" id="g-tip" role="tooltip" hidden></div>
+      <button type="button" class="btn small g-play" id="g-play" aria-pressed="false">▶ Play my journey</button>
       <div class="g-cap" aria-live="polite">
         <p class="g-place" id="g-place"><img class="g-flag" src="flags/us.svg" alt="">미국 애리조나</p>
         <p class="g-name" id="g-name">Arizona LGAZ CESS</p>
@@ -242,10 +243,144 @@
   </section>
   </div>
 
+  <!-- ============ MODEL LAB: 4D build, clash before/after, P&ID to 3D ============ -->
+  <section id="lab" class="lab" data-sec="story" data-mode="build" aria-labelledby="lab-h">
+    <h2 id="lab-h" class="mega"><span data-en="One model," data-ko="모델 하나로">One model,</span><span class="hl" data-en="three ways to use it." data-ko="공정, 간섭, P&amp;ID까지">three ways to use it.</span></h2>
+    <p class="lab-lead" data-en="The same Revit model drives the schedule, the clash meetings and the P&amp;ID check. Try each one." data-ko="같은 Revit 모델로 공정을 보고, 간섭을 잡고, P&amp;ID를 대조합니다. 하나씩 눌러 보세요.">The same Revit model drives the schedule, the clash meetings and the P&amp;ID check. Try each one.</p>
+    <div class="lab-tabs" role="tablist" aria-label="Model lab">
+      <button type="button" role="tab" aria-selected="true" data-tab="build" data-en="4D build sequence" data-ko="4D 시공 시퀀스">4D build sequence</button>
+      <button type="button" role="tab" aria-selected="false" tabindex="-1" data-tab="clash" data-en="Clash: before and after" data-ko="간섭 해결 전후">Clash: before and after</button>
+      <button type="button" role="tab" aria-selected="false" tabindex="-1" data-tab="pid" data-en="P&amp;ID to 3D" data-ko="P&amp;ID와 3D 연동">P&amp;ID to 3D</button>
+    </div>
+    <div class="lab-stage" id="lab-stage">
+      <div class="lab-view">
+        <canvas id="lab-gl" aria-label="3D view of the Project A model"></canvas>
+        <p class="lab-load" data-en="Loading the model…" data-ko="모델을 불러오는 중…">Loading the model…</p>
+        <p class="lab-now" id="lab-now" aria-live="polite"></p>
+        <div class="lab-tag"></div><div class="lab-tag"></div>
+        <p class="lab-hint" data-en="Drag to turn" data-ko="드래그해서 돌려 보기">Drag to turn</p>
+      </div>
+      <div class="lab-side">
+        <div class="lab-pane" data-pane="build">
+          <h3 data-en="Build it on the schedule" data-ko="공정표대로 지어 보기">Build it on the schedule</h3>
+          <p data-en="Press play or drag the timeline. The plant goes up in installation order while the plan and actual bars run side by side." data-ko="재생을 누르거나 타임라인을 끌어 보세요. 설치 순서대로 공장이 올라가고 계획과 실제 공정이 나란히 진행됩니다.">Press play or drag the timeline. The plant goes up in installation order while the plan and actual bars run side by side.</p>
+          <div class="lab-chips" id="lab-proj" role="group" aria-label="Project"></div>
+          <div class="gantt" id="lab-gantt"></div>
+          <p class="gt-key"><span><i class="k-plan"></i><em data-en="Planned" data-ko="계획">Planned</em></span><span><i class="k-act"></i><em data-en="Actual" data-ko="실제">Actual</em></span></p>
+          <div class="lab-saved" id="lab-saved"></div>
+          <div class="lab-ctl"><button type="button" class="btn accent" id="lab-play" aria-pressed="false">▶ Play</button><input type="range" id="lab-range" min="0" max="1000" value="0" aria-label="Timeline"></div>
+          <p class="lab-read" id="lab-read" aria-live="off"></p>
+          <p class="lab-note" data-en="The model is Project A. Plan and actual durations are the recorded figures of each project; the split between phases is illustrative." data-ko="모델은 Project A입니다. 계획, 실제 기간은 각 프로젝트의 실제 수치이고 공종별 배분은 예시입니다.">The model is Project A. Plan and actual durations are the recorded figures of each project; the split between phases is illustrative.</p>
+        </div>
+        <div class="lab-pane" data-pane="clash" hidden>
+          <h3 data-en="One crossing, before and after" data-ko="교차부 하나, 해결 전과 후">One crossing, before and after</h3>
+          <div class="lab-seg" role="group" aria-label="Clash state">
+            <button type="button" data-clash="0" aria-pressed="true" data-en="Before" data-ko="해결 전">Before</button>
+            <button type="button" data-clash="1" aria-pressed="false" data-en="After" data-ko="해결 후">After</button>
+          </div>
+          <p class="lab-stat warn"><b id="lab-open">2</b><span data-en="crossings open" data-ko="미해결 간섭">crossings open</span></p>
+          <ul class="lab-list" data-clash-txt="0">
+            <li data-en="A new line is routed at header elevation and runs straight into two existing headers under the cable tray." data-ko="신규 라인이 헤더와 같은 레벨로 배치되어 케이블 트레이 아래 기존 헤더 2개와 간섭합니다.">A new line is routed at header elevation and runs straight into two existing headers under the cable tray.</li>
+            <li data-en="It is caught in the model at the clash meeting, before any spool is cut." data-ko="스풀 제작 전에 간섭 미팅에서 모델로 잡아냅니다.">It is caught in the model at the clash meeting, before any spool is cut.</li>
+          </ul>
+          <ul class="lab-list" data-clash-txt="1" hidden>
+            <li data-en="The line drops under both headers with two 45-degree sets and comes back up to elevation." data-ko="45도 엘보 2세트로 두 헤더 아래로 내렸다가 원래 레벨로 복귀합니다.">The line drops under both headers with two 45-degree sets and comes back up to elevation.</li>
+            <li data-en="Clearance is kept for insulation and valve access, and the tray above stays untouched." data-ko="보온 두께와 밸브 조작 공간을 확보하고 상부 트레이는 건드리지 않습니다.">Clearance is kept for insulation and valve access, and the tray above stays untouched.</li>
+            <li data-en="Agreed by all three contractors in the meeting, then issued in the shop drawings." data-ko="미팅에서 시공 3사가 합의한 뒤 제작 도면에 반영합니다.">Agreed by all three contractors in the meeting, then issued in the shop drawings.</li>
+          </ul>
+          <p class="lab-note" data-en="An illustrative crossing rebuilt from the pattern of my coordination work. It is not client geometry." data-ko="제 간섭 조율 업무의 전형적인 패턴을 재구성한 예시이며 고객사 형상이 아닙니다.">An illustrative crossing rebuilt from the pattern of my coordination work. It is not client geometry.</p>
+        </div>
+        <div class="lab-pane" data-pane="pid" hidden>
+          <h3 data-en="Click the P&amp;ID, see it in 3D" data-ko="P&amp;ID를 누르면 3D에서 확인">Click the P&amp;ID, see it in 3D</h3>
+          <p data-en="Pick an item on the diagram and the camera flies to the same part of the model." data-ko="도면의 항목을 누르면 카메라가 모델의 같은 위치로 이동합니다.">Pick an item on the diagram and the camera flies to the same part of the model.</p>
+          <svg class="pid" viewBox="0 0 560 300" role="group" aria-label="Simplified P&amp;ID of the CESS supply system">
+            <path class="ln ret" d="M510 270V286H22V95H40M270 270V286M350 270V286M430 270V286"/>
+            <g class="hot" data-node="tank" tabindex="0" role="button" aria-label="Storage tanks and transfer pump">
+              <rect class="hit" x="14" y="34" width="190" height="156"/>
+              <rect class="sym" x="40" y="58" width="40" height="72" rx="16"/>
+              <rect class="sym" x="95" y="58" width="40" height="72" rx="16"/>
+              <path class="ln" d="M60 130V150H171M115 130V150"/>
+              <circle class="sym" cx="185" cy="150" r="14"/>
+              <path class="sym" d="M178 142L196 150L178 158Z"/>
+              <text x="88" y="48" text-anchor="middle" data-en="Storage tanks" data-ko="저장 탱크">Storage tanks</text>
+              <text x="185" y="182" text-anchor="middle" data-en="Transfer pump" data-ko="이송 펌프">Transfer pump</text>
+            </g>
+            <g class="hot" data-node="header" tabindex="0" role="button" aria-label="Distribution header">
+              <rect class="hit" x="206" y="116" width="336" height="42"/>
+              <path class="ln" d="M199 150H536" style="stroke-width:3"/>
+              <text x="372" y="138" text-anchor="middle" data-en="Distribution header, about 150 m" data-ko="이송 헤더, 약 150 m">Distribution header, about 150 m</text>
+            </g>
+            <g class="hot" data-node="pou1" tabindex="0" role="button" aria-label="POU 01 isolation valve and instruments">
+              <rect class="hit" x="236" y="160" width="68" height="118"/>
+              <path class="ln" d="M270 150V240"/>
+              <path class="sym" d="M261 176H279L261 194H279Z"/>
+              <path class="ln" d="M270 216H282" style="stroke-width:1.2"/>
+              <circle class="sym" cx="292" cy="216" r="10"/>
+              <text x="292" y="219.5" text-anchor="middle" style="font-size:8.5px">PT</text>
+              <rect class="sym" x="246" y="240" width="48" height="30" rx="4"/>
+              <text x="270" y="259" text-anchor="middle">POU 01</text>
+            </g>
+            <g class="hot" data-node="pou2" tabindex="0" role="button" aria-label="POU 02 isolation valve and instruments">
+              <rect class="hit" x="316" y="160" width="68" height="118"/>
+              <path class="ln" d="M350 150V240"/>
+              <path class="sym" d="M341 176H359L341 194H359Z"/>
+              <path class="ln" d="M350 216H362" style="stroke-width:1.2"/>
+              <circle class="sym" cx="372" cy="216" r="10"/>
+              <text x="372" y="219.5" text-anchor="middle" style="font-size:8.5px">PT</text>
+              <rect class="sym" x="326" y="240" width="48" height="30" rx="4"/>
+              <text x="350" y="259" text-anchor="middle">POU 02</text>
+            </g>
+            <g class="hot" data-node="pou3" tabindex="0" role="button" aria-label="POU 03 isolation valve and instruments">
+              <rect class="hit" x="396" y="160" width="68" height="118"/>
+              <path class="ln" d="M430 150V240"/>
+              <path class="sym" d="M421 176H439L421 194H439Z"/>
+              <path class="ln" d="M430 216H442" style="stroke-width:1.2"/>
+              <circle class="sym" cx="452" cy="216" r="10"/>
+              <text x="452" y="219.5" text-anchor="middle" style="font-size:8.5px">PT</text>
+              <rect class="sym" x="406" y="240" width="48" height="30" rx="4"/>
+              <text x="430" y="259" text-anchor="middle">POU 03</text>
+            </g>
+            <g class="hot" data-node="pou4" tabindex="0" role="button" aria-label="POU 04 isolation valve and instruments">
+              <rect class="hit" x="476" y="160" width="68" height="118"/>
+              <path class="ln" d="M510 150V240"/>
+              <path class="sym" d="M501 176H519L501 194H519Z"/>
+              <path class="ln" d="M510 216H522" style="stroke-width:1.2"/>
+              <circle class="sym" cx="532" cy="216" r="10"/>
+              <text x="532" y="219.5" text-anchor="middle" style="font-size:8.5px">PT</text>
+              <rect class="sym" x="486" y="240" width="48" height="30" rx="4"/>
+              <text x="510" y="259" text-anchor="middle">POU 04</text>
+            </g>
+            <text x="150" y="281" text-anchor="middle" data-en="Return line" data-ko="회수 라인">Return line</text>
+          </svg>
+          <p class="lab-node" id="lab-node" aria-live="polite"></p>
+          <p class="lab-note" data-en="A simplified schematic of this system, drawn for this page. Tags and line numbers are not shown." data-ko="이 시스템을 단순화해 이 페이지용으로 그린 계통도입니다. Tag와 라인 번호는 표시하지 않았습니다.">A simplified schematic of this system, drawn for this page. Tags and line numbers are not shown.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ SKILLS ============ -->
   <section id="skills" class="skills" data-sec="skills" aria-labelledby="sk-h">
     <h2 id="sk-h" class="mega"><span data-reveal data-en="Overseas plant projects," data-ko="해외 플랜트 프로젝트">Overseas plant projects,</span><span data-reveal class="hl" data-en="by the numbers." data-ko="수행 실적">by the numbers.</span></h2>
     <div class="metrics" aria-label="Career in numbers"><!--@metrics--></div>
+  </section>
+
+  <!-- ============ DRAWN, THEN BUILT ============ -->
+  <section id="built" class="built-sec" data-sec="work" aria-labelledby="bt-h">
+    <h2 id="bt-h" class="mega"><span data-en="Drawn in the model," data-ko="모델에서 그리고">Drawn in the model,</span><span class="hl" data-en="then built on site." data-ko="현장에서 시공합니다">then built on site.</span></h2>
+    <div class="cmp">
+      <div class="lab-chips" id="cmp-pick" role="group" aria-label="Area"></div>
+      <div class="cmp-frame" id="cmp-frame">
+        <img id="cmp-b" alt="" decoding="async">
+        <img id="cmp-a" alt="" decoding="async">
+        <span class="cmp-lab l" data-en="3D model" data-ko="3D 모델">3D model</span>
+        <span class="cmp-lab r" data-en="On site" data-ko="현장">On site</span>
+        <div class="cmp-bar"><i aria-hidden="true">↔</i></div>
+        <input type="range" id="cmp-range" min="0" max="100" value="50" step="0.5" aria-label="Slide between the 3D model and the site photo">
+      </div>
+      <div class="cmp-cap" id="cmp-cap"></div>
+      <p class="lab-note" data-en="Each pair shows the same kind of area in the model and on site. Views are matched by area, not pixel for pixel." data-ko="같은 종류의 구역을 모델 화면과 현장 사진으로 짝지었습니다. 화각까지 똑같이 맞춘 것은 아닙니다.">Each pair shows the same kind of area in the model and on site. Views are matched by area, not pixel for pixel.</p>
+    </div>
   </section>
 
   <!-- ============ WORK CAROUSEL ============ -->
@@ -311,6 +446,15 @@
   <p class="foot-name" aria-hidden="true">Jacob Song</p>
   <p class="foot-line"><span>© 2026 Jacob Song (송찬영)</span><span data-en="Client logos from Wikimedia Commons; POSCO E&amp;C logo CC BY-SA 4.0. Logos are the property of their owners." data-ko="고객사 로고 출처: Wikimedia Commons (POSCO E&amp;C 로고 CC BY-SA 4.0). 각 로고의 권리는 해당 회사에 있습니다.">Client logos from Wikimedia Commons; POSCO E&amp;C logo CC BY-SA 4.0. Logos are the property of their owners.</span><span data-en="Project A is my own Revit model; names, tags and coordinates removed. Project B is a procedural rebuild, not client geometry." data-ko="Project A는 제 Revit 모델이며 명칭, Tag, 좌표를 삭제했습니다. Project B는 절차적 재구성이며 고객사 형상이 아닙니다.">Project A is my own Revit model; names, tags and coordinates removed. Project B is a procedural rebuild, not client geometry.</span></p>
 </footer>
+
+<div class="tour" id="tour" hidden role="region" aria-label="Guided tour">
+  <div class="tour-top"><span class="tour-k" data-en="60-second tour" data-ko="60초 투어">60-second tour</span><div class="tour-dots" id="tour-dots" aria-hidden="true"></div><button type="button" class="tour-exit" id="tour-exit" data-en="Exit" data-ko="닫기">Exit</button></div>
+  <p class="tour-cap" id="tour-cap" aria-live="polite"></p>
+  <div class="tour-end" id="tour-end" hidden>
+    <a class="btn accent" href="resume/song-chanyoung-resume.pdf" download="송찬영_이력서.pdf" data-href-ko="resume/song-chanyoung-resume.pdf" data-dl-ko="송찬영_이력서.pdf" data-href-en="resume/jacob-song-resume-en.pdf" data-dl-en="Chanyoung_Jacob_Song_Resume.pdf" data-en="Download resume (PDF)" data-ko="이력서 PDF 받기">Download resume (PDF)</a>
+    <a class="btn ghost" id="tour-mail" href="#contact" data-en="E-mail me" data-ko="메일 보내기">E-mail me</a>
+  </div>
+</div>
 
 <div class="hud-xy" id="hud-xy" aria-hidden="true">X:0000 Y:0000 P:000% S:DASHBOARD</div>
 

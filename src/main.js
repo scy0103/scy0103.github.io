@@ -8,7 +8,11 @@ import { initMotion } from './motion.js';
 import { initFx } from './fx.js';
 import { initBgm } from './bgm.js';
 import { initAbout3d } from './about3d.js';
+import { initLab } from './lab.js';
+import { initCompare } from './compare.js';
+import { initTour } from './tour.js';
 import './fx.css';
+import './wow.css';
 
 // The 3D FX layer (hero, bloom stage, glass cards, tilt, cursor) is on by default; ?fx=0 shows the plain site.
 const fx = new URLSearchParams(location.search).get('fx') !== '0';
@@ -23,4 +27,7 @@ initDashboard(A);
 initGlobe();
 initCarousel();
 initAbout3d();
+const lab = A ? initLab(A) : null;   // 4D build, clash before/after, P&ID to 3D on one canvas
+initCompare();
+initTour(lab);
 if (fx) initFx(A);

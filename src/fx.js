@@ -27,6 +27,7 @@ function heroMarkup() {
       <div class="fx-cta">
         <a class="btn accent big" href="#career" data-en="See my career" data-ko="경력 보기"></a>
         <a class="btn ghost big" href="#contact" data-en="Contact me" data-ko="연락하기"></a>
+        <button type="button" class="btn big tour-btn" data-tour data-en="▶ 60-second tour" data-ko="▶ 60초 투어"></button>
       </div>
     </div>
     <a class="fx-cue" href="#top"><span data-en="Scroll" data-ko="스크롤"></span><i></i></a>`;

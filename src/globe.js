@@ -102,6 +102,16 @@ export function initGlobe() {
     const line = new THREE.Line(geo, arcMat); world.add(line); return line;
   });
 
+  // career journey: the sites in the order I worked them, joined leg by leg when "Play my journey" runs
+  const ROUTE = [11, 13, 12, 10, 4, 8, 9, 7, 5, 6, 3, 2, 1, 0];
+  const legMat = new THREE.LineBasicMaterial({ color: 0xffb066, transparent: true, opacity: 0.95 });
+  const legs = ROUTE.slice(1).map((bi, k) => {
+    const a = toVec(SITES[ROUTE[k]].lat, SITES[ROUTE[k]].lon, 1.012), b = toVec(SITES[bi].lat, SITES[bi].lon, 1.012);
+    const mid = a.clone().add(b).normalize().multiplyScalar(1.012 + a.distanceTo(b) * 0.3);
+    const geo = new THREE.BufferGeometry().setFromPoints(new THREE.QuadraticBezierCurve3(a, mid, b).getPoints(64)); geo.setDrawRange(0, 0);
+    const line = new THREE.Line(geo, legMat); line.userData.want = 0; world.add(line); return line;
+  });
+
   // caption + list
   const place = $('g-place'), name = $('g-name'), yr = $('g-yr'), list = $('g-list');
   let cur = 0, pauseUntil = 0;
@@ -124,6 +134,23 @@ export function initGlobe() {
   };
   $('g-prev').addEventListener('click', () => { focus(cur - 1); pauseUntil = performance.now() + 9000; });
   $('g-next').addEventListener('click', () => { focus(cur + 1); pauseUntil = performance.now() + 9000; });
+
+  // journey playback: one stop every 1.7 s, the trail stays up for a few seconds at the end
+  const playBtn = $('g-play');
+  let trip = null;
+  const tripLabel = () => {
+    if (!playBtn) return;
+    playBtn.setAttribute('aria-pressed', !!trip);
+    playBtn.textContent = lang === 'ko' ? (trip ? '■ 정지' : '▶ 커리어 여정 재생') : (trip ? '■ Stop' : '▶ Play my journey');
+  };
+  const tripStop = () => { if (!trip) return; trip = null; legs.forEach((l) => { l.userData.want = 0; }); pauseUntil = performance.now() + 2500; tripLabel(); };
+  const tripStart = () => {
+    legs.forEach((l) => { l.userData.want = 0; l.geometry.setDrawRange(0, 0); });
+    trip = { k: 0, next: performance.now() + 1500, end: 0 };
+    focus(ROUTE[0]); arcs.forEach((a) => { a.userData.on = false; }); pauseUntil = Infinity; tripLabel();
+  };
+  if (playBtn) playBtn.addEventListener('click', () => (trip ? tripStop() : tripStart()));
+  onLang(tripLabel);
 
   // hover a pin to read it; click or tap a pin to bring it to the front; drag the globe to spin it
   const tip = $('g-tip'), card = canvas.parentElement;
@@ -153,6 +180,7 @@ export function initGlobe() {
     tip.style.top = Math.min(cr.height - h - 12, Math.max(12, y - h / 2)) + 'px';
   };
   const setHover = (i, e) => {
+    if (trip) return; // the journey owns the caption while it plays
     if (i !== hover) {
       hover = i;
       canvas.style.cursor = i >= 0 ? 'pointer' : '';
@@ -162,7 +190,7 @@ export function initGlobe() {
     pauseUntil = i >= 0 ? Infinity : Math.min(pauseUntil, performance.now() + 4000);
   };
   let drag = null, spin = 0, moved = 0;
-  canvas.addEventListener('pointerdown', (e) => { drag = { x: e.clientX, y: e.clientY }; moved = 0; canvas.setPointerCapture(e.pointerId); pauseUntil = Infinity; });
+  canvas.addEventListener('pointerdown', (e) => { if (trip) tripStop(); drag = { x: e.clientX, y: e.clientY }; moved = 0; canvas.setPointerCapture(e.pointerId); pauseUntil = Infinity; });
   canvas.addEventListener('pointermove', (e) => {
     if (!drag) { if (e.pointerType === 'mouse') setHover(pick(e), e); return; }
     const dx = e.clientX - drag.x, dy = e.clientY - drag.y; drag = { x: e.clientX, y: e.clientY }; moved += Math.abs(dx) + Math.abs(dy);
@@ -208,7 +236,18 @@ export function initGlobe() {
     requestAnimationFrame(loop);
     if (!visible) return;
     const dt = Math.min(0.05, (t - (lastT || t)) / 1000); lastT = t;
-    if (!drag && !SNAP && t > pauseUntil && hover < 0) {
+    if (trip) {
+      if (trip.end) { if (t > trip.end) tripStop(); }
+      else if (t > trip.next) {
+        if (trip.k >= ROUTE.length - 1) trip.end = t + 5000;
+        else { legs[trip.k].userData.want = 65; trip.k++; focus(ROUTE[trip.k]); arcs.forEach((a) => { a.userData.on = false; }); trip.next = t + 1700; }
+      }
+    }
+    legs.forEach((l) => {
+      const d = l.geometry.drawRange.count, w = l.userData.want;
+      if (d !== w) l.geometry.setDrawRange(0, d < w ? Math.min(w, d + 2) : Math.max(0, d - 5));
+    });
+    if (!drag && !SNAP && !trip && t > pauseUntil && hover < 0) {
       // idle: turn slowly around the poles and caption whichever site faces the viewer
       qSpin.setFromAxisAngle(yAxis, dt * (reduced ? 0.06 : 0.12));
       world.quaternion.multiply(qSpin); qTarget.copy(world.quaternion);
