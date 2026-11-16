@@ -22,6 +22,7 @@ function heroMarkup() {
     <div class="fx-title">
       <p class="fx-k" data-en="Plant piping design · overseas site PM" data-ko="플랜트 배관 설계 · 해외 현장 PM"></p>
       <h1 class="fx-name" aria-label="Jacob Song"><span class="fx-split">JACOB</span><span class="fx-split hl">SONG</span></h1>
+      <p class="fx-win" data-en="US battery gigafactory hook-up: delivered 2 months early, 10% under budget" data-ko="미국 배터리 공장 Hook-up: 공기 2개월 단축, 예산 10% 절감"></p>
       <p class="fx-sub" data-en="13 years · 8 countries · 3,850 m of pipe in this model" data-ko="13년 · 8개국 · 이 모델의 배관 3,850 m"></p>
       <div class="fx-cta">
         <a class="btn accent big" href="#career" data-en="See my career" data-ko="경력 보기"></a>

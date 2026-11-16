@@ -3,16 +3,16 @@
 import { t } from './content.js';
 
 export const SCHEDULE = [
-  { n: ['Kokomo SDI hook-up', 'Kokomo SDI Hook-up'], r: ['Site PM · KRW 130 bn', '현장 PM · 1,300억 원'], actual: 12, saved: 2 },
-  { n: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], r: ['Design lead · KRW 24 bn', '설계팀장 · 240억 원'], actual: 17, saved: 1 },
-  { n: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], r: ['Acting site manager · KRW 18 bn', '현장소장 대행 · 180억 원'], actual: 10.5, saved: 1, note: ['5 mo design + 5.5 mo build', '설계 5개월 + 시공 5.5개월'] },
+  { n: ['Kokomo SDI hook-up', 'Kokomo SDI Hook-up'], r: ['Site PM · USD 93M', '현장 PM · 1,300억 원'], actual: 12, saved: 2 },
+  { n: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], r: ['Design lead · USD 17M', '설계팀장 · 240억 원'], actual: 17, saved: 1 },
+  { n: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], r: ['Acting site manager · USD 13M', '현장소장 대행 · 180억 원'], actual: 10.5, saved: 1, note: ['5 mo design + 5.5 mo build', '설계 5개월 + 시공 5.5개월'] },
 ];
 export const BUDGET = [
   { n: ['Michigan LGESMI2', 'Michigan LGESMI2'], used: 85 },
   { n: ['Kokomo SDI', 'Kokomo SDI'], used: 90 },
 ];
 export const FIT = [
-  ['Four US battery plants delivered; site PM up to KRW 130 bn', '미국 배터리 공장 4곳 수행, 현장 PM 최대 1,300억 원'],
+  ['Four US battery plants delivered; site PM up to USD 93M (KRW 130 bn)', '미국 배터리 공장 4곳 수행, 현장 PM 최대 1,300억 원'],
   ['Design and site in one person: P&ID, 3D BIM, construction', 'P&ID·3D BIM 설계부터 현장 시공까지 직접 수행'],
   ['Chairs three-contractor clash meetings in English', '시공 3사 간섭 미팅을 영어로 직접 주관'],
   ['Eight countries, including expatriate postings in Hungary, Poland and China', '8개국 근무, 헝가리·폴란드·중국 주재원 경험'],

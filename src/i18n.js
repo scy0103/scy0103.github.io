@@ -5,6 +5,7 @@ export let lang = 'ko';
 export function setLang(l) {
   lang = l;
   document.documentElement.lang = l;
+  document.title = l === 'ko' ? '송찬영 Jacob Song | 플랜트 배관 설계, 해외 현장 PM' : 'Jacob Song | EPC Project Manager, Plant Piping Design & Hook-up';
   document.querySelectorAll('[data-en]').forEach((el) => { el.textContent = el.getAttribute('data-' + l); });
   // resume links: Korean resume for KO, English resume for EN
   document.querySelectorAll('[data-href-en]').forEach((el) => {

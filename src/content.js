@@ -13,7 +13,7 @@ export const EXPERIENCE = [
     where: ['United States', '미국'],
     projects: [
       {
-        cc: 'us', st: 'az', name: ['Arizona LGAZ CESS', 'Arizona LGAZ CESS'], photos: [37], period: '2025.02 – Present', size: ['KRW 22 bn', '220억 원'],
+        cc: 'us', st: 'az', name: ['Arizona LGAZ CESS', 'Arizona LGAZ CESS'], photos: [37], period: '2025.02 – Present', size: ['USD 16M (KRW 22 bn)', '220억 원'],
         role: ['Site PM', '현장 PM'],
         points: [
           ['Coordinated the master schedule and led 3D piping clash review on site.', '마스터 스케줄 조율 및 3D 배관 간섭 검토 주도'],
@@ -21,7 +21,7 @@ export const EXPERIENCE = [
         ],
       },
       {
-        cc: 'us', st: 'in', name: ['Indiana Kokomo SDI (SPEPP) utility hook-up', 'Indiana Kokomo SDI(SPEPP) 유틸리티 Hook-up'], photos: [38], period: '2024.02 – 2025.02', size: ['KRW 130 bn', '1,300억 원'],
+        cc: 'us', st: 'in', name: ['Indiana Kokomo SDI (SPEPP) utility hook-up', 'Indiana Kokomo SDI(SPEPP) 유틸리티 Hook-up'], photos: [38], period: '2024.02 – 2025.02', size: ['USD 93M (KRW 130 bn)', '1,300억 원'],
         role: ['Site PM', '현장 PM'],
         points: [
           ['Drove completion of the electrode, formation and environmental-system lines 1 to 4.', '전극동, 화성동, 환경설비 1~4라인 완공 주도'],
@@ -30,7 +30,7 @@ export const EXPERIENCE = [
         result: ['2 months ahead of schedule, 10% under budget', '공기 2개월 단축, 예산 대비 10% 절감'],
       },
       {
-        cc: 'us', st: 'mi', name: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], photos: [39], period: '2022.10 – 2024.03', size: ['KRW 24 bn', '240억 원'],
+        cc: 'us', st: 'mi', name: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], photos: [39], period: '2022.10 – 2024.03', size: ['USD 17M (KRW 24 bn)', '240억 원'],
         role: ['Design Team Lead', '설계팀장'],
         points: [
           ['Designed the central electrolyte supply system (PFD, P&ID, BIM) and ran site clash review.', 'CESS 시스템 설계(PFD, P&ID, BIM) 및 현장 간섭 검토'],
@@ -39,7 +39,7 @@ export const EXPERIENCE = [
         result: ['1 month ahead of schedule, 15% under budget', '공기 1개월 단축, 예산 대비 15% 절감'],
       },
       {
-        cc: 'us', st: 'oh', name: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], photos: [40], period: '2021.09 – 2022.09', size: ['KRW 18 bn', '180억 원'],
+        cc: 'us', st: 'oh', name: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], photos: [40], period: '2021.09 – 2022.09', size: ['USD 13M (KRW 18 bn)', '180억 원'],
         role: ['Acting Site Manager', '현장소장 대행'],
         points: [
           ['CESS design (PFD, P&ID, BIM), site clash review, client and GC interface.', 'CESS 시스템 설계(PFD, P&ID, BIM), 현장 간섭 검토, 고객사 및 GC 대응'],
@@ -55,7 +55,7 @@ export const EXPERIENCE = [
     where: ['Hungary, Poland', '헝가리, 폴란드'],
     projects: [
       {
-        cc: 'hu', name: ['Göd, Hungary: SDIHU #6 BCU line', '헝가리 괴드(Göd) SDIHU #6 BCU 라인'], photos: [23, 22, 18], period: '2020.09 – 2020.12', size: ['KRW 11 bn', '110억 원'],
+        cc: 'hu', name: ['Göd, Hungary: SDIHU #6 BCU line', '헝가리 괴드(Göd) SDIHU #6 BCU 라인'], photos: [23, 22, 18], period: '2020.09 – 2020.12', size: ['USD 8M (KRW 11 bn)', '110억 원'],
         role: ['Design and construction management', '설계 및 시공 관리'],
         points: [
           ['Managed the multi-electrode piping line expansion and the approval drawings.', '멀티 극판 배관라인 증설공사 관리 및 승인도면 설계'],
@@ -64,7 +64,7 @@ export const EXPERIENCE = [
         result: ['Design and construction completed within the planned period', '계획 기간 내 설계 및 시공 완료'],
       },
       {
-        cc: 'pl', name: ['Wrocław, Poland: LGESWA P3 CESS', '폴란드 브로츠와프 LGESWA P3 CESS'], photos: [19, 20, 21, 17], period: '2020.12 – 2021.08', size: ['Bid KRW 18.9 bn', '입찰 규모 189억 원'],
+        cc: 'pl', name: ['Wrocław, Poland: LGESWA P3 CESS', '폴란드 브로츠와프 LGESWA P3 CESS'], photos: [19, 20, 21, 17], period: '2020.12 – 2021.08', size: ['Bid USD 13.5M (KRW 18.9 bn)', '입찰 규모 189억 원'],
         role: ['Process design', '공정설계'],
         points: [
           ['Electrolyte piping process design (P&ID, PFD, PMS) and proposal support.', '전해액 배관라인 공정설계(P&ID, PFD, PMS) 및 제안서 작성 지원'],
@@ -72,7 +72,7 @@ export const EXPERIENCE = [
         ],
       },
       {
-        cc: 'pl', name: ['Dąbrowa Górnicza, Poland: SK On battery separator plant', '폴란드 돔브로바 SK온 배터리 분리막'], period: '2021.03 – 2021.08', size: ['KRW 17 bn', '170억 원'],
+        cc: 'pl', name: ['Dąbrowa Górnicza, Poland: SK On battery separator plant', '폴란드 돔브로바 SK온 배터리 분리막'], period: '2021.03 – 2021.08', size: ['USD 12M (KRW 17 bn)', '170억 원'],
         role: ['Process design PM', '분리막 공정설계 PM'],
         points: [],
       },
@@ -402,7 +402,7 @@ export const renderSites = () => SITES.map((s, i) => `<li data-i="${i}">${t(s.p[
 /* ---------- capability hexagon (dashboard) ---------- */
 // Self-assessed scores (0-100): engineering is the anchor at 92, the other axes were scaled by 0.9. Edit here.
 export const RADAR = [
-  { k: ['Project management', '프로젝트 관리'], v: 88, ev: ['Site PM on four US projects up to KRW 130 bn; owns the master schedule and the three-contractor interface.', '최대 1,300억 원 규모 미국 프로젝트 4건 현장 PM, 마스터 스케줄과 3사 인터페이스 총괄'] },
+  { k: ['Project management', '프로젝트 관리'], v: 88, ev: ['Site PM on four US projects up to USD 93M (KRW 130 bn); owns the master schedule and the three-contractor interface.', '최대 1,300억 원 규모 미국 프로젝트 4건 현장 PM, 마스터 스케줄과 3사 인터페이스 총괄'] },
   { k: ['Engineering', '엔지니어링'], v: 92, ev: ['CESS process design (PFD, P&ID, PMS), 3D piping in Revit and Plant 3D, valve and bogie design in CATIA.', 'CESS 공정설계(PFD·P&ID·PMS), Revit·Plant 3D 배관 설계, CATIA 밸브·대차 설계'] },
   { k: ['Cost control', '손익 관리'], v: 79, ev: ['10% under budget at Kokomo and 15% under at Michigan; earlier, product weight and cost estimates for valves.', '코코모 예산 대비 10%, 미시간 15% 절감, 밸브 제품 중량·원가 산출'] },
   { k: ['Global communication', '글로벌 커뮤니케이션'], v: 77, ev: ['Daily meetings, TBM and GC interpretation on US sites; work in Canada, Poland, Hungary, China, Chile and Saudi Arabia.', '미국 현장 Daily 미팅·TBM·GC 통역, 캐나다·폴란드·헝가리·중국·칠레·사우디 근무'] },
@@ -433,20 +433,21 @@ export function renderRadar() {
 
 /* ---------- career metrics (skills section dashboard) ---------- */
 // All figures from resume R0. Values in KRW 100 million (억 원).
+// English shows USD converted at KRW 1,400 per USD (approximate, one flat rate for all years): the usd fields and every 'USD ..M' string change together.
 export const KPIS = [
   { v: '13', u: ['yrs 3 mo', '년 3개월'], k: ['Plant career', '플랜트 경력'] },
   { v: '8', u: ['countries', '개국'], k: ['Countries worked in', '수행 국가'] },
   { v: '13', u: ['projects', '건'], k: ['Projects delivered', '수행 프로젝트'] },
-  { v: '2,220', u: ['억 KRW', '억 원'], k: ['Contract value of my projects', '참여 프로젝트 규모 합계'] },
+  { v: ['159', '2,220'], u: ['M USD', '억 원'], k: ['Contract value of my projects', '참여 프로젝트 규모 합계'] },
 ];
 export const SCALE = [
-  { n: ['Kokomo SDI hook-up', 'Kokomo SDI Hook-up'], cc: ['us'], s: ['Kokomo', '코코모'], y: 2024.08, v: 1300, r: ['Site PM', '현장 PM'] },
-  { n: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], cc: ['us'], s: ['Michigan', '미시간'], y: 2022.75, v: 240, r: ['Design lead', '설계팀장'] },
-  { n: ['Arizona LGAZ CESS', 'Arizona LGAZ CESS'], cc: ['us'], s: ['Arizona', '애리조나'], y: 2025.08, v: 220, r: ['Site PM', '현장 PM'] },
-  { n: ['Wrocław P3 CESS (bid)', '브로츠와프 P3 CESS (입찰)'], cc: ['pl'], s: ['Wrocław', '브로츠와프'], y: 2020.92, v: 189, r: ['Process design', '공정설계'], bid: true },
-  { n: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], cc: ['us'], s: ['Ohio', '오하이오'], y: 2021.67, v: 180, r: ['Acting site manager', '현장소장 대행'] },
-  { n: ['SK On separator', 'SK온 분리막'], cc: ['pl'], s: ['SK On', 'SK온'], y: 2021.17, v: 170, r: ['Process design PM', '공정설계 PM'] },
-  { n: ['Göd SDIHU #6', '괴드 SDIHU #6'], cc: ['hu'], s: ['Göd', '괴드'], y: 2020.67, v: 110, r: ['Design and build', '설계·시공'] },
+  { n: ['Kokomo SDI hook-up', 'Kokomo SDI Hook-up'], cc: ['us'], s: ['Kokomo', '코코모'], y: 2024.08, v: 1300, usd: 93, r: ['Site PM', '현장 PM'] },
+  { n: ['Michigan LGESMI2 CESS', 'Michigan LGESMI2 CESS'], cc: ['us'], s: ['Michigan', '미시간'], y: 2022.75, v: 240, usd: 17, r: ['Design lead', '설계팀장'] },
+  { n: ['Arizona LGAZ CESS', 'Arizona LGAZ CESS'], cc: ['us'], s: ['Arizona', '애리조나'], y: 2025.08, v: 220, usd: 16, r: ['Site PM', '현장 PM'] },
+  { n: ['Wrocław P3 CESS (bid)', '브로츠와프 P3 CESS (입찰)'], cc: ['pl'], s: ['Wrocław', '브로츠와프'], y: 2020.92, v: 189, usd: 13.5, r: ['Process design', '공정설계'], bid: true },
+  { n: ['Ohio Ultium Cells CESS', 'Ohio Ultium Cells CESS'], cc: ['us'], s: ['Ohio', '오하이오'], y: 2021.67, v: 180, usd: 13, r: ['Acting site manager', '현장소장 대행'] },
+  { n: ['SK On separator', 'SK온 분리막'], cc: ['pl'], s: ['SK On', 'SK온'], y: 2021.17, v: 170, usd: 12, r: ['Process design PM', '공정설계 PM'] },
+  { n: ['Göd SDIHU #6', '괴드 SDIHU #6'], cc: ['hu'], s: ['Göd', '괴드'], y: 2020.67, v: 110, usd: 8, r: ['Design and build', '설계·시공'] },
 ];
 export const RESULTS = [
   { n: ['Kokomo SDI', 'Kokomo SDI'], m: 2, b: 10 },
@@ -491,13 +492,13 @@ function scaleChart() {
   const P = [...SCALE].sort((a, b) => a.y - b.y);
   const W = 640, H = 300, L = 44, R = 24, T = 30, B = 62, YM = 1400;
   const x = (k) => L + 20 + k * ((W - L - R - 40) / (P.length - 1)), y = (v) => T + (1 - v / YM) * (H - T - B);
-  const grid = [0, 400, 800, 1200].map((v) => `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L - 8}" y="${y(v) + 4}" text-anchor="end">${v.toLocaleString('en-US')}</text>`).join('');
+  const grid = [0, 400, 800, 1200].map((v) => `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L - 8}" y="${y(v) + 4}" text-anchor="end" data-en="" data-ko="${v.toLocaleString('en-US')}">${v.toLocaleString('en-US')}</text>`).join('');
   const pts = P.map((s, k) => [x(k), y(s.v)]);
   const line = pts.map((p) => p.map((v) => v.toFixed(1)).join(',')).join(' ');
   const area = `${x(0)},${y(0)} ${line} ${x(P.length - 1)},${y(0)}`;
   const dots = P.map((s, k) => `<g class="sc-pt${s.bid ? ' bid' : ''}"><title>${s.n[0]}: ${s.v}</title>
             <circle cx="${pts[k][0].toFixed(1)}" cy="${pts[k][1].toFixed(1)}" r="6"/>
-            <text class="sc-v" x="${pts[k][0].toFixed(1)}" y="${(pts[k][1] - 14).toFixed(1)}" text-anchor="middle">${s.v.toLocaleString('en-US')}</text>
+            <text class="sc-v" x="${pts[k][0].toFixed(1)}" y="${(pts[k][1] - 14).toFixed(1)}" text-anchor="middle" data-en="${s.usd}" data-ko="${s.v.toLocaleString('en-US')}">${s.v.toLocaleString('en-US')}</text>
             <image href="flags/${s.cc[0]}.svg" x="${(pts[k][0] - 10).toFixed(1)}" y="${H - B + 12}" width="20" height="14" preserveAspectRatio="xMidYMid slice"/>
             <text class="sc-n" x="${pts[k][0].toFixed(1)}" y="${H - B + 42}" text-anchor="middle" data-en="${s.s[0]}" data-ko="${s.s[1]}">${s.s[1]}</text>
             <text class="sc-y" x="${pts[k][0].toFixed(1)}" y="${H - B + 58}" text-anchor="middle">${Math.floor(s.y)}</text></g>`).join('');
@@ -514,7 +515,7 @@ function scaleChart() {
 const flags = (cc) => cc.map((c) => `<img class="mt-fl" src="flags/${c}.svg" alt="">`).join('');
 const bar = (pct, cls = '') => `<span class="mt-bar${cls}"><i style="--w:${pct.toFixed(1)}%"></i></span>`;
 export function renderMetrics() {
-  const kpis = KPIS.map((k) => `<div class="mt-kpi" data-reveal><b>${k.v}<small>${t(k.u[0], k.u[1])}</small></b>${t(k.k[0], k.k[1], 'span')}</div>`).join('');
+  const kpis = KPIS.map((k) => `<div class="mt-kpi" data-reveal><b>${Array.isArray(k.v) ? t(k.v[0], k.v[1]) : k.v}<small>${t(k.u[0], k.u[1])}</small></b>${t(k.k[0], k.k[1], 'span')}</div>`).join('');
   const maxS = Math.max(...SCALE.map((s) => s.v));
   // vertical columns: value on top, flag, short name and role underneath
   // skills as a dashboard: four groups, tools as rows with a level tag where the matrix has one
@@ -528,9 +529,9 @@ export function renderMetrics() {
     <div class="mt-grid">
       <article class="mt-card" data-reveal>
         <h3>${t('Project scale I worked on', '참여 프로젝트 규모')}</h3>
-        <p class="mt-sub">${t('Contract value by start year, KRW 100 million', '연도별 수행 프로젝트, 계약 규모 단위 억 원')}</p>
+        <p class="mt-sub">${t('Contract value by start year, USD million (approx.)', '연도별 수행 프로젝트, 계약 규모 단위 억 원')}</p>
         ${scaleChart()}
-        <p class="mt-foot">${t('The Wrocław bid (hollow point) was not awarded and is left out of the total.', '브로츠와프는 미수주 입찰(빈 점)이라 합계에서 제외했습니다.')}</p>
+        <p class="mt-foot">${t('The Wrocław bid (hollow point) was not awarded and is left out of the total. USD converted from KRW at 1,400 per USD (approx.).', '브로츠와프는 미수주 입찰(빈 점)이라 합계에서 제외했습니다.')}</p>
       </article>
       <article class="mt-card" data-reveal>
         <h3>${t('Time on overseas sites', '해외 현장 근무 기간')}</h3>

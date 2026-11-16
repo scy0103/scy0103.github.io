@@ -12,6 +12,7 @@ html.fx .bar{background:rgba(10,20,36,.6);backdrop-filter:blur(12px);-webkit-bac
 .fx-k{font-size:clamp(15px,1.3vw,19px);font-weight:600;color:var(--signal);letter-spacing:.02em}
 .fx-name{margin:0;font-family:var(--display);font-weight:600;font-size:clamp(76px,15vw,250px);line-height:.82;text-transform:uppercase;display:flex;flex-wrap:wrap;gap:0 .22em;text-shadow:0 0 40px rgba(255,122,26,.25)}
 .fx-name .hl{color:var(--signal)}
+.fx-win{font-size:clamp(18px,1.9vw,27px);font-weight:600;color:var(--ink);line-height:1.3;max-width:34em}
 .fx-sub{font-size:clamp(16px,1.4vw,20px);color:var(--soft)}
 .fx-cue{position:absolute;right:var(--pad);bottom:6vh;display:grid;justify-items:center;gap:10px;font-size:13px;color:var(--soft);text-decoration:none}
 .fx-cue i{display:block;width:2px;height:56px;background:linear-gradient(var(--signal),transparent);animation:fx-cue 1.8s var(--ease) infinite;transform-origin:top}
