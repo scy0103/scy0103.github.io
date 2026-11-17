@@ -124,7 +124,7 @@ function initRadar() {
     cur = i;
     axes.forEach((a, j) => a.classList.toggle('on', j === i));
     ev.classList.toggle('on', i >= 0);
-    ev.textContent = i >= 0 ? axes[i].getAttribute('data-ev-' + lang) : ev.getAttribute('data-' + lang);
+    ev.textContent = i >= 0 ? axes[i].getAttribute('data-ev-' + lang) : ev.getAttribute((window.matchMedia('(hover: none)').matches ? 'data-touch-' : 'data-') + lang);
   };
   axes.forEach((a, i) => {
     a.addEventListener('pointerenter', () => show(i));

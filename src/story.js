@@ -36,7 +36,7 @@ export function initStory() {
 
   const A = createProjectA(scene, (f) => { loadBar.style.width = Math.round(f * 100) + '%'; });
   A.loaded.then(() => { loader.hidden = true; window.__cys.ready = true; })
-    .catch((err) => { loadTxt.textContent = 'Model failed to load. Refresh to retry.'; console.error(err); });
+    .catch((err) => { onLang((l) => { loadTxt.textContent = l === 'ko' ? '모델을 불러오지 못했습니다. 새로고침해 주십시오.' : 'Model failed to load. Refresh to retry.'; }); console.error(err); });
   const B = createProjectB(scene);
 
   const K = KEYS.map((k) => ({ p: new THREE.Vector3(...k.p), t: new THREE.Vector3(...k.t) }));

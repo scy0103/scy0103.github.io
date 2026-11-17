@@ -18,7 +18,8 @@ export function initCarousel() {
   };
   wrap.addEventListener('pointerdown', (e) => { drag = { x: e.clientX, d: dragDeg }; moved = 0; });
   window.addEventListener('pointermove', (e) => { if (!drag) return; moved = Math.abs(e.clientX - drag.x); dragDeg = drag.d + (e.clientX - drag.x) * 0.25; update(); });
-  window.addEventListener('pointerup', () => { drag = null; });
+  // a drag also ends when the browser takes the gesture (scroll) or the window loses focus, so no drag is left hanging
+  ['pointerup', 'pointercancel', 'blur'].forEach((ev) => window.addEventListener(ev, () => { drag = null; }));
   // a drag should not open the picture under the pointer
   wrap.addEventListener('click', (e) => { if (moved > 6) { e.stopPropagation(); e.preventDefault(); } }, true);
   new ResizeObserver(() => { layout(); update(); }).observe(wrap);

@@ -55,13 +55,29 @@ export function initTour(lab) {
       window.scrollTo(0, y0 + (yOf(s) - y0) * e); // the target is re-read each frame: lazy content above it can still change the layout
       if (u < 1) { run.raf = requestAnimationFrame(step); return; }
       if (s.lab && lab) lab.play();
-      if (s.end) { stop(true); return; }
+      if (s.end) { stop(true); endWatch(); return; }
       run.timer = setTimeout(() => { if (run) go(i + 1); }, s.dwell);
     };
     run.raf = requestAnimationFrame(step);
   };
+  // The end card stays until the visitor moves on: the first scroll, touch or click outside it puts the bar away,
+  // so it never sits on the contact buttons it has just led to.
+  const END_EVENTS = ['wheel', 'touchstart', 'pointerdown', 'keydown', 'focusin'];
+  let endTimer = 0;
+  const endOff = (e) => {
+    if (e.target instanceof Element && e.target.closest('#tour')) return;
+    if (e.type === 'keydown' && !['Escape', 'ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', ' ', 'Home', 'End'].includes(e.key)) return;
+    bar.hidden = true; endClear();
+  };
+  const endClear = () => { clearTimeout(endTimer); END_EVENTS.forEach((ev) => window.removeEventListener(ev, endOff, true)); };
+  const endWatch = () => {
+    // a visitor who started the tour from the keyboard lands on the end card's first button, so Tab continues from there
+    const first = endBox.querySelector('a, button');
+    if (first && document.activeElement instanceof Element && document.activeElement.closest('[data-tour]')) first.focus({ preventScroll: true });
+    endTimer = setTimeout(() => END_EVENTS.forEach((ev) => window.addEventListener(ev, endOff, { capture: true, passive: true })), 400);
+  };
   const start = () => {
-    stop(false);
+    stop(false); endClear(); // a new run never inherits the previous end card's watcher
     run = { i: 0, raf: 0, timer: 0 };
     root.style.scrollBehavior = 'auto';
     root.classList.add('touring');
@@ -70,6 +86,6 @@ export function initTour(lab) {
     go(0);
   };
   document.addEventListener('click', (e) => { if (e.target.closest('[data-tour]')) { e.preventDefault(); start(); } });
-  exit.addEventListener('click', () => { stop(false); bar.hidden = true; });
+  exit.addEventListener('click', () => { stop(false); endClear(); bar.hidden = true; });
   window.__tour = { start, stop: () => stop(false), state: () => (run ? run.i : -1) };
 }

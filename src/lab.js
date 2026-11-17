@@ -194,7 +194,8 @@ export function initLab(A) {
     });
     const done = month >= p.actual - 1e-6;
     saved.classList.toggle('on', done); sec.classList.toggle('built', done);
-    readout.textContent = lang === 'ko' ? `${month.toFixed(1)}개월 차 / 계획 ${p.plan}개월` : `Month ${month.toFixed(1)} of ${p.plan} planned`;
+    readout.textContent = readText(p);
+    range.setAttribute('aria-valuetext', readout.textContent); // a screen reader hears the month, not 0 to 1000
     const active = PHASES.filter((ph) => { const s = share(ph); return s > 0 && s < 1; }).map((ph) => T(ph.n));
     nowEl.textContent = done ? T(['Complete: handed over ahead of plan', '준공: 계획보다 일찍 인계']) : (active.length ? active.join(' · ') : T(['Site mobilisation', '현장 착수']));
   };
@@ -225,15 +226,19 @@ export function initLab(A) {
     el.addEventListener('click', () => setNode(el.dataset.node));
     el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setNode(el.dataset.node); } });
   });
+  // month readout, also the timeline's spoken value (a function declaration so the language handler can call it at any time)
+  function readText(p) { return lang === 'ko' ? `${month.toFixed(1)}개월 차 / 계획 ${p.plan}개월` : `Month ${month.toFixed(1)} of ${p.plan} planned`; }
+  let clashTimer = 0;
   const setTab = (name) => {
     tab = name;
+    clearTimeout(clashTimer); // a pending Before-to-After flip belongs to the visit that started it
     tabBtns.forEach((b) => { const on = b.dataset.tab === name; b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1; });
     panes.forEach((p) => { p.hidden = p.dataset.pane !== name; });
     sec.dataset.mode = name;
     if (model) model.visible = name !== 'clash';
     demo.visible = name === 'clash'; grid.visible = name !== 'clash'; ring.visible = name === 'pid';
     if (name !== 'build') pause();
-    if (name === 'clash') { clashK = 0; clashDrawn = -1; setClash(0); setTimeout(() => { if (tab === 'clash' && clashGoal === 0) setClash(1); }, reduced ? 0 : 2600); }
+    if (name === 'clash') { clashK = 0; clashDrawn = -1; setClash(0); clashTimer = setTimeout(() => { if (tab === 'clash' && clashGoal === 0) setClash(1); }, reduced ? 0 : 4200); } // long enough to read the two clash tags before the fix plays
     view();
   };
   tabBtns.forEach((b) => b.addEventListener('click', () => setTab(b.dataset.tab)));
@@ -243,7 +248,7 @@ export function initLab(A) {
     setTab(n.dataset.tab); n.focus();
   });
 
-  onLang(() => { drawChips(); drawGantt(); setPlayLabel(); pidName.textContent = T(NODES[node].n); });
+  onLang(() => { drawChips(); drawGantt(); setPlayLabel(); pidName.textContent = T(NODES[node].n); readout.textContent = readText(P()); range.setAttribute('aria-valuetext', readout.textContent); });
   setTab('build'); setNode('tank');
 
   // the sequence starts by itself the first time the section is well inside the viewport

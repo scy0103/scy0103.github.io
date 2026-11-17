@@ -385,19 +385,48 @@ export function renderTimeline() {
 // one gallery picture as a lightbox thumbnail
 function photo(n) {
   const g = GALLERY[n - 1], id = String(n).padStart(2, '0');
-  return `<li><figure><button type="button" class="ph-btn" data-full="gallery/g${id}.jpg" aria-label="${g[0]}"><img src="gallery/g${id}_s.jpg" alt="${g[0]}" loading="lazy" decoding="async"></button>${t(g[0], g[1], 'figcaption')}</figure></li>`;
+  return `<li><figure><button type="button" class="ph-btn" data-full="gallery/g${id}.jpg" aria-label="${g[0]}" data-aria-en="${g[0]}" data-aria-ko="${g[1]}"><img src="gallery/g${id}_s.jpg" alt="${g[0]}" data-aria-en="${g[0]}" data-aria-ko="${g[1]}" loading="lazy" decoding="async"></button>${t(g[0], g[1], 'figcaption')}</figure></li>`;
 }
 
 export const CAROUSEL = [43, 45, 44, 46, 51, 52, 53, 54, 1, 47, 48, 49, 50, 2, 3, 41, 42, 4, 5, 6, 7, 8, 11, 12, 13, 14, 15, 9, 16, 10];
 export const renderCarousel = () => CAROUSEL.map((k, i) => {
   const g = GALLERY[k - 1], n = String(k).padStart(2, '0');
   return `
-        <li class="cr-item" style="--i:${i}"><figure><button type="button" class="ph-btn" data-full="gallery/g${n}.jpg" aria-label="${g[0]}"><img src="gallery/g${n}_s.jpg" alt="${g[0]}" loading="lazy" decoding="async" draggable="false"></button>${t(g[0], g[1], 'figcaption')}</figure></li>`;
+        <li class="cr-item" style="--i:${i}"><figure><button type="button" class="ph-btn" data-full="gallery/g${n}.jpg" aria-label="${g[0]}" data-aria-en="${g[0]}" data-aria-ko="${g[1]}"><img src="gallery/g${n}_s.jpg" alt="${g[0]}" data-aria-en="${g[0]}" data-aria-ko="${g[1]}" loading="lazy" decoding="async" draggable="false"></button>${t(g[0], g[1], 'figcaption')}</figure></li>`;
 }).join('');
 
 export const renderEducation = () => EDUCATION.map((e) => `<li>${t(e[0], e[1], 'b')}${t(e[2], e[3], 'span')}<span class="yr">${e[4]}</span></li>`).join('');
 export const renderCerts = () => CERTS.map((c) => `<li>${t(c[0], c[1], 'b')}${t(c[2], c[3], 'span')}<span class="yr">${c[4]}</span></li>`).join('');
 export const renderSites = () => SITES.map((s, i) => `<li data-i="${i}">${t(s.p[0], s.p[1], 'b')}${t(s.n[0], s.n[1], 'span')}<span class="yr">${s.y}</span></li>`).join('');
+
+/* ---------- drawn, then built (three model-vs-site pairs, side by side) ---------- */
+// a = model view, b = site photo (gallery numbers). Pairs are matched by area, not pixel for pixel (said on the page).
+export const COMPARE = [
+  { a: 49, b: 12, n: ['Tank farm and unloading area', '탱크 팜, 언로딩 구역'] },
+  { a: 47, b: 11, n: ['Tanks and platforms', '탱크, 플랫폼'] },
+  { a: 48, b: 39, n: ['Tank tops from above', '탱크 상부'] },
+];
+export function renderCompare() {
+  const src = (n) => `gallery/g${String(n).padStart(2, '0')}.jpg`;
+  const img = (cls, n, g) => `<img class="${cls}" src="${src(n)}" alt="${g[0]}" data-aria-en="${g[0]}" data-aria-ko="${g[1]}" loading="lazy" decoding="async" draggable="false">`;
+  return COMPARE.map((p) => {
+    const A = GALLERY[p.a - 1], B = GALLERY[p.b - 1];
+    const en = `${p.n[0]}: slide between the 3D model and the site photo`, ko = `${p.n[1]}: 3D 모델과 현장 사진 사이를 밀어서 비교`;
+    return `
+        <figure class="cmp-item">
+          ${t(p.n[0], p.n[1], 'h3', 'cmp-t')}
+          <div class="cmp-frame">
+            ${img('cmp-b', p.b, B)}
+            ${img('cmp-a', p.a, A)}
+            ${t('3D model', '3D 모델', 'span', 'cmp-lab l')}
+            ${t('On site', '현장', 'span', 'cmp-lab r')}
+            <div class="cmp-bar"><i aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></div>
+            <input type="range" class="cmp-range" min="0" max="100" value="50" step="0.5" aria-label="${en}" data-aria-en="${en}" data-aria-ko="${ko}">
+          </div>
+          <figcaption class="cmp-cap"><span>${t('3D model', '3D 모델', 'b')}${t(A[0], A[1])}</span><span>${t('On site', '현장', 'b')}${t(B[0], B[1])}</span></figcaption>
+        </figure>`;
+  }).join('');
+}
 
 /* ---------- capability hexagon (dashboard) ---------- */
 // Self-assessed scores (0-100): engineering is the anchor at 92, the other axes were scaled by 0.9. Edit here.
@@ -418,15 +447,20 @@ export function renderRadar() {
   const spokes = RADAR.map((_, i) => { const [x, y] = pt(i, R); return `<line class="rd-spoke" x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/>`; }).join('');
   const poly = RADAR.map((d, i) => pt(i, R * d.v / 100).map((v) => v.toFixed(1)).join(',')).join(' ');
   const dots = RADAR.map((d, i) => { const [x, y] = pt(i, R * d.v / 100); return `<circle class="rd-dot" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4"/>`; }).join('');
-  const axes = RADAR.map((d, i) => {
-    const [x, y] = pt(i, R + 18), anchor = x > cx + 5 ? 'start' : x < cx - 5 ? 'end' : 'middle';
-    const dy = y < cy - R ? -4 : y > cy + R ? 14 : 4;
-    return `<g class="rd-ax" tabindex="0" data-i="${i}" data-ev-en="${d.ev[0].replace(/"/g, '&quot;')}" data-ev-ko="${d.ev[1].replace(/"/g, '&quot;')}">`
-      + `<text x="${x.toFixed(1)}" y="${(y + dy).toFixed(1)}" text-anchor="${anchor}">${t(d.k[0], d.k[1], 'tspan', 'rd-k')}<tspan class="rd-v" dx="6">${d.v}</tspan></text></g>`;
-  }).join('');
-  return `<svg class="radar" viewBox="-50 -4 460 308" role="img" aria-labelledby="rd-title rd-desc">
-          <title id="rd-title">Capability hexagon</title>
-          <desc id="rd-desc">${RADAR.map((d) => `${d.k[0]} ${d.v}`).join(', ')}</desc>
+  // One label per language, because the line breaks differ. Side labels stack the name and the score so nothing runs past the chart;
+  // the top and bottom labels stay on one line.
+  const LH = 22;
+  const wrap = (s, max) => s.split(' ').reduce((a, w) => { const l = a[a.length - 1]; if (l && (l + ' ' + w).length <= max) a[a.length - 1] = l + ' ' + w; else a.push(w); return a; }, []);
+  const label = (d, i, k) => {
+    const [x, y] = pt(i, R + 16), side = Math.abs(x - cx) > 5, cls = k ? 'rd-ko' : 'rd-en';
+    if (!side) return `<text class="${cls}" x="${x.toFixed(1)}" y="${(y + (y < cy ? -6 : 18)).toFixed(1)}" text-anchor="middle"><tspan class="rd-k">${d.k[k]}</tspan><tspan class="rd-v" dx="7">${d.v}</tspan></text>`;
+    const ls = wrap(d.k[k], k ? 7 : 12), y0 = y - (ls.length * LH) / 2 + 6, X = x.toFixed(1);
+    return `<text class="${cls}" text-anchor="${x > cx ? 'start' : 'end'}">` + ls.map((l, j) => `<tspan class="rd-k" x="${X}" y="${(y0 + j * LH).toFixed(1)}">${l}</tspan>`).join('')
+      + `<tspan class="rd-v" x="${X}" y="${(y0 + ls.length * LH + 3).toFixed(1)}">${d.v}</tspan></text>`;
+  };
+  const axes = RADAR.map((d, i) => `<g class="rd-ax" tabindex="0" data-i="${i}" data-ev-en="${d.ev[0].replace(/"/g, '&quot;')}" data-ev-ko="${d.ev[1].replace(/"/g, '&quot;')}">${label(d, i, 0)}${label(d, i, 1)}</g>`).join('');
+  const sum = (k) => `${k ? '역량 지표' : 'Capability hexagon'}: ${RADAR.map((d) => `${d.k[k]} ${d.v}`).join(', ')}`;
+  return `<svg class="radar" viewBox="-46 -4 452 308" role="img" aria-label="${sum(0)}" data-aria-en="${sum(0)}" data-aria-ko="${sum(1)}">
           ${rings}${spokes}<polygon class="rd-poly" points="${poly}"/>${dots}${axes}
         </svg>`;
 }
@@ -473,14 +507,14 @@ function abroadChart() {
   const grid = [0, 12, 24, 36, 48, 60].map((m) => `<line x1="${L}" x2="${W - R}" y1="${y(m)}" y2="${y(m)}"/><text x="${L - 8}" y="${y(m) + 4}" text-anchor="end">${m / 12}</text>`).join('');
   const bars = ABROAD.map((s, k) => {
     const top = Math.min(y(s.m), y(0) - 3), d = dur(s.m);
-    return `<g class="ab-c"><title>${s.n[0]}: ${d[0]}</title>
+    return `<g class="ab-c"><title data-en="${s.n[0]}: ${d[0]}" data-ko="${s.n[1]}: ${d[1]}">${s.n[0]}: ${d[0]}</title>
             <rect class="ac-bar" x="${(x(k) - bw / 2).toFixed(1)}" y="${top.toFixed(1)}" width="${bw}" height="${(y(0) - top).toFixed(1)}" rx="6"/>
             <text class="sc-v" x="${x(k).toFixed(1)}" y="${(top - 10).toFixed(1)}" text-anchor="middle" data-en="${d[0]}" data-ko="${d[1]}">${d[1]}</text>
             <image href="flags/${s.cc}.svg" x="${(x(k) - 10).toFixed(1)}" y="${H - B + 12}" width="20" height="14" preserveAspectRatio="xMidYMid slice"/>
             <text class="sc-n" x="${x(k).toFixed(1)}" y="${H - B + 42}" text-anchor="middle" data-en="${s.n[0] === 'United States' ? 'USA' : s.n[0] === 'Saudi Arabia' ? 'Saudi' : s.n[0]}" data-ko="${s.n[1]}">${s.n[1]}</text>
             <text class="sc-y" x="${x(k).toFixed(1)}" y="${H - B + 58}" text-anchor="middle">${Math.floor(s.a)}</text></g>`;
   }).join('');
-  return `<svg class="sc-chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Time on overseas sites: ${ABROAD.map((s) => `${s.n[0]} ${s.m} months`).join(', ')}">
+  return `<svg class="sc-chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Time on overseas sites: ${ABROAD.map((s) => `${s.n[0]} ${s.m} months`).join(', ')}" data-aria-en="Time on overseas sites: ${ABROAD.map((s) => `${s.n[0]} ${s.m} months`).join(', ')}" data-aria-ko="해외 현장 체류 기간: ${ABROAD.map((s) => `${s.n[1]} ${s.m}개월`).join(', ')}">
           <defs><linearGradient id="abBar" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#9CC0EA"/><stop offset="1" stop-color="#5E86B8"/></linearGradient></defs>
           <g class="sc-grid">${grid}<text x="${L - 8}" y="${T - 14}" text-anchor="end">${'yrs'}</text></g>
           ${bars}
@@ -496,13 +530,13 @@ function scaleChart() {
   const pts = P.map((s, k) => [x(k), y(s.v)]);
   const line = pts.map((p) => p.map((v) => v.toFixed(1)).join(',')).join(' ');
   const area = `${x(0)},${y(0)} ${line} ${x(P.length - 1)},${y(0)}`;
-  const dots = P.map((s, k) => `<g class="sc-pt${s.bid ? ' bid' : ''}"><title>${s.n[0]}: ${s.v}</title>
+  const dots = P.map((s, k) => `<g class="sc-pt${s.bid ? ' bid' : ''}"><title data-en="${s.n[0]}: ${s.v}" data-ko="${s.n[1]}: ${s.v}억 원">${s.n[0]}: ${s.v}</title>
             <circle cx="${pts[k][0].toFixed(1)}" cy="${pts[k][1].toFixed(1)}" r="6"/>
             <text class="sc-v" x="${pts[k][0].toFixed(1)}" y="${(pts[k][1] - 14).toFixed(1)}" text-anchor="middle" data-en="${s.usd}" data-ko="${s.v.toLocaleString('en-US')}">${s.v.toLocaleString('en-US')}</text>
             <image href="flags/${s.cc[0]}.svg" x="${(pts[k][0] - 10).toFixed(1)}" y="${H - B + 12}" width="20" height="14" preserveAspectRatio="xMidYMid slice"/>
             <text class="sc-n" x="${pts[k][0].toFixed(1)}" y="${H - B + 42}" text-anchor="middle" data-en="${s.s[0]}" data-ko="${s.s[1]}">${s.s[1]}</text>
             <text class="sc-y" x="${pts[k][0].toFixed(1)}" y="${H - B + 58}" text-anchor="middle">${Math.floor(s.y)}</text></g>`).join('');
-  return `<svg class="sc-chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Project value by start year, KRW 100 million: ${P.map((s) => `${s.s[0]} ${Math.floor(s.y)} ${s.v}`).join(', ')}">
+  return `<svg class="sc-chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Project value by start year, KRW 100 million: ${P.map((s) => `${s.s[0]} ${Math.floor(s.y)} ${s.v}`).join(', ')}" data-aria-en="Project value by start year, KRW 100 million: ${P.map((s) => `${s.s[0]} ${Math.floor(s.y)} ${s.v}`).join(', ')}" data-aria-ko="착수 연도별 프로젝트 금액(억 원): ${P.map((s) => `${s.s[1]} ${Math.floor(s.y)}년 ${s.v}`).join(', ')}">
           <defs><linearGradient id="scFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#FF7A1A" stop-opacity=".32"/><stop offset="1" stop-color="#FF7A1A" stop-opacity="0"/></linearGradient></defs>
           <g class="sc-grid">${grid}</g>
           <polygon class="sc-area" points="${area}"/>
@@ -521,7 +555,7 @@ export function renderMetrics() {
   // skills as a dashboard: four groups, tools as rows with a level tag where the matrix has one
   const lvl = Object.fromEntries(MATRIX.map((m) => [m[0], m]));
   const lv = (name) => { const k = Object.keys(lvl).find((n) => name.includes(n) || n.includes(name.split(' ')[0])); return k ? `<em class="sk-lv${lvl[k][1] === 'Advanced' ? ' hi' : ''}">${t(lvl[k][1], lvl[k][2])}</em>` : ''; };
-  const skills = SKILLS.map((g, i) => `<li class="sk-g"><h4><span>${String(i + 1).padStart(2, '0')}</span>${t(g.g[0], g.g[1])}</h4><ul>${g.items.map((s) => `<li title="${s[1]}"><b>${s[0]}</b>${lv(s[0])}<small>${t(s[1], s[2])}</small></li>`).join('')}</ul></li>`).join('');
+  const skills = SKILLS.map((g, i) => `<li class="sk-g"><h4><span>${String(i + 1).padStart(2, '0')}</span>${t(g.g[0], g.g[1])}</h4><ul>${g.items.map((s) => `<li title="${s[1]}" data-title-en="${s[1]}" data-title-ko="${s[2]}"><b>${s[0]}</b>${lv(s[0])}<small>${t(s[1], s[2])}</small></li>`).join('')}</ul></li>`).join('');
   const res = RESULTS.map((r) => `<li><span class="mt-n">${t(r.n[0], r.n[1])}</span>
       <span class="mt-pair"><span class="mt-chip"><b>-${r.m}</b>${t('mo schedule', '개월 공기')}</span>${r.b ? `<span class="mt-chip alt"><b>-${r.b}%</b>${t('budget', '예산')}</span>` : ''}</span></li>`).join('');
   return `
@@ -598,7 +632,7 @@ export function renderAbout() {
   const tags = ABOUT_TAGS.map((x) => t(x[0], x[1], 'li')).join('');
   const photos = ABOUT_PHOTOS.map((p, i) => `
         <figure class="ab-ph" style="--i:${i}" data-cc="${p.cc}" data-y="${p.y}">
-          <button type="button" class="ph-btn" data-full="about/${p.f}.jpg" aria-label="${p.c[0]}"><img src="about/${p.f}_s.jpg" alt="${p.c[0]}" loading="lazy" decoding="async"></button>
+          <button type="button" class="ph-btn" data-full="about/${p.f}.jpg" aria-label="${p.c[0]}" data-aria-en="${p.c[0]}" data-aria-ko="${p.c[1]}"><img src="about/${p.f}_s.jpg" alt="${p.c[0]}" data-aria-en="${p.c[0]}" data-aria-ko="${p.c[1]}" loading="lazy" decoding="async"></button>
           <figcaption><b>${t(p.c[0], p.c[1])}</b>${p.s[0] ? t(p.s[0], p.s[1], 'span') : ''}${p.y ? `<em>${p.y}</em>` : ''}</figcaption>
         </figure>`).join('');
   return `

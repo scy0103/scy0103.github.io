@@ -122,7 +122,8 @@ export function initAbout3d() {
   const toWorld = () => (2 * camera.position.z * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect) / canvas.clientWidth;
   canvas.addEventListener('pointerdown', (e) => { drag = { x: e.clientX, d: dragX }; moved = 0; });
   window.addEventListener('pointermove', (e) => { if (!drag) return; moved = Math.max(moved, Math.abs(e.clientX - drag.x)); dragX = drag.d - (e.clientX - drag.x) * toWorld(); });
-  window.addEventListener('pointerup', () => { drag = null; });
+  // a drag also ends when the browser takes the gesture (scroll) or the window loses focus, so no drag is left hanging
+  ['pointerup', 'pointercancel', 'blur'].forEach((ev) => window.addEventListener(ev, () => { drag = null; }));
   new IntersectionObserver((e) => { visible = e[0].isIntersecting; }).observe(stage);
 
   const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();

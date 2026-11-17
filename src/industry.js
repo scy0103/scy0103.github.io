@@ -17,7 +17,7 @@ export function renderIndustry() {
   let off = 0;
   const arcs = INDUSTRY.map((d, i) => {
     const len = C * d.p.length / total;
-    const a = `<circle class="in-arc" data-i="${i}" tabindex="0" r="${R}" cx="90" cy="90" stroke="${d.c}" stroke-dasharray="${(len - gap).toFixed(1)} ${(C - len + gap).toFixed(1)}" stroke-dashoffset="${(-off).toFixed(1)}"><title>${d.k[0]} ${d.p.length}</title></circle>`;
+    const a = `<circle class="in-arc" data-i="${i}" tabindex="0" r="${R}" cx="90" cy="90" stroke="${d.c}" stroke-dasharray="${(len - gap).toFixed(1)} ${(C - len + gap).toFixed(1)}" stroke-dashoffset="${(-off).toFixed(1)}"><title data-en="${d.k[0]} ${d.p.length}" data-ko="${d.k[1]} ${d.p.length}건">${d.k[0]} ${d.p.length}</title></circle>`;
     off += len; return a;
   }).join('');
   const top = INDUSTRY[0], pct = Math.round(top.p.length / total * 100);
@@ -25,7 +25,7 @@ export function renderIndustry() {
   const lists = INDUSTRY.map((d, i) => `<ul class="in-list" data-i="${i}" style="--dot:${d.c}"${i ? ' hidden' : ''}>${d.p.map((x, k) => `<li style="--k:${k}">${t(x[0], x[1])}</li>`).join('')}</ul>`).join('');
   return `
       <div class="in-wrap">
-        <svg class="in-donut" viewBox="0 0 180 180" role="img" aria-label="${INDUSTRY.map((d) => `${d.k[0]} ${d.p.length}`).join(', ')} of ${total} projects">
+        <svg class="in-donut" viewBox="0 0 180 180" role="img" aria-label="${INDUSTRY.map((d) => `${d.k[0]} ${d.p.length}`).join(', ')} of ${total} projects" data-aria-en="${INDUSTRY.map((d) => `${d.k[0]} ${d.p.length}`).join(', ')} of ${total} projects" data-aria-ko="산업 분야별 프로젝트 ${total}건: ${INDUSTRY.map((d) => `${d.k[1]} ${d.p.length}건`).join(', ')}">
           <g transform="rotate(-90 90 90)">${arcs}</g>
           <text x="90" y="86" class="in-big">${pct}%</text>
           <text x="90" y="108" class="in-small">${t('battery', '이차전지', 'tspan')}</text>

@@ -80,7 +80,7 @@ button{font:inherit;color:inherit}
 .c-profile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%;transition:transform 1.2s var(--ease)}
 .c-profile:hover img{transform:scale(1.03)}
 .c-profile-txt{position:relative;padding:22px;background:linear-gradient(to top,rgba(9,17,30,.92) 0%,rgba(9,17,30,.76) 55%,rgba(9,17,30,0) 100%);padding-top:64px}
-.iam{font-size:18px;color:var(--soft)}
+.iam{font-size:18px;color:var(--ink);text-shadow:0 1px 10px rgba(9,17,30,.75)}
 .c-profile h1{font-family:var(--display);font-weight:600;font-size:clamp(34px,2.8vw,46px);line-height:1;text-transform:uppercase;letter-spacing:.005em;margin:2px 0 10px}
 .lede{font-size:clamp(16px,1.25vw,19px);line-height:1.35;color:var(--ink);max-width:24ch}
 
@@ -123,8 +123,8 @@ button{font:inherit;color:inherit}
 .card.in .rd-poly,html:not(.js) .rd-poly{transform:scale(1)}
 .rd-dot{fill:var(--signal);stroke:var(--card);stroke-width:2}
 .rd-ax{cursor:default;outline:none}
-.rd-ax text{font-size:15px;fill:var(--soft);transition:fill .2s}
-.rd-ax .rd-v{font-family:var(--display);font-weight:600;font-size:19px;fill:var(--ink)}
+.rd-ax text{font-size:19px;fill:var(--soft);transition:fill .2s}
+.rd-ax .rd-v{font-family:var(--display);font-weight:600;font-size:24px;fill:var(--ink)}
 .rd-ax:hover text,.rd-ax:focus text,.rd-ax.on text{fill:var(--ink)}
 .rd-ax:hover .rd-v,.rd-ax:focus .rd-v,.rd-ax.on .rd-v{fill:var(--signal)}
 .rd-ax:focus-visible text{text-decoration:underline}
@@ -656,3 +656,16 @@ html.fx .about{background:transparent}
 /* just above the menu breakpoint the English header is too wide: links never wrap, and they tighten until there is room */
 .nav a{white-space:nowrap}
 @media (min-width:1181px) and (max-width:1260px){.nav a{padding:8px 10px;font-size:16px}.bar-r{gap:5px}}
+/* ---------- polish pass ---------- */
+/* radar: one label per language (the line breaks differ) */
+html[lang="ko"] .rd-en,html:not([lang="ko"]) .rd-ko{display:none}
+/* the chart is drawn smallest in the narrow desktop card and on 320px phones: a step up in type there */
+@media (min-width:1181px) and (max-width:1400px),(max-width:360px){.rd-ax text{font-size:21px}.rd-ax .rd-v{font-size:26px}}
+/* hints that name an input: mouse wording where there is hover, touch wording where there is not */
+.hint-touch{display:none}
+@media (hover:none){.hint-mouse{display:none}.hint-touch{display:inline}}
+/* phones: header controls keep their size but take taps across a 44px band */
+@media (max-width:520px){.bar .cv-btn,.bgm-btn,.lang button,.menu-btn{position:relative}.bar .cv-btn::after,.bgm-btn::after,.lang button::after,.menu-btn::after{content:"";position:absolute;inset:-7px 0}}
+/* headings break into even lines; body copy avoids a lone last word */
+h1,h2,h3{text-wrap:balance}
+p,li,figcaption{text-wrap:pretty}

@@ -148,14 +148,17 @@ function initStage(A) {
   let mx = 0, my = 0, sx = 0, sy = 0;
   addEventListener('pointermove', (e) => { mx = e.clientX / innerWidth - 0.5; my = e.clientY / innerHeight - 0.5; }, { passive: true });
   const clock = new THREE.Clock(), tgt = new THREE.Vector3();
+  let still = '', since = 0;
   const loop = () => {
     requestAnimationFrame(loop);
     if (document.body.classList.contains('in-story')) { canvas.style.opacity = 0; return; } // the 3D story owns the screen
     canvas.style.opacity = 1;
     const t = clock.getElapsedTime(), vh = innerHeight, y = scrollY;
+    // reduced motion: nothing here moves on its own, so once the model has loaded, draw again only when the page scrolls or resizes
+    if (reduced) { if (!since && window.__cys && window.__cys.ready) since = t; const key = y + ':' + innerWidth + ':' + vh; if (since && t - since > 2 && key === still) return; still = key; }
     const hero = y / vh;               // 0 at the top, 1 once the hero has scrolled away
     const deep = y / (vh * 6);         // slow drift for the rest of the page
-    sx += (mx - sx) * 0.05; sy += (my - sy) * 0.05;
+    if (!reduced) { sx += (mx - sx) * 0.05; sy += (my - sy) * 0.05; }
     const a = (reduced ? 0.6 : t * 0.06) + sx * 0.6;
     const r = THREE.MathUtils.lerp(112, 60, sm(0, 1.1, hero));
     camera.position.set(Math.cos(a) * r, THREE.MathUtils.lerp(44, 22, sm(0, 1.1, hero)) - sy * 10 + deep * 20, Math.sin(a) * r * 0.75 - deep * 40);
@@ -164,7 +167,7 @@ function initStage(A) {
     // the model belongs to the hero; afterwards only the grid and the dust stay
     const mv = 1 - sm(0.45, 0.95, hero);
     model.visible = mv > 0.01; scanLight.intensity = 900 * mv;
-    const sxp = ((t * 22) % 190) - 95; // sweep along the 156 m plant
+    const sxp = reduced ? -40 : ((t * 22) % 190) - 95; // sweep along the 156 m plant; parked near the tank farm under reduced motion
     uScan.value = sxp; scanLight.position.set(sxp, 9, 6);
     bloom.strength = 0.5 + 0.5 * mv;
     const p = dg.attributes.position.array;

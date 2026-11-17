@@ -21,7 +21,7 @@ const flag = (cc, st) => {
 };
 const thumb = (n) => {
   const g = GALLERY[n - 1], id = String(n).padStart(2, '0');
-  return `<button type="button" class="ph-btn t2-ph" data-full="gallery/g${id}.jpg" aria-label="${g[0]}" data-cap-en="${g[0]}" data-cap-ko="${g[1]}"><img src="gallery/g${id}_s.jpg" alt="${g[0]}" loading="lazy"></button>`;
+  return `<button type="button" class="ph-btn t2-ph" data-full="gallery/g${id}.jpg" aria-label="${g[0]}" data-aria-en="${g[0]}" data-aria-ko="${g[1]}" data-cap-en="${g[0]}" data-cap-ko="${g[1]}"><img src="gallery/g${id}_s.jpg" alt="${g[0]}" data-aria-en="${g[0]}" data-aria-ko="${g[1]}" loading="lazy"></button>`;
 };
 
 export function renderTimeline2() {
@@ -33,7 +33,7 @@ export function renderTimeline2() {
     return `<a class="t2-seg${i === 0 ? ' t2-cur' : ''}" href="#t2-${i}" style="left:${pct(a)}%;width:${pct(b) - pct(a)}%">${t(e.co[0], e.co[1])}</a>`;
   }).join('');
   const [da, db] = span(DATACENTER.period);
-  const dc = `<span class="t2-seg dc" style="left:${pct(da)}%;width:${pct(db) - pct(da)}%" title="Data center">${t('DC', 'DC')}</span>`;
+  const dc = `<span class="t2-seg dc" style="left:${pct(da)}%;width:${pct(db) - pct(da)}%" title="Data center" data-title-en="Data center" data-title-ko="데이터센터">${t('DC', 'DC')}</span>`;
 
   // vertical rail
   const nodes = EXPERIENCE.map((e, i) => {
@@ -75,7 +75,7 @@ export function renderTimeline2() {
   }).join('');
 
   return `
-  <div class="t2-over" aria-label="Career overview">
+  <div class="t2-over" aria-label="Career overview" data-aria-en="Career overview" data-aria-ko="경력 개요">
     <div class="t2-track">${segs}${dc}</div>
     <div class="t2-ticks">${ticks.join('')}</div>
   </div>
