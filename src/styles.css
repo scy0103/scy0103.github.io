@@ -1,6 +1,11 @@
 /* Jacob Song portfolio, v3 (Blueprint theme).
    Dashboard first (bento cards, live globe), then a safety-orange manifesto field, an orbit around the portrait,
    the 3D walk through Project A/B, and the career in huge condensed type. */
+/* Stand-ins for Barlow Condensed while the web font loads: a local bold sans scaled to the same width,
+   so display text keeps its line breaks and nothing jumps when the real face arrives.
+   Measured against Arial Bold: mixed case and numerals run at 74% of its width, all caps at 64%. */
+@font-face{font-family:"Barlow Condensed Fallback";src:local("Arial Bold"),local("Arial-BoldMT"),local("Helvetica Neue Bold"),local("HelveticaNeue-Bold"),local("Roboto Bold"),local("Roboto-Bold"),local("Liberation Sans Bold");font-weight:500 600;size-adjust:74%;unicode-range:U+0020-007E}
+@font-face{font-family:"Barlow Condensed Caps Fallback";src:local("Arial Bold"),local("Arial-BoldMT"),local("Helvetica Neue Bold"),local("HelveticaNeue-Bold"),local("Roboto Bold"),local("Roboto-Bold"),local("Liberation Sans Bold");font-weight:500 600;size-adjust:64%;unicode-range:U+0020-007E}
 :root{
   color-scheme: dark;
   /* Blueprint: drawing navy, paper white, safety orange */
@@ -15,7 +20,7 @@
   --grid:rgba(234,240,246,.045);
   --r-card:20px;
   --pad:clamp(16px,2.2vw,28px);
-  --display:"Barlow Condensed","Pretendard Variable","Pretendard","Arial Narrow",sans-serif;
+  --display:"Barlow Condensed","Barlow Condensed Fallback","Pretendard Variable","Pretendard","Arial Narrow",sans-serif;--display-caps:"Barlow Condensed","Barlow Condensed Caps Fallback","Pretendard Variable","Pretendard","Arial Narrow",sans-serif;
   --text:"Pretendard Variable","Pretendard",system-ui,-apple-system,"Segoe UI",sans-serif;
   --ease:cubic-bezier(.2,.7,.2,1);
   /* story (3D) palette kept from v2 */
@@ -41,7 +46,7 @@ button{font:inherit;color:inherit}
 
 /* ---------- bar ---------- */
 .bar{position:fixed;inset:0 0 auto 0;z-index:20;height:72px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;padding:0 var(--pad);background:var(--bg)}
-.wordmark{font-family:var(--display);font-weight:600;font-size:29px;letter-spacing:.01em;text-transform:uppercase;text-decoration:none;line-height:1}
+.wordmark{font-family:var(--display-caps);font-weight:600;font-size:29px;letter-spacing:.01em;text-transform:uppercase;text-decoration:none;line-height:1}
 .nav{display:flex;gap:5px;background:var(--card);border-radius:999px;padding:5px}
 .nav a{text-decoration:none;font-size:17px;font-weight:500;color:var(--soft);padding:8px 17px;border-radius:999px;transition:background .25s,color .25s}
 .nav a:hover{color:var(--ink)}
@@ -643,3 +648,11 @@ html.fx .about{background:transparent}
 @media (max-width:380px){.bar-r{gap:4px}.bgm-btn{width:32px;height:32px}.bar .cv-btn{padding:6px 8px;font-size:11.5px}.wordmark{font-size:18px}.lang button{padding:5px 8px}}
 /* narrowest phones: keep the menu button inside the screen in English too */
 @media (max-width:380px){.bar{padding:0 12px}.menu-btn{width:36px;height:36px}.bar .wordmark{font-size:17px}}
+/* music button: the text label shows only where the header has spare room (the nav fills it below 1680px) */
+.bgm-t{display:none}
+@media (min-width:1680px){.bgm-btn{width:auto;padding:0 16px 0 15px}.bgm-t{display:block;margin-left:6px;font-size:15px;font-weight:600;color:var(--soft)}.bgm-btn.on .bgm-t{color:var(--ink)}}
+/* 320px phones: the optional music button gives its room to the menu button, the only way into the nav there */
+@media (max-width:340px){.bgm-btn{display:none}}
+/* just above the menu breakpoint the English header is too wide: links never wrap, and they tighten until there is room */
+.nav a{white-space:nowrap}
+@media (min-width:1181px) and (max-width:1260px){.nav a{padding:8px 10px;font-size:16px}.bar-r{gap:5px}}

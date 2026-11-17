@@ -8,33 +8,11 @@ import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPa
 import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass.js';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import { COLORS } from './config.js';
-import { lang, onLang } from './i18n.js';
+import { onLang } from './i18n.js';
 
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const touch = window.matchMedia('(hover: none)').matches;
 const sm = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
-
-function heroMarkup() {
-  const sec = document.createElement('section');
-  sec.id = 'fx-hero';
-  sec.setAttribute('aria-label', 'Intro');
-  sec.innerHTML = `
-    <div class="fx-title">
-      <p class="fx-k" data-en="Plant piping design · overseas site PM" data-ko="플랜트 배관 설계 · 해외 현장 PM"></p>
-      <h1 class="fx-name" aria-label="Jacob Song"><span class="fx-split">JACOB</span><span class="fx-split hl">SONG</span></h1>
-      <p class="fx-win" data-en="US battery gigafactory hook-up: delivered 2 months early, 10% under budget" data-ko="미국 배터리 공장 Hook-up: 공기 2개월 단축, 예산 10% 절감"></p>
-      <p class="fx-sub" data-en="13 years · 8 countries · 3,850 m of pipe in this model" data-ko="13년 · 8개국 · 이 모델의 배관 3,850 m"></p>
-      <div class="fx-cta">
-        <a class="btn accent big" href="#career" data-en="See my career" data-ko="경력 보기"></a>
-        <a class="btn ghost big" href="#contact" data-en="Contact me" data-ko="연락하기"></a>
-        <button type="button" class="btn big tour-btn" data-tour data-en="▶ 60-second tour" data-ko="▶ 60초 투어"></button>
-      </div>
-    </div>
-    <a class="fx-cue" href="#top"><span data-en="Scroll" data-ko="스크롤"></span><i></i></a>`;
-  document.getElementById('main').prepend(sec);
-  sec.querySelectorAll('[data-en]').forEach((el) => { el.textContent = el.getAttribute('data-' + lang); });
-  return sec;
-}
 
 // split text into per-letter spans (re-run after a language switch rewrites the text)
 function split(el) {
@@ -199,7 +177,6 @@ function initStage(A) {
 
 export function initFx(A) {
   document.documentElement.classList.add('fx');
-  heroMarkup();
   initStage(A);
   initSplitHeadings();
   initTilt();

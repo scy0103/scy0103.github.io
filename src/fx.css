@@ -8,9 +8,13 @@ html.fx .bar{background:rgba(10,20,36,.6);backdrop-filter:blur(12px);-webkit-bac
 
 /* hero */
 #fx-hero{position:relative;z-index:2;height:100svh;min-height:620px;display:grid;align-content:end;padding:0 var(--pad) 12vh}
+html:not(.fx) #fx-hero{display:none}
+/* the name waits for its letter-by-letter entrance; if the script never splits it, it shows after 3s */
+#fx-hero .fx-split:not([aria-label]){animation:fx-late 0s linear 3s both}
+@keyframes fx-late{from{visibility:hidden}to{visibility:visible}}
 .fx-title{display:grid;gap:14px;max-width:min(92vw,1100px)}
 .fx-k{font-size:clamp(15px,1.3vw,19px);font-weight:600;color:var(--signal);letter-spacing:.02em}
-.fx-name{margin:0;font-family:var(--display);font-weight:600;font-size:clamp(76px,15vw,250px);line-height:.82;text-transform:uppercase;display:flex;flex-wrap:wrap;gap:0 .22em;text-shadow:0 0 40px rgba(255,122,26,.25)}
+.fx-name{margin:0;font-family:var(--display-caps);font-weight:600;font-size:clamp(76px,15vw,250px);line-height:.82;text-transform:uppercase;display:flex;flex-wrap:wrap;gap:0 .22em;text-shadow:0 0 40px rgba(255,122,26,.25)}
 .fx-name .hl{color:var(--signal)}
 .fx-win{font-size:clamp(18px,1.9vw,27px);font-weight:600;color:var(--ink);line-height:1.3;max-width:44em}
 .fx-sub{font-size:clamp(16px,1.4vw,20px);color:var(--soft)}

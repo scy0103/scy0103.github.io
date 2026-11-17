@@ -207,11 +207,12 @@ export function initGlobe() {
   canvas.addEventListener('pointerup', end); canvas.addEventListener('pointercancel', () => { drag = null; });
   canvas.addEventListener('pointerleave', (e) => { if (!drag && e.pointerType === 'mouse') setHover(-1, e); });
 
-  // zoom: mouse wheel over the globe, or the +/- buttons (1 = whole globe fits the card)
+  // zoom: the +/- buttons, or Ctrl + wheel / a trackpad pinch over the globe (1 = whole globe fits the card).
+  // A plain wheel is left alone so the page keeps scrolling when the cursor happens to be on the globe.
   let baseZ = 5, zoom = 1;
   const camLook = new THREE.Vector3();
   const setZoom = (z) => { zoom = Math.min(1.5, Math.max(0.55, z)); };
-  canvas.addEventListener('wheel', (e) => { e.preventDefault(); setZoom(zoom * Math.exp(e.deltaY * 0.0012)); }, { passive: false });
+  canvas.addEventListener('wheel', (e) => { if (!e.ctrlKey) return; e.preventDefault(); setZoom(zoom * Math.exp(e.deltaY * 0.0012)); }, { passive: false });
   $('g-in').addEventListener('click', () => setZoom(zoom / 1.25));
   $('g-out').addEventListener('click', () => setZoom(zoom * 1.25));
   const resize = () => {

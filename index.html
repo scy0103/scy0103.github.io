@@ -14,6 +14,11 @@
 <meta property="og:locale:alternate" content="ko_KR">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#0F1B2D">
+<!-- Before first paint: the FX layer class (so the hero is laid out from the start) and the language.
+     The page ships in Korean; for an English visitor it stays hidden until the script at the end of <body> has swapped the text,
+     so Korean never flashes and nothing jumps. Same pick order as initLang() in src/i18n.js: keep the two in step. -->
+<style>html.i18n-wait body{visibility:hidden;animation:i18n-show 0s linear 2.5s forwards}@keyframes i18n-show{to{visibility:visible}}</style>
+<script>(function(){var h=document.documentElement,p=new URLSearchParams(location.search),s=null;if(p.get('fx')!=='0')h.classList.add('fx');try{s=localStorage.getItem('cys-lang-v3')}catch(e){}var b=(navigator.languages&&navigator.languages[0])||navigator.language||'ko';if((p.get('lang')||s||(/^ko\b/i.test(b)?'ko':'en'))==='en'){h.lang='en';h.classList.add('i18n-wait')}})()</script>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230F1B2D'/%3E%3Ccircle cx='32' cy='32' r='14' fill='%23FF7A1A'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,7 +49,7 @@
     <a class="btn accent small cv-btn" id="cv" href="resume/song-chanyoung-resume.pdf" download="송찬영_이력서.pdf" data-href-ko="resume/song-chanyoung-resume.pdf" data-dl-ko="송찬영_이력서.pdf" data-href-en="resume/jacob-song-resume-en.pdf" data-dl-en="Chanyoung_Jacob_Song_Resume.pdf" data-en="Resume (PDF)" data-ko="이력서 받기">Resume (PDF)</a>
     <a class="li-btn" href="https://www.linkedin.com/in/scy0103" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
     <a class="li-btn in-btn" href="resume/jacob-song-resume-en.pdf" target="_blank" rel="noopener" aria-label="Indeed resume (PDF)" title="Indeed resume (PDF)"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M5.2 10.2C6.6 5.2 11.2 2 17 3.2"/><circle fill="currentColor" cx="13.4" cy="7.6" r="2.5"/><rect fill="currentColor" x="11.3" y="11.6" width="4.2" height="10.2" rx="1.2"/></svg></a>
-    <button type="button" class="bgm-btn" id="bgm" aria-pressed="false" aria-label="Music on"><i></i><i></i><i></i><i></i></button>
+    <button type="button" class="bgm-btn" id="bgm" aria-pressed="false" aria-label="Background music" title="Music on"><i></i><i></i><i></i><i></i><span class="bgm-t" data-en="Music" data-ko="음악">Music</span></button>
     <div class="lang" role="group" aria-label="Language">
       <button type="button" id="lang-ko" aria-pressed="true">KO</button>
       <button type="button" id="lang-en" aria-pressed="false">EN</button>
@@ -54,6 +59,21 @@
 </header>
 
 <main id="main">
+  <!-- ============ HERO (3D FX layer; hidden with ?fx=0) ============ -->
+  <section id="fx-hero" aria-label="Intro">
+    <div class="fx-title">
+      <p class="fx-k" data-en="Plant piping design · overseas site PM" data-ko="플랜트 배관 설계 · 해외 현장 PM">Plant piping design · overseas site PM</p>
+      <h1 class="fx-name" aria-label="Jacob Song"><span class="fx-split">JACOB</span> <span class="fx-split hl">SONG</span></h1>
+      <p class="fx-win" data-en="US battery gigafactory hook-up: delivered 2 months early, 10% under budget" data-ko="미국 배터리 공장 Hook-up: 공기 2개월 단축, 예산 10% 절감">US battery gigafactory hook-up: delivered 2 months early, 10% under budget</p>
+      <p class="fx-sub" data-en="13 years · 8 countries · 3,850 m of pipe in this model" data-ko="13년 · 8개국 · 이 모델의 배관 3,850 m">13 years · 8 countries · 3,850 m of pipe in this model</p>
+      <div class="fx-cta">
+        <a class="btn accent big" href="#career" data-en="See my career" data-ko="경력 보기">See my career</a>
+        <a class="btn ghost big" href="#contact" data-en="Contact me" data-ko="연락하기">Contact me</a>
+        <button type="button" class="btn big tour-btn" data-tour data-en="▶ 60-second tour" data-ko="▶ 60초 투어">▶ 60-second tour</button>
+      </div>
+    </div>
+    <a class="fx-cue" href="#top"><span data-en="Scroll" data-ko="스크롤">Scroll</span><i></i></a>
+  </section>
   <!-- ============ DASHBOARD ============ -->
   <section id="top" class="dash" data-sec="top" aria-label="Dashboard">
     <article class="card c-profile">
@@ -124,7 +144,7 @@
         <button type="button" id="g-prev" aria-label="Previous site">&larr;</button>
         <button type="button" id="g-next" aria-label="Next site">&rarr;</button>
       </div>
-      <p class="g-hint" data-en="Point at a pin to see the project. Drag to spin, scroll to zoom." data-ko="핀에 커서를 올리면 프로젝트가 보입니다. 드래그로 돌리고 휠로 확대합니다.">Point at a pin to see the project. Drag to spin, scroll to zoom.</p>
+      <p class="g-hint" data-en="Point at a pin to see the project. Drag to spin, zoom with the + and − buttons." data-ko="핀에 커서를 올리면 프로젝트가 보입니다. 드래그로 돌리고 +, − 버튼으로 확대합니다.">Point at a pin to see the project. Drag to spin, zoom with the + and − buttons.</p>
       <p class="g-count"><b>8</b> <span data-en="countries" data-ko="개국">countries</span> <b>14</b> <span data-en="sites" data-ko="현장">sites</span></p>
       <ol class="g-list" id="g-list"><!--@sites--></ol>
     </article>
@@ -490,6 +510,7 @@
   <p id="lb-cap"></p>
 </dialog>
 
+<script>(function(){var h=document.documentElement;if(!h.classList.contains('i18n-wait'))return;try{var n=document.querySelectorAll('[data-en]');for(var i=0;i<n.length;i++)n[i].textContent=n[i].getAttribute('data-en');n=document.querySelectorAll('[data-href-en]');for(i=0;i<n.length;i++){n[i].setAttribute('href',n[i].getAttribute('data-href-en'));n[i].setAttribute('download',n[i].getAttribute('data-dl-en'))}document.getElementById('lang-en').setAttribute('aria-pressed','true');document.getElementById('lang-ko').setAttribute('aria-pressed','false')}catch(e){}h.classList.remove('i18n-wait')})()</script>
 <script type="module" src="/src/main.js"></script>
 </body>
 </html>
